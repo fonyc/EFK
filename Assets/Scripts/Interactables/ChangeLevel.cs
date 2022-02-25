@@ -6,6 +6,8 @@ namespace SFK.Interactables
 {
     public class ChangeLevel : MonoBehaviour, IInteractable
     {
+        [SerializeField] private int level;
+
         [Header("--- Strategic Points ---")]
         [SerializeField] private Transform startPoint;
         [SerializeField] private Transform endPoint;
