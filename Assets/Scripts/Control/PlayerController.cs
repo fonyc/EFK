@@ -7,6 +7,7 @@ namespace SFK.Control
     public class PlayerController : MonoBehaviour
     {
         InputActions inputActions;
+        PlayerAnimations anim;
 
         private CharacterController controller;
         [SerializeField] private Vector3 playerVelocity;
@@ -16,6 +17,7 @@ namespace SFK.Control
         private void Awake()
         {
             inputActions = new InputActions();
+            anim = GetComponent<PlayerAnimations>();
         }
 
         private void Start()
@@ -27,6 +29,7 @@ namespace SFK.Control
         {
             Vector2 inputMove = inputActions.Player.Move.ReadValue<Vector2>();
             Vector3 move = new Vector3(inputMove.x, 0f, inputMove.y);
+            anim.Walk(inputMove);
             controller.Move(move * Time.deltaTime * playerSpeed);
 
             //Puts character front in the vector direction 
