@@ -6,6 +6,7 @@ namespace EFK.Stats
 {
     public class BaseStats : MonoBehaviour
     {
+        [SerializeField] CharacterType characterType;
         public CharactersStats characters;
     }
 }

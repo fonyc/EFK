@@ -1337,6 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e589e99e9f50ff04a90944f9348c320d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 1
   characters: {fileID: 11400000, guid: 38037c0cc4ce9e24586b2769a0e41f29, type: 2}
 --- !u!195 &-7664955347020921925
 NavMeshAgent:

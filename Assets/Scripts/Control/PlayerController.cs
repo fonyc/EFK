@@ -6,6 +6,7 @@ namespace EFK.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private Interactor interactor;
         InputActions inputActions;
         PlayerAnimations anim;
         private CharacterController controller;
@@ -20,11 +21,13 @@ namespace EFK.Control
         {
             inputActions = new InputActions();
             anim = GetComponent<PlayerAnimations>();
+            controller = gameObject.GetComponent<CharacterController>();
+            interactor = GetComponent<Interactor>();
         }
 
         private void Start()
         {
-            controller = gameObject.GetComponent<CharacterController>();
+
         }
 
         void Update()
@@ -50,7 +53,9 @@ namespace EFK.Control
         {
             if (inputActions.Player.Interact.triggered)
             {
-                Debug.Log("Interact!");
+                if (interactor.TARGET == null) return;
+                
+                interactor.TARGET.Interact(GetComponent<BaseStats>().characters);
             }
         }
 

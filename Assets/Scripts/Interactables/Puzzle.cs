@@ -13,7 +13,7 @@ namespace SFK.Interactables
 
         public void AddInteractableTag()
         {
-            gameObject.tag = "Interactable";
+            if (gameObject.tag != "Interactable") gameObject.tag = "Interactable";
         }
 
         #region IINTERACTABLE

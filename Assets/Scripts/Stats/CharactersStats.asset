@@ -14,16 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - character: 0
-    characterName: Alan Smith
     stats:
-      speed: 0
+      speed: 3
       meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
+        curseMeterRate: 1
+        monsterMeterRate: 1
+        curseMeterCaught: 1
+      levelList:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
   - character: 1
-    characterName: Ashley Gammons
     stats:
       speed: 0
       meterStats:
@@ -32,7 +36,6 @@ MonoBehaviour:
         curseMeterCaught: 0
       levelList: []
   - character: 2
-    characterName: Milos Krasnova
     stats:
       speed: 0
       meterStats:
@@ -41,7 +44,6 @@ MonoBehaviour:
         curseMeterCaught: 0
       levelList: []
   - character: 3
-    characterName: Mary-Jane Graham
     stats:
       speed: 0
       meterStats:

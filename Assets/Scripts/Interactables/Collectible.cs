@@ -1,21 +1,31 @@
+using EFK.Stats;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EFK.Interactables
 {
-    public class Collectible : MonoBehaviour
+    public class Collectible : MonoBehaviour, IInteractable
     {
-        // Start is called before the first frame update
+        [SerializeField] private int collectibleNumber;
+
         void Start()
         {
-            gameObject.tag = "Interactable";
+            AddInteractableTag();
         }
 
-        // Update is called once per frame
-        void Update()
+        #region IINTERACTABLE
+
+        public void AddInteractableTag()
         {
-
+            if (gameObject.tag != "Interactable") gameObject.tag = "Interactable";
         }
+
+        public void Interact(CharactersStats playerAtributes)
+        {
+            Debug.Log("Piece of collection founded");
+        }
+
+        #endregion
     }
 }
