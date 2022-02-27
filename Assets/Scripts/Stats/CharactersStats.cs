@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SFK.Stats
+namespace EFK.Stats
 {
     [CreateAssetMenu(fileName = "Characters", menuName = "Characters")]
     public class CharactersStats : ScriptableObject

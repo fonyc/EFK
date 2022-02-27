@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SFK.Stats
+namespace EFK.Stats
 {
     public class BaseStats : MonoBehaviour
     {
-        [SerializeField] CharactersStats characters;
+        public CharactersStats characters;
     }
 }

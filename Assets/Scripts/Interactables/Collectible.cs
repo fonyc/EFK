@@ -1,17 +1,15 @@
-using SFK.Stats;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SFK.Interactables
+namespace EFK.Interactables
 {
-    public class OpenPuzzle : MonoBehaviour, IInteractable
+    public class Collectible : MonoBehaviour
     {
-
         // Start is called before the first frame update
         void Start()
         {
-
+            gameObject.tag = "Interactable";
         }
 
         // Update is called once per frame
@@ -19,11 +17,5 @@ namespace SFK.Interactables
         {
 
         }
-
-        public void Interact(CharactersStats playerAtributes)
-        {
-            //Call the UI to start the puzzle!
-        }
     }
-
 }

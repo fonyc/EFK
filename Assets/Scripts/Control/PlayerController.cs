@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using EFK.Animations;
+using EFK.Stats;
 using UnityEngine;
 
-namespace SFK.Control
+namespace EFK.Control
 {
     public class PlayerController : MonoBehaviour
     {
         InputActions inputActions;
         PlayerAnimations anim;
-
         private CharacterController controller;
-        [SerializeField] private Vector3 playerVelocity;
-        [SerializeField] private float playerSpeed = 2.0f;
+        private Vector3 playerVelocity;
+
         private float gravity = -9.8f;
+
+        [SerializeField] private float playerSpeed = 2.0f;
+
 
         private void Awake()
         {

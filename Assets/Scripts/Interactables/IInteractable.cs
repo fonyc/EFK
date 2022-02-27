@@ -1,9 +1,10 @@
-using SFK.Stats;
+using EFK.Stats;
 
-namespace SFK.Interactables
+namespace EFK.Interactables
 {
     public interface IInteractable
     {
         public void Interact(CharactersStats playerAtributes);
+        public void AddInteractableTag();
     }
 }
