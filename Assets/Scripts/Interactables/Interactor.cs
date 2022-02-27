@@ -20,7 +20,7 @@ public class Interactor : MonoBehaviour
             hasTarget = true;
             target = other.GetComponent<IInteractable>();
             CharactersStats cs = GetComponent<BaseStats>().characters;
-            if(cs != null) other.GetComponent<IInteractable>().Interact(cs);
+            if(cs != null) other.GetComponent<IInteractable>().ShowInteraction(cs);
         }
     }
 

@@ -24,14 +24,20 @@ namespace SFK.Interactables
         private void ActivateCollider(bool value) => invisibleCollider.enabled = value;
 
         #region IINTERACTABLE
-        public void Interact(CharactersStats playerAtributes)
+        public void ShowInteraction(CharactersStats playerAtributes)
         {
-            Debug.Log("Changing to level: " + level);
+            //TO DO --> Call Scene management and leave scene
+            Debug.Log("Door is shining and showing a canvas");
         }
 
         public void AddInteractableTag()
         {
             if (gameObject.tag != "Interactable") gameObject.tag = "Interactable";
+        }
+
+        public void Interact(CharactersStats playerAtributes)
+        {
+            Debug.Log("Changing to level: " + level);
         }
         #endregion
     }

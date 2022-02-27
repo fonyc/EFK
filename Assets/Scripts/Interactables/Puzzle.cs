@@ -17,6 +17,12 @@ namespace SFK.Interactables
         }
 
         #region IINTERACTABLE
+        public void ShowInteraction(CharactersStats playerAtributes)
+        {
+            //TODO --> 
+            Debug.Log("The puzzle shines and has a canvas to interact");
+        }
+
         public void Interact(CharactersStats playerAtributes)
         {
             Debug.Log("Opening Puzzle");
