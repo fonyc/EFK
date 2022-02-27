@@ -6,6 +6,7 @@ public class Interactor : MonoBehaviour
 {
     [SerializeField] private int detectionRadius;
     [SerializeField] IInteractable target;
+    public bool hasTarget = false;
 
     public IInteractable TARGET
     {
@@ -16,15 +17,20 @@ public class Interactor : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
+            hasTarget = true;
             target = other.GetComponent<IInteractable>();
             CharactersStats cs = GetComponent<BaseStats>().characters;
-            if(cs != null) other.GetComponent<IInteractable>().Interact(cs);
+            if(cs != null) other.GetComponent<IInteractable>().ShowInteraction(cs);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        target = null;
+        if (other.CompareTag("Interactable"))
+        {
+            target = null;
+            hasTarget = false;
+        }
     }
 
     #region GIZMOS

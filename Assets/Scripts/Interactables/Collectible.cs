@@ -21,6 +21,11 @@ namespace EFK.Interactables
             if (gameObject.tag != "Interactable") gameObject.tag = "Interactable";
         }
 
+        public void ShowInteraction(CharactersStats playerAtributes)
+        {
+            Debug.Log("Collectible is shining and has a canvas!");
+        }
+
         public void Interact(CharactersStats playerAtributes)
         {
             Debug.Log("Piece of collection founded");
