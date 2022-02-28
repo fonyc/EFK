@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528025772}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Wrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 5310732071595860598}
   - component: {fileID: 5781881951236938757}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: keyWhite_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1368,13 +1368,27 @@ GameObject:
   - component: {fileID: 5892226019846060874}
   - component: {fileID: 5446433179233130611}
   - component: {fileID: 3617952011729362382}
+  - component: {fileID: 1733037745540417626}
   m_Layer: 5
-  m_Name: Image
+  m_Name: keyWhite_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1733037745540417626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733037745540417625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Touchscreen>/primaryTouch/tap
 --- !u!222 &1834515710117142234
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1427,7 +1441,7 @@ GameObject:
   - component: {fileID: 7480318076906689225}
   - component: {fileID: 3550240958496197670}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: keyWhite_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1445,7 +1459,7 @@ GameObject:
   - component: {fileID: 1834515710117142234}
   - component: {fileID: 960812603689119165}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: blackKey_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,7 +1681,7 @@ GameObject:
   - component: {fileID: 2018267082748988805}
   - component: {fileID: 7160676941678319877}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: blackKey_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1820,7 +1834,7 @@ GameObject:
   - component: {fileID: 5248239377068004367}
   - component: {fileID: 5018628788481630392}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: keyWhite_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1933,7 +1947,7 @@ GameObject:
   - component: {fileID: 36499035706081235}
   - component: {fileID: 9137081744744426352}
   m_Layer: 5
-  m_Name: Image
+  m_Name: blackKey_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
