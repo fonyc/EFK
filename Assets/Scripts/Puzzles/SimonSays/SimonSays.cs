@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SimonSays : MonoBehaviour
+namespace EFK.Puzzles
 {
-    // Start is called before the first frame update
-    void Start()
+    public class SimonSays : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private GameObject[] keyList;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [Header("--- GAME SETTINGS ---")]
+        [Space(5)]
+        [SerializeField] private int roundNumber;
+
+
+        #region GAME LOGIC 
+
+
+
+        #endregion
     }
 }

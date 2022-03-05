@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Piano_Key : MonoBehaviour
+namespace EFK.Puzzles
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Piano_Key : MonoBehaviour
     {
-        
+        [SerializeField] private int keyNumber;
+        [SerializeField] private SimonSays simonSays;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
