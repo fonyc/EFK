@@ -4,8 +4,8 @@ namespace EFK.Interactables
 {
     public interface IInteractable
     {
-        public void ShowInteraction(CharactersStats playerAtributes);
-        public void Interact(CharactersStats playerAtributes);
+        public void ShowInteraction(BaseStats baseStats);
+        public void Interact(BaseStats baseStats);
         public void AddInteractableTag();
     }
 }

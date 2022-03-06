@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CharactersStats
   m_EditorClassIdentifier: 
   characters:
-  - character: 0
+  - character: 4
     stats:
       speed: 3
       meterStats:
@@ -26,6 +26,8 @@ MonoBehaviour:
       - 3
       - 4
       - 5
+      - 6
+      - 6
       - 6
   - character: 1
     stats:

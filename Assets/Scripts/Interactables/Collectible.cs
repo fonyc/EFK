@@ -21,13 +21,17 @@ namespace EFK.Interactables
             if (gameObject.tag != "Interactable") gameObject.tag = "Interactable";
         }
 
-        public void ShowInteraction(CharactersStats playerAtributes)
+        public void ShowInteraction(BaseStats baseStats)
         {
-            Debug.Log("Collectible is shining and has a canvas!");
+            if (baseStats.CHARACTERTYPE != CharacterType.MaryJaneGraham) return;
+
+            Debug.Log("The collection piece is shining");
         }
 
-        public void Interact(CharactersStats playerAtributes)
+        public void Interact(BaseStats baseStats)
         {
+            if (baseStats.CHARACTERTYPE != CharacterType.MaryJaneGraham) return;
+
             Debug.Log("Piece of collection founded");
         }
 
