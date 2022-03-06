@@ -112,6 +112,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "0a6572a7-792e-404b-82e6-6b6affe75e49",
+            "actions": [
+                {
+                    "name": "Tap",
+                    "type": "Button",
+                    "id": "624efc17-08c2-4914-8c2f-863be9ee9e74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ef1bf36c-3166-4b21-88ff-538c6b47a910",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
