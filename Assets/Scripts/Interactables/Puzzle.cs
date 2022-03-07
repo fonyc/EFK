@@ -6,6 +6,9 @@ namespace SFK.Interactables
 {
     public class Puzzle : MonoBehaviour, IInteractable
     {
+
+        [SerializeField] private PuzzleSO puzzle;
+
         private void Start()
         {
             AddInteractableTag();
@@ -19,13 +22,12 @@ namespace SFK.Interactables
         #region IINTERACTABLE
         public void ShowInteraction(BaseStats baseStats)
         {
-            //TODO --> 
             Debug.Log("The puzzle shines and has a canvas to interact");
         }
 
         public void Interact(BaseStats baseStats)
         {
-            Debug.Log("Opening Puzzle");
+            Instantiate(puzzle.PUZZLECANVAS);
         }
         #endregion
 
