@@ -8,5 +8,11 @@ namespace EFK.Stats
     {
         [SerializeField] CharacterType characterType;
         public CharactersStats characters;
+
+        public CharacterType CHARACTERTYPE
+        {
+            get { return characterType; }
+        }
+
     }
 }

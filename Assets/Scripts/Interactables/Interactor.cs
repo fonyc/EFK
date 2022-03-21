@@ -19,8 +19,8 @@ public class Interactor : MonoBehaviour
         {
             hasTarget = true;
             target = other.GetComponent<IInteractable>();
-            CharactersStats cs = GetComponent<BaseStats>().characters;
-            if(cs != null) other.GetComponent<IInteractable>().ShowInteraction(cs);
+            BaseStats baseStats = GetComponent<BaseStats>();
+            if(baseStats != null) other.GetComponent<IInteractable>().ShowInteraction(baseStats);
         }
     }
 

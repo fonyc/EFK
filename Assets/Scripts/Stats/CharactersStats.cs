@@ -9,7 +9,7 @@ namespace EFK.Stats
     {
         [SerializeField] Character[] characters;
 
-        Dictionary<CharacterType, Stats> lookupDict = null;
+        public Dictionary<CharacterType, Stats> lookupDict = null;
 
         [System.Serializable]
         public class Character

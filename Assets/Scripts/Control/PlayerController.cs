@@ -55,7 +55,7 @@ namespace EFK.Control
             {
                 if (interactor.TARGET == null) return;
                 
-                interactor.TARGET.Interact(GetComponent<BaseStats>().characters);
+                interactor.TARGET.Interact(GetComponent<BaseStats>());
             }
         }
 
