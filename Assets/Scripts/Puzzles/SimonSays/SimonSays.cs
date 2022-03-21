@@ -8,12 +8,26 @@ namespace EFK.Puzzles
 
         [Header("--- GAME SETTINGS ---")]
         [Space(5)]
-        [SerializeField] private int roundNumber;
+        [SerializeField] private int roundNumber = 6;
+        //[SerializeField] private int[] 
+
+        private void Awake()
+        {
+            
+        }
+
+        private void Start()
+        {
+            
+        }
 
 
         #region GAME LOGIC 
 
-
+        public void OnKeyPressed(int keyNumber)
+        {
+            Debug.Log("Key number " + keyNumber + " was pressed");
+        }
 
         #endregion
     }

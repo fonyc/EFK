@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 2565540695825566864}
   - component: {fileID: 2565540695825566865}
   - component: {fileID: 2565540695825566866}
-  - component: {fileID: 2565540695825566879}
   m_Layer: 5
   m_Name: Black_Key6
   m_TagString: Untagged
@@ -184,21 +183,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540695825566865}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540695825566879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540695825566868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 6
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2565540695919449469
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +208,6 @@ GameObject:
   - component: {fileID: 2565540695919449465}
   - component: {fileID: 2565540695919449466}
   - component: {fileID: 2565540695919449467}
-  - component: {fileID: 2565540695919449464}
   m_Layer: 5
   m_Name: White_Key2
   m_TagString: Untagged
@@ -319,21 +315,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540695919449466}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540695919449464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540695919449469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 2
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2565540696126800953
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +539,6 @@ GameObject:
   - component: {fileID: 2565540696578862240}
   - component: {fileID: 2565540696578862241}
   - component: {fileID: 2565540696578862242}
-  - component: {fileID: 2565540696578862255}
   m_Layer: 5
   m_Name: Black_Key4
   m_TagString: Untagged
@@ -653,21 +646,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540696578862241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540696578862255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540696578862244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 4
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2565540696611814653
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +671,6 @@ GameObject:
   - component: {fileID: 2565540696611814649}
   - component: {fileID: 2565540696611814650}
   - component: {fileID: 2565540696611814651}
-  - component: {fileID: 2565540696611814648}
   m_Layer: 5
   m_Name: Black_Key5
   m_TagString: Untagged
@@ -788,21 +778,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540696611814650}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540696611814648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540696611814653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 5
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2565540696862796887
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +803,6 @@ GameObject:
   - component: {fileID: 2565540696862796883}
   - component: {fileID: 2565540696862796884}
   - component: {fileID: 2565540696862796885}
-  - component: {fileID: 2565540696862796882}
   m_Layer: 5
   m_Name: White_Key3
   m_TagString: Untagged
@@ -923,21 +910,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540696862796884}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540696862796882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540696862796887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 3
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2565540697376272705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +998,6 @@ GameObject:
   - component: {fileID: 2565540697660316662}
   - component: {fileID: 2565540697660316663}
   - component: {fileID: 2565540697660316648}
-  - component: {fileID: 2565540697660316661}
   m_Layer: 5
   m_Name: White_Key1
   m_TagString: Untagged
@@ -1121,21 +1105,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540697660316663}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540697660316661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540697660316650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 1
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2565540697727928285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,7 +1130,6 @@ GameObject:
   - component: {fileID: 2565540697727928281}
   - component: {fileID: 2565540697727928282}
   - component: {fileID: 2565540697727928283}
-  - component: {fileID: 2565540697727928280}
   m_Layer: 5
   m_Name: White_Key0
   m_TagString: Untagged
@@ -1256,18 +1237,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2565540697727928282}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2565540697727928280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565540697727928285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772c1d19d3ea9d428e43e50c44f2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyNumber: 0
-  simonSays: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 2565540696126800964}
+        m_TargetAssemblyTypeName: EFK.Puzzles.SimonSays, Assembly-CSharp
+        m_MethodName: OnKeyPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
