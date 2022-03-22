@@ -13,6 +13,5 @@ namespace EFK.Stats
         {
             get { return characterType; }
         }
-
     }
 }

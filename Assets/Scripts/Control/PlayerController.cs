@@ -16,7 +16,6 @@ namespace EFK.Control
 
         [SerializeField] private float playerSpeed = 2.0f;
 
-
         private void Awake()
         {
             inputActions = new InputActions();

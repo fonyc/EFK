@@ -13,43 +13,63 @@ MonoBehaviour:
   m_Name: CharactersStats
   m_EditorClassIdentifier: 
   characters:
-  - character: 4
+  - characterType: 1
     stats:
-      speed: 3
-      meterStats:
-        curseMeterRate: 1
-        monsterMeterRate: 1
-        curseMeterCaught: 1
-      levelList:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 6
-      - 6
-  - character: 1
+    - stat: 0
+      value: 0
+    - stat: 1
+      value: 0
+    - stat: 2
+      value: 0
+    - stat: 3
+      value: 0
+    - stat: 4
+      value: 0
+    - stat: 5
+      value: 0
+    levelList: 
+  - characterType: 2
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
-  - character: 2
+    - stat: 0
+      value: 0
+    - stat: 1
+      value: 0
+    - stat: 2
+      value: 0
+    - stat: 3
+      value: 0
+    - stat: 4
+      value: 0
+    - stat: 5
+      value: 0
+    levelList: 
+  - characterType: 3
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
-  - character: 3
+    - stat: 0
+      value: 0
+    - stat: 1
+      value: 0
+    - stat: 2
+      value: 0
+    - stat: 3
+      value: 0
+    - stat: 4
+      value: 0
+    - stat: 5
+      value: 0
+    levelList: 0100000001000000010000000100000001000000010000000100000001000000
+  - characterType: 4
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
+    - stat: 0
+      value: 5
+    - stat: 1
+      value: 5
+    - stat: 2
+      value: 5
+    - stat: 3
+      value: 5
+    - stat: 4
+      value: 5
+    - stat: 5
+      value: 5
+    levelList: 0100000002000000030000000400000005000000060000000700000008000000
