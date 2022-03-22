@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("--- GAME STATE ---")]
+    [SerializeField] private GameStates _gameState = GameStates.MainMenu;
 
-    // Update is called once per frame
-    void Update()
+    public void SetGameState(GameStates gameState)
     {
-        
+        switch (gameState)
+        {
+            case (GameStates.MainMenu):
+            {
+                break;
+            }
+            case (GameStates.Explore):
+            {
+                break;
+            }
+            case (GameStates.Puzzle):
+            {
+                break;
+            }
+            case (GameStates.Ecounter):
+            {
+                break;
+            }
+            case (GameStates.GameOver):
+            {
+                break;
+            }
+        }
+
+        _gameState = gameState;
     }
 }

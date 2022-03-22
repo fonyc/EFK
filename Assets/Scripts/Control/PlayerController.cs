@@ -33,6 +33,10 @@ namespace EFK.Control
         void Update()
         {
             Vector2 inputMove = inputActions.Player.Move.ReadValue<Vector2>();
+
+            //Given that inputActions has a threshold, normalize vector to always move at the same speed
+            inputMove.Normalize();
+
             Vector3 move = new Vector3(inputMove.x, 0f, inputMove.y);
             anim.Walk(inputMove);
             controller.Move(move * Time.deltaTime * playerSpeed);

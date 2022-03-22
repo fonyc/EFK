@@ -6,5 +6,4 @@ public enum GameStates
     Puzzle = 2,
     Ecounter = 3,
     GameOver = 4
-
 }

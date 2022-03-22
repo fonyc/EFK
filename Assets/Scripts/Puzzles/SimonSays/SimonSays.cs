@@ -6,10 +6,10 @@ namespace EFK.Puzzles
     {
         [SerializeField] private GameObject[] keyList;
 
-        [Header("--- GAME SETTINGS ---")]
-        [Space(5)]
-        [SerializeField] private int roundNumber = 6;
-        //[SerializeField] private int[] 
+        //[Header("--- GAME SETTINGS ---")]
+        //[Space(5)]
+        //[SerializeField] private int roundNumber = 6;
+        //[SerializeField] private int[]
 
         private void Awake()
         {

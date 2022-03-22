@@ -1,8 +1,11 @@
-﻿public enum CharacterType
+﻿namespace EFK.Stats
 {
-    None,
-    AlanSmith,
-    AshleyGammons,
-    MilosKrasnova,
-    MaryJaneGraham
+    public enum CharacterType
+    {
+        None,
+        AlanSmith,
+        AshleyGammons,
+        MilosKrasnova,
+        MaryJaneGraham
+    }
 }
