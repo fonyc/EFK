@@ -8,14 +8,14 @@ public class GameEvents : MonoBehaviour
 {
     [Header("--- METER STATS --- ")]
     private BaseStats _baseStats;
-    [SerializeField] const float monsterMeterRefreshRate = 1f;
-    [SerializeField] float monsterMeter = 0f;
+    [SerializeField] const int monsterMeterRefreshRate = 1;
+    [SerializeField] int monsterMeter = 0;
     //[SerializeField] float curseMeter = 0f;
     Coroutine monsterRaise_coro;
 
     [Space(5)]
     [Header("--- EVENTS --- ")]
-    [SerializeField] private Action<float> OnRaiseCurseMeter;
+    [SerializeField] public Action<int> OnRaiseMonsterMeter;
 
     private void Awake()
     {
@@ -49,7 +49,7 @@ public class GameEvents : MonoBehaviour
     {
         yield return new WaitForSeconds(monsterMeterRefreshRate);
         monsterMeter += _baseStats.characters.GetStat(_baseStats.CHARACTERTYPE, Stat.MonsterMeterRaiseRate);
-        OnRaiseCurseMeter?.Invoke(monsterMeter);
+        OnRaiseMonsterMeter?.Invoke(monsterMeter);
         //Check if bar is full to begin Encounter
 
         Debug.Log(monsterMeter);
