@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterMeter: 0
+  curseMeter: 0
 --- !u!4 &164607827
 Transform:
   m_ObjectHideFlags: 0
@@ -1157,6 +1158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91855ca15a17acf4c9dbcef7bcf4374a, type: 3}
+--- !u!224 &1216148321 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2560513106918493272, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
+  m_PrefabInstance: {fileID: 2462554541697288598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1298772777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8942347239312440554, guid: bb01d5d429bd4404c9e8e06c9c7d369f, type: 3}
@@ -1754,16 +1760,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08c25b1881bf3f4996cb71e265565bb, type: 3}
---- !u!1001 &2560513106383441577
+--- !u!1001 &2462554541697288598
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2560513106918493272, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741686235628325411, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
+      propertyPath: gameEvents
+      value: 
+      objectReference: {fileID: 164607826}
+    - target: {fileID: 5741686235628325411, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
+      propertyPath: monsterMeterBar
+      value: 
+      objectReference: {fileID: 1216148321}
     - target: {fileID: 8202743657050759312, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
       propertyPath: m_Name
-      value: Meters_UI
+      value: Meters_HUD
       objectReference: {fileID: 0}
     - target: {fileID: 8202743657050759324, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
       propertyPath: m_Pivot.x

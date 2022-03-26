@@ -9,11 +9,11 @@ namespace EFK.Stats
     {
         [SerializeField] Character[] characters = null;
 
-        public Dictionary<Stat, int> statLookupDict = null;
+        public Dictionary<Stat, float> statLookupDict = null;
 
         public Dictionary<int, int> levelLookUpDict = null;
 
-        public int GetStat(CharacterType characterType, Stat stat)
+        public float GetStat(CharacterType characterType, Stat stat)
         {
             //Ensures that the first time someone needs a stat it creates the lookup dictionary
             BuildStatLookupDict(characterType);
@@ -50,7 +50,7 @@ namespace EFK.Stats
         {
             if (statLookupDict != null) return;
 
-            statLookupDict = new Dictionary<Stat, int>();
+            statLookupDict = new Dictionary<Stat, float>();
 
             foreach (Character character in characters)
             {

@@ -7,6 +7,12 @@ public class GameManager : MonoBehaviour
     [Header("--- GAME STATE ---")]
     [SerializeField] private GameStates _gameState = GameStates.MainMenu;
 
+    private void Update()
+    {
+        
+    }
+
+
     public void SetGameState(GameStates gameState)
     {
         switch (gameState)
