@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEvents : MonoBehaviour
+public class MetersManager : MonoBehaviour
 {
     [Header("--- METER STATS --- ")]
     private BaseStats _baseStats;
@@ -13,12 +13,7 @@ public class GameEvents : MonoBehaviour
     [SerializeField] float curseMeter = 0f;
     Coroutine monsterRaise_coro;
 
-    [Space(5)]
-    [Header("--- EVENTS --- ")]
-    [SerializeField] public Action<float> OnRaiseMonsterMeter;
-    [SerializeField] public Action<float> OnRaiseCurseMeter;
-
-    private void Awake()
+     private void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if(player != null)
@@ -34,7 +29,7 @@ public class GameEvents : MonoBehaviour
 
     #region RAISE CURSE METER
 
-
+    //codigo muy chachi bueno!
 
     #endregion
 
@@ -53,8 +48,11 @@ public class GameEvents : MonoBehaviour
 
         float raiseValue = _baseStats.characters.GetStat(_baseStats.CHARACTERTYPE, Stat.MonsterMeterRaiseRate);
         float maxValue = _baseStats.characters.GetStat(_baseStats.CHARACTERTYPE, Stat.MonsterMeterMaxValue);
-        monsterMeter = raiseValue / maxValue;
-        OnRaiseMonsterMeter?.Invoke(monsterMeter);
+        monsterMeter += raiseValue / maxValue;
+
+        AddMonsterMeter arguments = new AddMonsterMeter(monsterMeter);
+        Type type = typeof(AddMonsterMeter);
+        EventManager.TriggerEvent(type, arguments);
 
         //Check if bar is full to begin Encounter
 
