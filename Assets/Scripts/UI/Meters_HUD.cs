@@ -48,7 +48,7 @@ public class Meters_HUD : MonoBehaviour
     }
 
     #region EVENT SUBSCRIPTION
-    private void OnEnable()
+    private void Start()
     {
         Type type = typeof(AddMonsterMeter);
         AddMonsterMeter meter = new AddMonsterMeter();

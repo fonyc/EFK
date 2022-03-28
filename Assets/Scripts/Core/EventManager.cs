@@ -28,10 +28,14 @@ public class EventManager : MonoBehaviour
         #region Singleton
         if (_instance != null && _instance != this)
         {
+            Debug.Log("Already exists");
+
             Destroy(this.gameObject);
         }
         else
         {
+            Debug.Log("Doesn't yet exist");
+
             InitDictionary();
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -42,6 +46,8 @@ public class EventManager : MonoBehaviour
     public static void StartListening(object eventKey, UnityAction<object> listener)
     {
         UnityObjectEvent currentEvent = null;
+
+        Debug.Log(_instance==null);
 
         if (Instance.eventDictionary.TryGetValue(eventKey, out currentEvent))
         {
