@@ -6,13 +6,25 @@ using UnityEngine.Events;
 
 public class Meters_HUD : MonoBehaviour
 {
+    #region VARIABLES
     [SerializeField] RectTransform monsterMeterBar;
     [SerializeField] RectTransform curseMeterBar;
+
+    #region LISTENERS
     private UnityAction<object> monsterMeterListener;
+    #endregion
+
+    #endregion
 
     private void Awake()
     {
         monsterMeterListener = new UnityAction<object>(ManageEvent);
+    }
+
+    private void Start()
+    {
+        Type type = typeof(AddMonsterMeter);
+        EventManager.StartListening(type, monsterMeterListener);
     }
 
     private void ManageEvent(object argument)
@@ -28,10 +40,8 @@ public class Meters_HUD : MonoBehaviour
             case AddCurseMeter vartype:
                 Debug.Log("CM");
                 break;
-        }
-             
+        }   
     }
-
 
     private void ModifyMonsterMeterBar(float value)
     {
@@ -47,19 +57,9 @@ public class Meters_HUD : MonoBehaviour
         curseMeterBar.localScale = new Vector3(scaledValue, monsterMeterBar.localScale.y, monsterMeterBar.localScale.z);
     }
 
-    #region EVENT SUBSCRIPTION
-    private void Start()
-    {
-        Type type = typeof(AddMonsterMeter);
-        AddMonsterMeter meter = new AddMonsterMeter();
-        EventManager.StartListening(type, monsterMeterListener);
-    }
-
     private void OnDestroy()
     {
         Type type = typeof(AddMonsterMeter);
-        AddMonsterMeter meter = new AddMonsterMeter();
         EventManager.StopListening(type, monsterMeterListener);
     }
-    #endregion
 }

@@ -50,9 +50,8 @@ public class MetersManager : MonoBehaviour
         float maxValue = _baseStats.characters.GetStat(_baseStats.CHARACTERTYPE, Stat.MonsterMeterMaxValue);
         monsterMeter += raiseValue / maxValue;
 
-        AddMonsterMeter arguments = new AddMonsterMeter(monsterMeter);
-        Type type = typeof(AddMonsterMeter);
-        EventManager.TriggerEvent(type, arguments);
+        AddMonsterMeter eventClass = new AddMonsterMeter(monsterMeter);
+        EventManager.TriggerEvent(eventClass);
 
         //Check if bar is full to begin Encounter
 

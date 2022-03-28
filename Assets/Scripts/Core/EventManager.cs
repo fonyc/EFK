@@ -15,6 +15,11 @@ public class EventManager : MonoBehaviour
 
     public static EventManager Instance { get { return _instance; } }
 
+    private void Awake()
+    {
+        SingletonInit();
+    }
+
     private void InitDictionary()
     {
         if (eventDictionary == null)
@@ -23,31 +28,25 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void SingletonInit()
     {
-        #region Singleton
         if (_instance != null && _instance != this)
         {
-            Debug.Log("Already exists");
-
             Destroy(this.gameObject);
         }
         else
         {
-            Debug.Log("Doesn't yet exist");
-
             InitDictionary();
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        #endregion
     }
 
     public static void StartListening(object eventKey, UnityAction<object> listener)
     {
-        UnityObjectEvent currentEvent = null;
+        if (Instance == null) return;
 
-        Debug.Log(_instance==null);
+        UnityObjectEvent currentEvent = null;
 
         if (Instance.eventDictionary.TryGetValue(eventKey, out currentEvent))
         {
@@ -58,14 +57,12 @@ public class EventManager : MonoBehaviour
             currentEvent = new UnityObjectEvent();
             currentEvent.AddListener(listener);
             Instance.eventDictionary.Add(eventKey, currentEvent);
-            Debug.Log(eventKey + " Event Key");
-            Debug.Log(Instance.eventDictionary.TryGetValue(eventKey, out currentEvent) + "");
         }
     }
 
     public static void StopListening(object eventKey, UnityAction<object> listener)
     {
-        if (_instance == null) return;
+        if (Instance == null) return;
 
         UnityObjectEvent currentEvent = null;
 
@@ -75,15 +72,16 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("There is no listener to remove");
+            Debug.LogWarning("There is no listener to remove");
         }
     }
 
-    public static void TriggerEvent(object eventKey, object arguments)
+    public static void TriggerEvent(object arguments)
     {
-        if (_instance == null) return;
+        if (Instance == null) return;
 
         UnityObjectEvent currentEvent = null;
+        object eventKey = arguments.GetType();
 
         if (Instance.eventDictionary.TryGetValue(eventKey, out currentEvent))
         {
@@ -91,7 +89,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("There is no listener to invoke");
+            Debug.LogWarning("There is no listener to invoke");
         }
     }
 }
