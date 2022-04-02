@@ -23,13 +23,24 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     #region DRAG/DROP
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Color color = gameObject.GetComponent<Image>().color;
-        color = new Color(color.r, color.g, color.b, color.a - 0.4f);
+        //Set Origin and Destination to this stick square
+        diceController.OriginStickySquare = eventData.pointerDrag.transform.parent.gameObject.GetComponent<StickySquare>();
+        diceController.DestinationStickySquare = diceController.OriginStickySquare;
 
-        diceRectTransform.localScale = Vector2.one * 0.8f;
         diceController.DiceBeingDragged = true;
         diceController.SelectedDice = gameObject;
+
+        //Set Canvas as dice parent (so other dices dont block sight)
+        eventData.pointerDrag.transform.SetParent(diceController.transform);
+
+        //Make color and size selection
+        Color color = gameObject.GetComponent<Image>().color;
+        color = new Color(color.r, color.g, color.b, color.a - 0.4f);
+        diceRectTransform.localScale = Vector2.one * 0.8f;
+        
+        //Remove blocking raycast to reach sticky squares behind
         gameObject.GetComponent<Image>().raycastTarget = false;
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -56,30 +67,11 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         gameObject.GetComponent<Image>().raycastTarget = true;
 
-        //Check if the dice is from another sticky place/ the same sticky / void
+        diceController.SwapDices();
 
-        //No destination. Means player picked and item and dropped in the same place 
-        if(diceController.DestinationStickySquare == null)
-        {
-            //Return dice to its original position
-        }
-        else
-        {
-            //Dice goes to the same place as before
-            if (diceController.DestinationStickySquare.ArrayPositionInList == diceController.OriginStickySquare.ArrayPositionInList)
-            {
-                //Return dice to its original position
-                Debug.Log("DEJA VU! I have been in this place before...");
-            }
-            //Sticky objectives are not the same, so its a new objective
-            else
-            {
-                Debug.Log("SWITCH!");
-                //Swap dice to new location
-            }
-        }
-
-        
+        diceController.SelectedDice = null;
+        diceController.OriginStickySquare = null;
+        diceController.DestinationStickySquare = null;
     }
     #endregion
 }

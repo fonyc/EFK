@@ -13,10 +13,6 @@ public class StickySquare : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] 
     private int arrayPositionInList;
 
-    [SerializeField]
-    private GameObject diceInside;
-
-    public GameObject DiceInside { get => diceInside; set => diceInside = value; }
     public int ArrayPositionInList { get => arrayPositionInList; set => arrayPositionInList = value; }
 
     private void Awake()
@@ -28,15 +24,12 @@ public class StickySquare : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!diceController.DiceBeingDragged) return;
-        if (diceController.IsNextSquare) diceController.DestinationStickySquare = gameObject.GetComponent<StickySquare>();
+        diceController.DestinationStickySquare = gameObject.GetComponent<StickySquare>();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        diceController.IsNextSquare = diceController.DiceBeingDragged ? true : false;
-        if(diceController.DestinationStickySquare == null)
-        {
-            diceController.OriginStickySquare = GetComponent<StickySquare>();
-        }
+        if (!diceController.DiceBeingDragged) return;
+        diceController.DestinationStickySquare = null;
     }
 }
