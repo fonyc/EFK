@@ -27,7 +27,7 @@ namespace SFK.Interactables
 
         public void Interact(BaseStats baseStats)
         {
-            Instantiate(puzzle.PUZZLECANVAS);
+            Instantiate(puzzle.PuzzleCanvas);
         }
         #endregion
 
