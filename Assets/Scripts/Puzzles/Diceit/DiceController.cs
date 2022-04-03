@@ -42,26 +42,8 @@ public class DiceController : MonoBehaviour
         }
     }
 
-    private void CheckFacedDices()
-    {
-
-    }
-
-    private void GetFacedDice()
-    {
-
-    }
-
     public void Parenting(Transform _parent, GameObject dice)
     {
-
-        //Bring origin dice to destination
-        selectedDice.transform.SetParent(_parent);
-
-        dice.GetComponent<RectTransform>().anchorMin = Vector2.one * 0.5f;
-        dice.GetComponent<RectTransform>().anchorMax = Vector2.one * 0.5f;
-        dice.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        
         if (destinationStickySquare != null && destinationStickySquare != originStickySquare)
         {
             //Take destination dice to origin
@@ -72,5 +54,12 @@ public class DiceController : MonoBehaviour
             destinationDice.GetComponent<RectTransform>().anchorMax = Vector2.one * 0.5f;
             destinationDice.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         }
+
+        //Bring origin dice to destination
+        selectedDice.transform.SetParent(_parent);
+
+        dice.GetComponent<RectTransform>().anchorMin = Vector2.one * 0.5f;
+        dice.GetComponent<RectTransform>().anchorMax = Vector2.one * 0.5f;
+        dice.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 }
