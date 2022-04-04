@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5adcadaba1aa93e46b2bbe4c7c20e0e4, type: 3}
-  m_Name: Skull
+  m_Name: 4B
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 4
   image: {fileID: 0}
   isLocked: 0
   canBeDragged: 0
