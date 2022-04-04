@@ -23,6 +23,12 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     #region DRAG/DROP
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.pointerDrag.gameObject.GetComponent<DiceData>().IsLocked) 
+        {
+            Debug.Log("Dice is locked");
+            return;
+        }
+
         //Set Origin and Destination to this stick square
         diceController.OriginStickySquare = eventData.pointerDrag.transform.parent.gameObject.GetComponent<StickySquare>();
         diceController.DestinationStickySquare = diceController.OriginStickySquare;
@@ -36,11 +42,13 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //Make color and size selection
         Color color = gameObject.GetComponent<Image>().color;
         color = new Color(color.r, color.g, color.b, color.a - 0.4f);
+        gameObject.GetComponent<Image>().color = color;
+
         diceRectTransform.localScale = Vector2.one * 0.8f;
         
         //Remove blocking raycast to reach sticky squares behind
         gameObject.GetComponent<Image>().raycastTarget = false;
-
+        Debug.Log("But seem i dont care");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -59,12 +67,15 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //Return alpha to its original value
         Color color = gameObject.GetComponent<Image>().color;
         color = new Color(color.r, color.g, color.b, color.a + 0.4f);
+        gameObject.GetComponent<Image>().color = color;
 
+        //Return size to its original value
         diceRectTransform.localScale = Vector2.one;
-        diceController.DiceBeingDragged = false;
 
+        diceController.DiceBeingDragged = false;
         gameObject.GetComponent<Image>().raycastTarget = true;
 
         diceController.SwapDices();

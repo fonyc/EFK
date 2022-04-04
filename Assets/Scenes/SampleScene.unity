@@ -601,8 +601,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 0e478fa1a8a1fa442920120cfef86a5d, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &165588472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,8 +798,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 23eb31d8f7809de4f9c8747845758157, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &195466940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,8 +1061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: d110520295948e248988faa0297e2dc6, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &278972355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,8 +1418,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 281820c1d0930814c9fa675c75fcf59e, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &409638452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,8 +1615,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 194d120e3ef29ec41a2fb42d943a2f51, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &508178679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2319,8 +2329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 11936ea05501e1e44a171bd8cc1aed14, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1049789173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2423,8 +2435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: adb78f7b68dcdb344b1d7b415add40c8, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1052379052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2548,8 +2562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 0}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1070881741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2652,8 +2668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 6492291a11229ba4494e272c7feb01a8, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1089621770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2926,8 +2944,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 0}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1277723436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3030,8 +3050,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: cc9ea1d64cf616b4abc60001df802db7, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1285154717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3372,8 +3394,9 @@ GameObject:
   - component: {fileID: 1348499427}
   - component: {fileID: 1348499426}
   - component: {fileID: 1348499425}
+  - component: {fileID: 1348499429}
   m_Layer: 5
-  m_Name: Dice_White
+  m_Name: Dice_1B_Witch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3410,8 +3433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: cae760a32316a4749bb54ed72bf7aa74, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1348499426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3445,7 +3470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: aae360a1fe3f07c4cbcf6fc20674f11c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3463,6 +3488,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348499423}
   m_CullTransparentMesh: 1
+--- !u!95 &1348499429
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348499423}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b6d135c574b1b945988f9c052813592, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1413628061
 GameObject:
   m_ObjectHideFlags: 0
@@ -3790,8 +3834,9 @@ GameObject:
   - component: {fileID: 1594669833}
   - component: {fileID: 1594669832}
   - component: {fileID: 1594669831}
+  - component: {fileID: 1594669835}
   m_Layer: 5
-  m_Name: Dice_White
+  m_Name: Dice0A_Cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3828,8 +3873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 382a00c47c313a44bb86d865fedcae18, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1594669832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3863,7 +3910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e5900904e324844eb9564f471a7c321, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af86d56cef4e4174897daf5b2561428e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3872,7 +3919,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 16
 --- !u!222 &1594669834
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3881,6 +3928,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594669829}
   m_CullTransparentMesh: 1
+--- !u!95 &1594669835
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594669829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b699a8129143de248adb1f4a16d04405, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1671796434
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,8 +3998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: f8dd82f86291f084780e49b077f900ae, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1671796437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4036,8 +4104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 1eb7a0ce16fe4cf47b7eb9056fe137af, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1680270319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4495,8 +4565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceData: {fileID: 11400000, guid: 452beb935b61bc14991320a774521393, type: 2}
-  stickySquare: {fileID: 0}
+  diceId: 0
+  image: {fileID: 0}
+  isLocked: 0
+  canBeDragged: 0
 --- !u!114 &1990400551
 MonoBehaviour:
   m_ObjectHideFlags: 0
