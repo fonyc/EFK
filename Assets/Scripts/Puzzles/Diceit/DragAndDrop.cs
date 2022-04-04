@@ -53,7 +53,13 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(RectTransformUtility.ScreenPointToWorldPointInRectangle(diceRectTransform, 
+        if (eventData.pointerDrag.gameObject.GetComponent<DiceData>().IsLocked)
+        {
+            Debug.Log("Dice is locked");
+            return;
+        }
+
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(diceRectTransform, 
             eventData.position, 
             eventData.pressEventCamera, 
             out var globalMousePosition))
@@ -67,6 +73,12 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.pointerDrag.gameObject.GetComponent<DiceData>().IsLocked)
+        {
+            Debug.Log("Dice is locked");
+            return;
+        }
+
         //Return alpha to its original value
         Color color = gameObject.GetComponent<Image>().color;
         color = new Color(color.r, color.g, color.b, color.a + 0.4f);
