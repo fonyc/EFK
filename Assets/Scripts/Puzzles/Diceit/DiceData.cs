@@ -5,10 +5,12 @@ using UnityEngine;
 public class DiceData : MonoBehaviour
 {
     [SerializeField] private int diceId;
-    [SerializeField] private bool isLocked;
-    [SerializeField] private bool canBeDragged;
+    [SerializeField] private bool isLocked; //from the upper part --> cannot be dragged
+    [SerializeField] private bool isSolved; 
+    [SerializeField] private bool isSelected; //Was the last moved dice
 
-    public bool CanBeDragged { get => canBeDragged; set => canBeDragged = value; }
     public bool IsLocked { get => isLocked; set => isLocked = value; }
     public int DiceId { get => diceId; set => diceId = value; }
+    public bool IsSolved { get => isSolved; set => isSolved = value; }
+    public bool IsSelected { get => isSelected; set => isSelected = value; }
 }

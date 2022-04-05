@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DiceController : MonoBehaviour
 {
+    #region VARIABLES
     [SerializeField]
     private DiceData[] diceList = null;
 
@@ -18,6 +19,7 @@ public class DiceController : MonoBehaviour
 
     [SerializeField]
     private bool diceBeingDragged = false;
+    #endregion
 
     #region Properties
     public bool DiceBeingDragged { get => diceBeingDragged; set => diceBeingDragged = value; }
