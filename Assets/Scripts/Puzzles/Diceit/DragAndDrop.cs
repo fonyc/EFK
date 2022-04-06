@@ -30,7 +30,8 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     #region DRAG/DROP
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.gameObject.GetComponent<DiceData>().IsLocked) return;
+        DiceData draggedDiceData = eventData.pointerDrag.gameObject.GetComponent<DiceData>();
+        if (draggedDiceData.IsLocked) return;
 
         //Set Origin and Destination to this stick square
         diceController.OriginStickySquare = eventData.pointerDrag.transform.parent.gameObject.GetComponent<StickySquare>();
@@ -38,6 +39,8 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         diceController.DiceBeingDragged = true;
         diceController.SelectedDice = gameObject;
+
+        ChangeDiceSelection(draggedDiceData);
 
         //Set Canvas as dice parent (so other dices dont block sight)
         eventData.pointerDrag.transform.SetParent(diceController.transform);
@@ -91,4 +94,15 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         diceController.DestinationStickySquare = null;
     }
     #endregion
+
+    private void ChangeDiceSelection(DiceData newDice)
+    {
+        if (diceController.LastTouchedDice != null)
+        {
+            diceController.LastTouchedDice.GetComponent<DiceData>().IsSelected = false;
+        }
+
+        newDice.IsSelected = true;
+        diceController.LastTouchedDice = gameObject;
+    }
 }

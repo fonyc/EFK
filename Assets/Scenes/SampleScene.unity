@@ -187,7 +187,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 165588470}
+  - {fileID: 1671796435}
   m_Father: {fileID: 95851538}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -498,7 +498,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 73170064}
+  m_Father: {fileID: 1302306589}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 1
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &165588472
@@ -605,7 +605,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 375521843}
+  m_Father: {fileID: 490113017}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 6
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &195466940
@@ -1028,7 +1028,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 195466938}
+  - {fileID: 508178677}
   m_Father: {fileID: 95851538}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1226,7 +1226,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 508178677}
+  - {fileID: 195466938}
   m_Father: {fileID: 95851538}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1318,7 +1318,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 490113017}
+  m_Father: {fileID: 375521843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 7
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &508178679
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   diceId: 3
   isLocked: 0
   isSolved: 0
-  isSelected: 0
+  isSelected: 1
 --- !u!114 &783623702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2048,7 +2048,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1594669830}
+  - {fileID: 1049789171}
   m_Father: {fileID: 95851538}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2140,7 +2140,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1302306589}
+  m_Father: {fileID: 1014894639}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 4
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &1049789173
@@ -2268,7 +2268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 2
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &1052379052
@@ -2843,7 +2843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 5
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &1285154717
@@ -2933,7 +2933,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1049789171}
+  - {fileID: 165588470}
   m_Father: {fileID: 95851538}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3722,7 +3722,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1716996368}
+  m_Father: {fileID: 73170064}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3743,7 +3743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 3
-  isLocked: 0
+  isLocked: 1
   isSolved: 0
   isSelected: 0
 --- !u!114 &1671796437
@@ -4042,7 +4042,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1671796435}
+  - {fileID: 1594669830}
   m_Father: {fileID: 95851538}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5074,8 +5074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725f1bb23a1f70a40993a2fbb27f4c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceList: []
   selectedDice: {fileID: 0}
+  lastTouchedDice: {fileID: 0}
   originStickySquare: {fileID: 0}
   destinationStickySquare: {fileID: 0}
   diceBeingDragged: 0
@@ -5164,7 +5164,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1014894639}
+    m_TransformParent: {fileID: 1716996368}
     m_Modifications:
     - target: {fileID: 4800480094547733532, guid: 95977bbec5ed06e4a8edc85fd40944c2, type: 3}
       propertyPath: m_Name
@@ -5172,10 +5172,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4800480094547733534, guid: 95977bbec5ed06e4a8edc85fd40944c2, type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800480094547733534, guid: 95977bbec5ed06e4a8edc85fd40944c2, type: 3}
       propertyPath: isSolved
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800480094547733534, guid: 95977bbec5ed06e4a8edc85fd40944c2, type: 3}
+      propertyPath: isSelected
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4800480094547733535, guid: 95977bbec5ed06e4a8edc85fd40944c2, type: 3}

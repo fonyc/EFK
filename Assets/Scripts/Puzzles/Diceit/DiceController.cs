@@ -6,10 +6,10 @@ public class DiceController : MonoBehaviour
 {
     #region VARIABLES
     [SerializeField]
-    private DiceData[] diceList = null;
+    private GameObject selectedDice = null;
 
     [SerializeField]
-    private GameObject selectedDice = null;
+    private GameObject lastTouchedDice = null;
 
     [SerializeField]
     private StickySquare originStickySquare = null;
@@ -24,9 +24,9 @@ public class DiceController : MonoBehaviour
     #region Properties
     public bool DiceBeingDragged { get => diceBeingDragged; set => diceBeingDragged = value; }
     public GameObject SelectedDice { get => selectedDice; set => selectedDice = value; }
-    public DiceData[] DiceList { get => diceList; set => diceList = value; }
     public StickySquare OriginStickySquare { get => originStickySquare; set => originStickySquare = value; }
     public StickySquare DestinationStickySquare { get => destinationStickySquare; set => destinationStickySquare = value; }
+    public GameObject LastTouchedDice { get => lastTouchedDice; set => lastTouchedDice = value; }
     #endregion
 
     public void SwapDices()
