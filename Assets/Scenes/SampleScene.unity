@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 5
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 1
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 6
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 1
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 7
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 3
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 4
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -2267,7 +2267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 2
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -2395,7 +2395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 2
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -2842,7 +2842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 5
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -3225,7 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 7
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 3
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -4288,7 +4288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 6
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -4395,7 +4395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb8f8f6fb6bad41914e30c5e355668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceId: 0
+  diceId: 4
   isLocked: 0
   isSolved: 0
   isSelected: 0
@@ -5091,6 +5091,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e88df41b432e2a45ab4cd78817754cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upperParentList: {fileID: 95851538}
+  bottomParentList: {fileID: 1094636525}
   availablePositionList: 
 --- !u!224 &3867735696934839160
 RectTransform:

@@ -15,11 +15,11 @@ public class Shuffler : MonoBehaviour
 
     private void Start()
     {
-        Shuffle(upperParentList);
-        Shuffle(bottomParentList);
+        Shuffle(upperParentList, false);
+        Shuffle(bottomParentList, true);
     }
 
-    private void Shuffle(Transform parentList)
+    private void Shuffle(Transform parentList, bool avoidAutoSolutions)
     {
         // Fisher-Yates shuffle algorithm
         availablePositionList = GetSwapPointList(parentList);
@@ -30,10 +30,23 @@ public class Shuffler : MonoBehaviour
             DiceData dice = stickySquare.GetChild(0).gameObject.GetComponent<DiceData>();
             if (dice.IsSelected || dice.IsSolved) continue;
 
+            //Remove possible faced results in available list
+            int diceId = stickySquare.GetChild(0).gameObject.GetComponent<DiceData>().DiceId;
+            bool wasInList = false;
+            int numberToAvoid = avoidAutoSolutions ? GetIndexPartnerinUpperParent(upperParentList, diceId) : -1;
+            if (availablePositionList.Contains(numberToAvoid))
+            {
+                availablePositionList.Remove(numberToAvoid);
+                wasInList = true;
+            }
+
             //Take a random dice from list. Remove the used position afterwards
             int randomIndexInList = Random.Range(0, availablePositionList.Count);
             int randomPosition = availablePositionList[randomIndexInList];
             availablePositionList.RemoveAt(randomIndexInList);
+
+            //Return the number we wanted to avoid
+            if(wasInList)availablePositionList.Add(numberToAvoid);
 
             //Swap current sticky Square with the random index collected in randomPosition
             SwapDicesWithoutTarget(randomPosition, stickySquare);
@@ -50,7 +63,6 @@ public class Shuffler : MonoBehaviour
             DiceData dice = stickySquare.GetChild(0).gameObject.GetComponent<DiceData>();
             if (dice.IsSelected || dice.IsSolved) continue;
             
-
             list.Add(stickySquare.GetSiblingIndex());
         }
 
@@ -78,5 +90,17 @@ public class Shuffler : MonoBehaviour
         dice.GetComponent<RectTransform>().anchorMin = Vector2.one * 0.5f;
         dice.GetComponent<RectTransform>().anchorMax = Vector2.one * 0.5f;
         dice.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+    }
+
+    private int GetIndexPartnerinUpperParent(Transform parent, int idToAvoid)
+    {
+        foreach(Transform stickySquare in parent)
+        {
+            if (stickySquare.GetChild(0).gameObject.GetComponent<DiceData>().DiceId == idToAvoid)
+            {
+                return stickySquare.GetSiblingIndex();
+            }
+        }
+        return -1;
     }
 }
