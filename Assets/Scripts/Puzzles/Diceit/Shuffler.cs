@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Shuffler : MonoBehaviour
 {
-    private Transform parentList;
+    [SerializeField] private Transform upperParentList;
+    [SerializeField] private Transform bottomParentList;
     [SerializeField] private List<int> availablePositionList;
-
-    // Fisher-Yates shuffle algorithm
 
     private void Awake()
     {
-        parentList = transform.GetChild(1);
         availablePositionList = new List<int>();
     }
 
     private void Start()
     {
-        Shuffle();
+        Shuffle(upperParentList);
+        Shuffle(bottomParentList);
     }
 
-    private void Shuffle()
+    private void Shuffle(Transform parentList)
     {
-        availablePositionList = GetSwapPointList();
+        // Fisher-Yates shuffle algorithm
+        availablePositionList = GetSwapPointList(parentList);
         
         foreach (Transform stickySquare in parentList)
         {
@@ -40,7 +40,7 @@ public class Shuffler : MonoBehaviour
         }
     }
 
-    private List<int> GetSwapPointList()
+    private List<int> GetSwapPointList(Transform parentList)
     {
         //Returns an int list made of the indexes that can be swapped
         List<int> list = new List<int>();
