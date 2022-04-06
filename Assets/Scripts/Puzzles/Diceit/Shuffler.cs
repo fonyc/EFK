@@ -47,7 +47,7 @@ public class Shuffler : MonoBehaviour
             }
 
             //Take a random dice from list. Remove the used position afterwards
-            int randomIndexInList = Random.Range(0, availablePositionList.Count);
+            int randomIndexInList = Random.Range(0, availablePositionList.Count - 1);
             int randomPosition = availablePositionList[randomIndexInList];
             availablePositionList.Remove(randomPosition);
 
