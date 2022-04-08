@@ -28,7 +28,7 @@ public class Shuffler : MonoBehaviour
     {
         // Fisher-Yates shuffle algorithm
         availablePositionList = GetSwapPointList(parentList);
-        
+
         foreach (Transform stickySquare in parentList)
         {
             //Filter solved or selected dices
@@ -58,7 +58,7 @@ public class Shuffler : MonoBehaviour
             //Swap current sticky Square with the random index collected in randomPosition
             SwapDiceToPosition(randomPosition, stickySquare);
         }
-        //ReShuffleMirrorDices(CheckShuffle());
+        ReShuffleMirrorDices(CheckShuffle());
     }
 
     /// <summary>
@@ -89,17 +89,6 @@ public class Shuffler : MonoBehaviour
     /// <param name="stickySquare"></param>
     private void SwapDiceToPosition(int newIndexPositionInParent, Transform stickySquare)
     {
-        //Transform diceOne = stickySquare.GetChild(0);
-        //Transform diceTwo = stickySquare.parent.GetChild(newIndexPositionInParent);
-
-        ////Parent the dices in the new positions
-        //diceOne.SetParent(stickySquare.parent.GetChild(newIndexPositionInParent));
-        //diceTwo.SetParent(stickySquare.parent.GetChild(newIndexPositionInParent));
-
-        ////Move the dices to the new parents
-        //RelocateDice(diceOne);
-        //RelocateDice(diceTwo.GetChild(0));
-
         Transform diceOne = stickySquare.GetChild(0);
         Transform diceTwo = stickySquare.parent.GetChild(newIndexPositionInParent).GetChild(0);
 
@@ -154,11 +143,11 @@ public class Shuffler : MonoBehaviour
         int index = 0;
         foreach(Transform stickySquare in bottomParentList)
         {
-            int bottomId = stickySquare.GetChild(0).GetComponent<DiceData>().DiceId;
-            int upperId = upperParentList.GetChild(index).GetChild(0).GetComponent<DiceData>().DiceId;
-            if (upperId == bottomId)
+            DiceData downDiceData = stickySquare.GetChild(0).GetComponent<DiceData>();
+            DiceData upDiceData = upperParentList.GetChild(index).GetChild(0).GetComponent<DiceData>();
+            if (upDiceData.DiceId == downDiceData.DiceId && !downDiceData.IsSolved)
             {
-                Debug.Log(stickySquare.GetChild(0).name + "with ID: " + upperId + " is equal");
+                Debug.Log(stickySquare.GetChild(0).name + "with ID: " + upDiceData.DiceId + " is equal");
                 return stickySquare;
             }
             index++;
@@ -178,9 +167,10 @@ public class Shuffler : MonoBehaviour
         availablePositionList.Remove(stickySquare.GetSiblingIndex());
         ReadList(availablePositionList);
 
-        int firstAvailablePosition = availablePositionList[0];
-        Debug.Log("Swapping " + stickySquare + "To position " + firstAvailablePosition);
-        SwapDiceToPosition(firstAvailablePosition, stickySquare);
+        int randomPosition = Random.Range(0, availablePositionList.Count);
+        int randomValue = availablePositionList[randomPosition];
+        Debug.Log("Swapping " + stickySquare.GetChild(0).name + "To position " + randomValue);
+        SwapDiceToPosition(randomValue, stickySquare);
     }
 
     private void ReadList(List<int> list)

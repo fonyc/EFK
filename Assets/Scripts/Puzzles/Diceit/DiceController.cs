@@ -57,8 +57,12 @@ public class DiceController : MonoBehaviour
         {
             Parenting(destinationStickySquare.transform, selectedDice);
             //after the swap, call the solver to solve the movement
-            SolveSolution(lastTouchedDice);
-            if(solutions != 1)shuffler.PartialShuffle();
+            if (SolveSolution(lastTouchedDice)) 
+            {
+                Debug.Log("Solucion correcta");
+            }
+            //Shuffle after swapping correct or not
+            if(solutions != 1) shuffler.PartialShuffle();
         }
     }
 
@@ -83,7 +87,7 @@ public class DiceController : MonoBehaviour
         dice.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 
-    public void SolveSolution(GameObject dice)
+    public bool SolveSolution(GameObject dice)
     {
         int diceId = dice.GetComponent<DiceData>().DiceId;
 
@@ -97,6 +101,8 @@ public class DiceController : MonoBehaviour
             dice.GetComponent<DiceData>().IsLocked = true;
             oposingDice.IsSolved = true;
             Solutions--;
+            return true;
         }
+        return false;
     }
 }
