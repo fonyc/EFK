@@ -30,8 +30,8 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     #region DRAG/DROP
     public void OnBeginDrag(PointerEventData eventData)
     {
-        DiceData draggedDiceData = eventData.pointerDrag.gameObject.GetComponent<DiceData>();
-        if (draggedDiceData.IsLocked) return;
+        DiceData diceData = eventData.pointerDrag.gameObject.GetComponent<DiceData>();
+        if (diceData.IsLocked || diceData.IsSolved) return;
 
         //Set Origin and Destination to this stick square
         diceController.OriginStickySquare = eventData.pointerDrag.transform.parent.gameObject.GetComponent<StickySquare>();
@@ -40,7 +40,8 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         diceController.DiceBeingDragged = true;
         diceController.SelectedDice = gameObject;
 
-        ChangeDiceSelection(draggedDiceData);
+        //Changes the selected dice from old-->new
+        ChangeDiceSelection(diceData);
 
         //Set Canvas as dice parent (so other dices dont block sight)
         eventData.pointerDrag.transform.SetParent(diceController.transform);
@@ -74,8 +75,19 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.gameObject.GetComponent<DiceData>().IsLocked) return;
-        
+        DiceData diceData = eventData.pointerDrag.gameObject.GetComponent<DiceData>();
+        if (diceData.IsLocked || diceData.IsSolved) return;
+
+        //Avoid people trying to drop something on an already solved/locked dice
+        if (diceController.DestinationStickySquare != null)
+        {
+            DiceData diceDataObjective = diceController.DestinationStickySquare.transform.GetChild(0).GetComponent<DiceData>();
+            if (diceDataObjective.IsSolved || diceDataObjective.IsLocked)
+            {
+                diceController.DestinationStickySquare = null;
+            }
+        }
+
         //Return alpha to its original value
         Color color = gameObject.GetComponent<Image>().color;
         color = new Color(color.r, color.g, color.b, color.a + alphaSelection);
@@ -90,7 +102,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         diceController.SwapDices();
 
         diceController.SelectedDice = null;
-        diceController.OriginStickySquare = null;
+        //diceController.OriginStickySquare = null;
         diceController.DestinationStickySquare = null;
     }
     #endregion

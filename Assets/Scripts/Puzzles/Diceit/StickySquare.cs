@@ -3,19 +3,11 @@ using UnityEngine.EventSystems;
 
 public class StickySquare : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private RectTransform rectTransform;
-
     [SerializeField]
     private DiceController diceController;
 
-    [SerializeField] 
-    private int arrayPositionInList;
-
-    public int ArrayPositionInList { get => arrayPositionInList; set => arrayPositionInList = value; }
-
     private void Awake()
-    {
-        rectTransform = transform as RectTransform;
+    { 
         diceController = GameObject.FindGameObjectWithTag("DiceController").GetComponent<DiceController>();
     }
 
