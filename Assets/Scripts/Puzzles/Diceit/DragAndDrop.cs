@@ -102,7 +102,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         diceController.SwapDices();
 
         diceController.SelectedDice = null;
-        //diceController.OriginStickySquare = null;
+        diceController.OriginStickySquare = null;
         diceController.DestinationStickySquare = null;
     }
     #endregion
