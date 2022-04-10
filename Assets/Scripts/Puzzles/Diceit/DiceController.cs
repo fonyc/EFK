@@ -45,6 +45,11 @@ public class DiceController : MonoBehaviour
         Solutions = upperParent.childCount;
     }
 
+    private void Start()
+    {
+        Input.multiTouchEnabled = false;
+    }
+
     public void SwapDices()
     {
         //Dice destination is outside any sticky place or its the same destination 

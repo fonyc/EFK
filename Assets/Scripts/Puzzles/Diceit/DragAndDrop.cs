@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//Drag and drop Script Requires an Image component to work
+[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(DiceData))]
 public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     #region VARIABLES
@@ -47,10 +48,9 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         eventData.pointerDrag.transform.SetParent(diceController.transform);
 
         //Make color and size selection
-        Color color = gameObject.GetComponent<Image>().color;
-        color = new Color(color.r, color.g, color.b, color.a - alphaSelection);
-        gameObject.GetComponent<Image>().color = color;
+        TurnGameObjectTransparent(gameObject, alphaSelection, true);
 
+        //Make selection smaller
         diceRectTransform.localScale = Vector2.one * 0.8f;
         
         //Remove blocking raycast to reach sticky squares behind
@@ -81,31 +81,27 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //Avoid people trying to drop something on an already solved/locked dice
         if(diceController.DestinationStickySquare != null && diceController.DestinationStickySquare != diceController.OriginStickySquare)
         {
-            Debug.Log("Not the same square, SWAP!");
             DiceData selectedDiceData = diceController.DestinationStickySquare.transform.GetChild(0).GetComponent<DiceData>();
             if (selectedDiceData.IsLocked || selectedDiceData.IsSolved)
             {
-                Debug.Log("Square is solved, skip");
                 diceController.DestinationStickySquare = null;
             }
         }
         //Case the player puts dice in the same place 
         else if(diceController.DestinationStickySquare == diceController.OriginStickySquare)
         {
-            Debug.Log("same SQ");
             diceController.DestinationStickySquare = null;
         }
 
         //Return alpha to its original value
-        Color color = gameObject.GetComponent<Image>().color;
-        color = new Color(color.r, color.g, color.b, color.a + alphaSelection);
-        gameObject.GetComponent<Image>().color = color;
+        TurnGameObjectTransparent(gameObject, alphaSelection, false);
 
         //Return size to its original value
         diceRectTransform.localScale = Vector2.one;
 
-        diceController.DiceBeingDragged = false;
         gameObject.GetComponent<Image>().raycastTarget = true;
+
+        diceController.DiceBeingDragged = false;
 
         diceController.SwapDices();
 
@@ -124,5 +120,13 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         newDice.IsSelected = true;
         diceController.LastTouchedDice = gameObject;
+    }
+
+    private void TurnGameObjectTransparent(GameObject go, float alphaAmount, bool value)
+    {
+        int sign = value ? -1 : 1;
+        Color color = go.GetComponent<Image>().color;
+        color = new Color(color.r, color.g, color.b, color.a + sign * alphaAmount);
+        go.GetComponent<Image>().color = color;
     }
 }

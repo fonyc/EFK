@@ -2878,6 +2878,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8412801714970830574, guid: 69950c045183fc64fb75aa8e5735828b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69950c045183fc64fb75aa8e5735828b, type: 3}
 --- !u!1001 &1144812252
@@ -5730,6 +5734,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2560513106582672797, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8202743657050759312, guid: f10d3b5c455c0034f89c449f3aab0a0d, type: 3}
       propertyPath: m_Name
       value: Meters_HUD
@@ -5840,7 +5848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3867735696934839157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5891,7 +5899,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperParentList: {fileID: 95851538}
   bottomParentList: {fileID: 1094636525}
-  availablePositionList: 
 --- !u!224 &3867735696934839160
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5955,7 +5962,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
