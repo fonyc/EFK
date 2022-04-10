@@ -6,66 +6,83 @@ public class Shuffler : MonoBehaviour
 {
     [SerializeField] private Transform upperParentList;
     [SerializeField] private Transform bottomParentList;
-    [SerializeField] private List<int> availablePositionList;
-
-    private void Awake()
-    {
-        availablePositionList = new List<int>();
-    }
 
     private void Start()
     {
-        PartialShuffle();
+        ApplyShuffledList(GetShuffledList(bottomParentList, true));
     }
 
-    /// <summary>
-    /// Shuffles the dices. Must have dices inside the sticky squares. 
-    /// Sticky squares must have DiceData as a child.
-    /// </summary>
-    /// <param name="parentList">Parent we want to shuffle</param> 
-    /// <param name="avoidAutoSolutions">True when the upper list is already shuffled and the bottom needs to readjust to not get in front the solution</param> 
-    private void Shuffle(Transform parentList, bool avoidAutoSolutions)
+    private GameObject[] GetShuffledList(Transform parentList, bool avoidAutoSolutions)
     {
-        // Fisher-Yates shuffle algorithm
-        availablePositionList = GetSwapPointList(parentList);
+        List<int> availablePositionList = GetSwapPointList(parentList);
+        List<int> copyOfAvailablePositions = GetSwapPointList(parentList);
+        GameObject[] shuffledList = new GameObject[bottomParentList.childCount];
 
-        foreach (Transform stickySquare in parentList)
+        foreach(Transform stickySquare in parentList)
         {
-            //Filter solved or selected dices
             DiceData dice = stickySquare.GetChild(0).gameObject.GetComponent<DiceData>();
-            if (dice.IsSolved || dice.IsSelected) continue;
-
-            //Remove possible faced results in available list
-            int diceId = stickySquare.GetChild(0).gameObject.GetComponent<DiceData>().DiceId;
-            bool wasInList = false;
-            int numberToAvoid = avoidAutoSolutions ? GetIndexPartnerinUpperParent(upperParentList, diceId) : -1;
-
-            if (availablePositionList.Contains(numberToAvoid) && availablePositionList.Count > 1 && numberToAvoid != -1)
+            if (dice.IsSolved || dice.IsSelected)
             {
-                availablePositionList.Remove(numberToAvoid);
-                wasInList = true;
+                shuffledList[stickySquare.GetSiblingIndex()] = null;
             }
+            else
+            {
+                int diceId = dice.DiceId;
+                bool returnPositionToList = false;
+                int numberToAvoid = avoidAutoSolutions ? GetIndexPartnerinUpperParent(upperParentList, diceId) : -1;
 
-            //Take a random dice from list. Remove the used position afterwards
-            int randomIndexInList = Random.Range(0, availablePositionList.Count);
-            int randomPosition = availablePositionList[randomIndexInList];
-            availablePositionList.Remove(randomPosition);
+                //Mirror position is inside available list
+                if (availablePositionList.Contains(numberToAvoid))
+                {
+                    if (availablePositionList.Count > 1 && numberToAvoid != -1)
+                    {
+                        availablePositionList.Remove(numberToAvoid);
+                        returnPositionToList = true;
+                    }
+                    //Edge Case: Last number is going to be located in a prohibited spot
+                    else if (availablePositionList.Count == 1)
+                    {
+                        Debug.Log("edge case!");
+                        copyOfAvailablePositions.Remove(numberToAvoid);
+                        int newPosition = PickRandomPosition(copyOfAvailablePositions);
+                        //Swap positions 
+                        shuffledList[numberToAvoid] = shuffledList[newPosition];
+                        shuffledList[newPosition] = stickySquare.GetChild(0).gameObject;
+                        continue;
+                    }
+                }
 
-            //Return the number we wanted to avoid
-            if (wasInList) availablePositionList.Add(numberToAvoid);
+                //Take a random dice from list. Remove the used position afterwards
+                int randomPosition = PickRandomPosition(availablePositionList);
+                availablePositionList.Remove(randomPosition);
 
+                //Return the number we wanted to avoid
+                if (returnPositionToList) availablePositionList.Add(numberToAvoid);
 
-            //Swap current sticky Square with the random index collected in randomPosition
-            SwapDiceToPosition(randomPosition, stickySquare);
+                //Add the dice inside the shuffled list
+                shuffledList[randomPosition] = stickySquare.GetChild(0).gameObject;
+            }
         }
-        ReShuffleMirrorDices(CheckShuffle());
+        return shuffledList;
     }
 
-    /// <summary>
-    /// Returns a list with the positions that are not selected or solved
-    /// </summary>
-    /// <param name="parentList"></param>
-    /// <returns></returns>
+    private void ApplyShuffledList(GameObject[] shuffledList)
+    {
+        for(int x = 0; x < shuffledList.Length; x++)
+        {
+            if (shuffledList[x] == null) continue;
+            shuffledList[x].transform.SetParent(bottomParentList.GetChild(x));
+            RelocateDice(shuffledList[x]);
+        }
+    }
+
+    private int PickRandomPosition(List<int> availablePositionList)
+    {
+        int randomIndexInList = Random.Range(0, availablePositionList.Count);
+        int randomPosition = availablePositionList[randomIndexInList];
+        return randomPosition;
+    }
+
     private List<int> GetSwapPointList(Transform parentList)
     {
         //Returns an int list made of the indexes that can be swapped
@@ -82,37 +99,13 @@ public class Shuffler : MonoBehaviour
         return list;
     }
 
-    /// <summary>
-    /// Given an index and a dice, swaps the dice in the target objective and viceversa
-    /// </summary>
-    /// <param name="newIndexPositionInParent"></param>
-    /// <param name="stickySquare"></param>
-    private void SwapDiceToPosition(int newIndexPositionInParent, Transform stickySquare)
-    {
-        Transform diceOne = stickySquare.GetChild(0);
-        Transform diceTwo = stickySquare.parent.GetChild(newIndexPositionInParent).GetChild(0);
-
-        diceOne.SetParent(stickySquare.parent.GetChild(newIndexPositionInParent));
-        diceTwo.SetParent(stickySquare.parent.GetChild(stickySquare.GetSiblingIndex()));
-
-        RelocateDice(diceOne);
-        RelocateDice(diceTwo);
-    }
-
-    private void RelocateDice(Transform dice)
+    private void RelocateDice(GameObject dice)
     {
         dice.GetComponent<RectTransform>().anchorMin = Vector2.one * 0.5f;
         dice.GetComponent<RectTransform>().anchorMax = Vector2.one * 0.5f;
         dice.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 
-    /// <summary>
-    /// Given an oposing parent and a diceID, determines where in the oposing parent 
-    /// is the partner dice
-    /// </summary>
-    /// <param name="parent">Oposing parent</param>
-    /// <param name="idToAvoid">Id of the dices</param>
-    /// <returns></returns>
     private int GetIndexPartnerinUpperParent(Transform parent, int idToAvoid)
     {
         foreach(Transform stickySquare in parent)
@@ -127,60 +120,14 @@ public class Shuffler : MonoBehaviour
 
     public void FullShuffle()
     {
-        Shuffle(upperParentList, false);
-        Shuffle(bottomParentList, true);
+        //Check if works for upper parent too
+        //ApplyShuffledList(GetShuffledList(upperParentList, false));
+        ApplyShuffledList(GetShuffledList(bottomParentList, true));
     }
 
     public void PartialShuffle()
     {
-        Shuffle(bottomParentList, true);
+        ApplyShuffledList(GetShuffledList(bottomParentList, true));
     }
-
-    #region Mirror cases Methods
-
-    private Transform CheckShuffle()
-    {
-        int index = 0;
-        foreach(Transform stickySquare in bottomParentList)
-        {
-            DiceData downDiceData = stickySquare.GetChild(0).GetComponent<DiceData>();
-            DiceData upDiceData = upperParentList.GetChild(index).GetChild(0).GetComponent<DiceData>();
-            if (upDiceData.DiceId == downDiceData.DiceId && !downDiceData.IsSolved)
-            {
-                Debug.Log(stickySquare.GetChild(0).name + "with ID: " + upDiceData.DiceId + " is equal");
-                return stickySquare;
-            }
-            index++;
-        }
-        return null;
-    }
-
-    private void ReShuffleMirrorDices(Transform stickySquare)
-    {
-        if (stickySquare == null) return;
-
-        List<int> availablePositionList = new List<int>();
-
-        availablePositionList = GetSwapPointList(bottomParentList);
-
-        //Remove problematic point
-        availablePositionList.Remove(stickySquare.GetSiblingIndex());
-        ReadList(availablePositionList);
-
-        int randomPosition = Random.Range(0, availablePositionList.Count);
-        int randomValue = availablePositionList[randomPosition];
-        Debug.Log("Swapping " + stickySquare.GetChild(0).name + "To position " + randomValue);
-        SwapDiceToPosition(randomValue, stickySquare);
-    }
-
-    private void ReadList(List<int> list)
-    {
-        foreach(int item in list)
-        {
-            Debug.Log(item);
-        }
-    }
-
-    #endregion
 
 }

@@ -79,13 +79,21 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (diceData.IsLocked || diceData.IsSolved) return;
 
         //Avoid people trying to drop something on an already solved/locked dice
-        if (diceController.DestinationStickySquare != null)
+        if(diceController.DestinationStickySquare != null && diceController.DestinationStickySquare != diceController.OriginStickySquare)
         {
-            DiceData diceDataObjective = diceController.DestinationStickySquare.transform.GetChild(0).GetComponent<DiceData>();
-            if (diceDataObjective.IsSolved || diceDataObjective.IsLocked)
+            Debug.Log("Not the same square, SWAP!");
+            DiceData selectedDiceData = diceController.DestinationStickySquare.transform.GetChild(0).GetComponent<DiceData>();
+            if (selectedDiceData.IsLocked || selectedDiceData.IsSolved)
             {
+                Debug.Log("Square is solved, skip");
                 diceController.DestinationStickySquare = null;
             }
+        }
+        //Case the player puts dice in the same place 
+        else if(diceController.DestinationStickySquare == diceController.OriginStickySquare)
+        {
+            Debug.Log("same SQ");
+            diceController.DestinationStickySquare = null;
         }
 
         //Return alpha to its original value
