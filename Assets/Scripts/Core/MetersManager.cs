@@ -10,7 +10,7 @@ public class MetersManager : MonoBehaviour
     private BaseStats _baseStats;
     [SerializeField] const int monsterMeterRefreshRate = 1;
     [SerializeField] float monsterMeter = 0f;
-    [SerializeField] float curseMeter = 0f;
+    //[SerializeField] float curseMeter = 0f;
     Coroutine monsterRaise_coro;
 
      private void Awake()
