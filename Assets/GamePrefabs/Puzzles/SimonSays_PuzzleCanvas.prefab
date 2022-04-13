@@ -451,12 +451,17 @@ MonoBehaviour:
   - {fileID: 2565540696578862244}
   - {fileID: 2565540696611814653}
   - {fileID: 2565540695825566868}
-  numberOfRounds: 6
-  roundNumber: 0
+  gameSettings: {fileID: 11400000, guid: 4777256e08d7802428a1c097f4e7557b, type: 2}
+  currentRound: 0
+  currentMistakes: 0
+  currentPhantomIntervention: 0
+  currentPhantomApparitions: 0
+  currentPlayedNote: 0
   alreadyPlayedKeys: 
   simonSaysState: 0
   blackKeys: {fileID: 2565540697376272704}
   whiteKeys: {fileID: 1694091764524590821}
+  keys: []
 --- !u!1 &2565540696270077805
 GameObject:
   m_ObjectHideFlags: 0

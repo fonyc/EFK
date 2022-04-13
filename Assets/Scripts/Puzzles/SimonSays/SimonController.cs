@@ -3,50 +3,63 @@ using UnityEngine;
 
 namespace EFK.Puzzles
 {
-    public class KeyController : MonoBehaviour
+    public class SimonController : MonoBehaviour
     {
+        #region VARIABLES
         [SerializeField] private GameObject[] keyList;
 
         [Header("--- GAME SETTINGS ---")]
         [Space(5)]
-        [SerializeField] private int numberOfRounds;
-        [SerializeField] private int currentRound;
-        [SerializeField] private int allowedMistakes;
-        [SerializeField] private int currentMistakes;
-        [Range(0, 1f)]
-        [SerializeField]
-        private float timeBetweenNotes = 0.3f;
+        [SerializeField] SimonSaysGameSettingsSO gameSettings;
 
-        [Header("--- VARIABLES ---")]
+        [Header("--- GAME COUNTERS ---")]
+        [Space(5)]
+        [SerializeField] private int currentRound;
+        [Space(5)]
+        [SerializeField] private int currentMistakes;
+        [Space(5)]
+        [SerializeField] private int currentPhantomIntervention;
+        [Space(5)]
+        [SerializeField] int currentPhantomApparitions;
+        [Space(5)]
+        [SerializeField] private int currentPlayedNote = 0;
         [Space(5)]
         [SerializeField] private int[] alreadyPlayedKeys;
+
+
+        [Header("--- VARIABLES ---")]
         [SerializeField] private SimonSaysStates simonSaysState;
-        [SerializeField] private int currentPlayedNote = 0;
 
         private int numberOfKeys;
         [SerializeField] Transform blackKeys;
         [SerializeField] Transform whiteKeys;
         [SerializeField] Transform[] keys;
+        #endregion
 
+        #region PROPERTIES
         public SimonSaysStates SimonSaysState { get => simonSaysState; set => simonSaysState = value; }
+        public int CurrentPlayedNote { get => currentPlayedNote; set => currentPlayedNote = value; }
+        public SimonSaysGameSettingsSO GameSettings { get => gameSettings; set => gameSettings = value; }
+        public int CurrentRound { get => currentRound; set => currentRound = value; }
+        public int CurrentMistakes { get => currentMistakes; set => currentMistakes = value; }
+        public int CurrentPhantomIntervention { get => currentPhantomIntervention; set => currentPhantomIntervention = value; }
+        #endregion
 
         private void Awake()
         {
-            numberOfRounds = 6;
-            alreadyPlayedKeys = new int[numberOfRounds];
+            alreadyPlayedKeys = new int[GameSettings.NumberOfRounds];
             numberOfKeys = blackKeys.childCount + whiteKeys.childCount;
             keys = new Transform[numberOfKeys];
         }
 
         private void Start()
         {
-            allowedMistakes = 3;
             InitAlreadyPlayedNotes();
             InitKeys();
             SwitchGamePhase(SimonSaysStates.SimonPhase);
         }
 
-        private void SwitchGamePhase(SimonSaysStates newState)
+        public void SwitchGamePhase(SimonSaysStates newState)
         {
             switch (newState)
             {
@@ -71,32 +84,29 @@ namespace EFK.Puzzles
         {
             if (CheckEmptyKeyInCurrentRound())
             {
-                alreadyPlayedKeys[currentRound] = PlayRandomKey();
+                alreadyPlayedKeys[CurrentRound] = PlayRandomKey();
             }
 
             //Read the notes
-            for (int x = 0; x < currentRound + 1; x++)
+            for (int x = 0; x < CurrentRound + 1; x++)
             {
-                //Key shines
-                Debug.Log("Key number " + alreadyPlayedKeys[x] + " is shining");
-
-                yield return new WaitForSeconds(timeBetweenNotes);
+                //If its the last note of the chord, check if phantom appears
+                if(x  == CurrentRound)
+                {
+                    if (PhantomPlaysNote())
+                    {
+                        //Phantom appears
+                        Debug.Log("PHANTOM KEY " + PlayRandomKey() + " shines creeply!");
+                        yield return new WaitForSeconds(GameSettings.TimeBetweenNotes);
+                    }
+                }
+                
+                Debug.Log("Key number " + alreadyPlayedKeys[x] + " shines!");
+                yield return new WaitForSeconds(GameSettings.TimeBetweenNotes);
             }
 
             SwitchGamePhase(SimonSaysStates.PlayerPhase);
         }
-
-        private int PlayRandomKey()
-        {
-            return Random.Range(0, numberOfKeys);
-        }
-
-        private bool CheckEmptyKeyInCurrentRound()
-        {
-            return alreadyPlayedKeys[currentRound] == -1;
-        }
-
-        #region KEY CALLED METHODS
 
         public void OnKeyPressed(int keyNumber)
         {
@@ -109,26 +119,25 @@ namespace EFK.Puzzles
             if (CheckPlayedKey(keyNumber))
             {
                 //Players turn is ended.
-                if (currentPlayedNote == currentRound)
+                if (CurrentPlayedNote == CurrentRound)
                 {
-                    Debug.Log("Player turn ended: CPlyNote,CRound" + currentPlayedNote + currentRound);
                     //No more rounds, game is finished
-                    if (currentRound == numberOfRounds - 1)
+                    if (CurrentRound == gameSettings.NumberOfRounds - 1)
                     {
                         SwitchGamePhase(SimonSaysStates.GameFinished);
                     }
                     //Round is over --> Simon Phase
                     else
                     {
-                        currentRound++;
-                        currentPlayedNote = 0;
+                        CurrentRound++;
+                        CurrentPlayedNote = 0;
                         SwitchGamePhase(SimonSaysStates.SimonPhase);
                     }
                 }
                 //Player still has notes to play
                 else
                 {
-                    currentPlayedNote++;
+                    CurrentPlayedNote++;
                     Debug.Log("one more note...");
                 }
             }
@@ -136,28 +145,65 @@ namespace EFK.Puzzles
             else
             {
                 //Too much mistakes --> Game Over
-                if (currentMistakes >= allowedMistakes)
+                if (CurrentMistakes >= gameSettings.AllowedMistakes)
                 {
-                    currentPlayedNote = 0;
-                    currentMistakes = 0;
+                    CurrentPlayedNote = 0;
+                    CurrentMistakes = 0;
                     SwitchGamePhase(SimonSaysStates.GameFailed);
                 }
                 //One mistake --> Rewatch sequence
                 else
                 {
-                    currentPlayedNote = 0;
-                    currentMistakes++;
+                    CurrentPlayedNote = 0;
+                    CurrentMistakes++;
 
-                    Debug.Log("Mistake! Current Mistakes: " + currentMistakes);
+                    Debug.Log("Mistake! Current Mistakes: " + CurrentMistakes);
 
                     SwitchGamePhase(SimonSaysStates.SimonPhase);
                 }
             }
         }
 
+        public bool PhantomPlaysNote()
+        {
+            int random = Random.Range(0, 101);
+            int phantomProbability = GetPhantomProbability();
+
+            if (random < phantomProbability)
+            {
+                //Phantom makes his move
+                currentPhantomApparitions++;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Given that there are 3 possible % of apparition, if the appation is number 3 or above, it just gets the last probability
+        /// </summary>
+        /// <returns></returns>
+        private int GetPhantomProbability()
+        {
+            return currentPhantomApparitions >= GameSettings.MaxPhantomInterventions ?
+                gameSettings.PhantomProbabilities[gameSettings.PhantomProbabilities.Length - 1] :
+                gameSettings.PhantomProbabilities[currentPhantomApparitions];
+        }
+
+        #region UTILITY METHODS
+
+        private int PlayRandomKey()
+        {
+            return Random.Range(0, numberOfKeys);
+        }
+
+        private bool CheckEmptyKeyInCurrentRound()
+        {
+            return alreadyPlayedKeys[CurrentRound] == -1;
+        }
+
         private bool CheckPlayedKey(int keyIdPressed)
         {
-            return keyIdPressed == alreadyPlayedKeys[currentPlayedNote];
+            return keyIdPressed == alreadyPlayedKeys[CurrentPlayedNote];
         }
 
         #endregion
@@ -188,12 +234,4 @@ namespace EFK.Puzzles
         }
         #endregion
     }
-}
-
-public enum SimonSaysStates
-{
-    SimonPhase = 0,
-    PlayerPhase = 1,
-    GameFinished = 2,
-    GameFailed = 3
 }

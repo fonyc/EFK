@@ -1757,10 +1757,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimonSays_PuzzleCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2565540696126800964, guid: 657bfe2d0eb2ab546956e84eba3ce098, type: 3}
-      propertyPath: roundNumber
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2565540696126800965, guid: 657bfe2d0eb2ab546956e84eba3ce098, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1965,5 +1961,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1381650846913626080, guid: 657bfe2d0eb2ab546956e84eba3ce098, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 657bfe2d0eb2ab546956e84eba3ce098, type: 3}
