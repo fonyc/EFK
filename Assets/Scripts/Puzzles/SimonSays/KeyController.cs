@@ -15,7 +15,7 @@ namespace EFK.Puzzles
         [SerializeField] private int currentMistakes;
         [Range(0, 1f)]
         [SerializeField]
-        private float timeBetweenNotes = 0.3f; 
+        private float timeBetweenNotes = 0.3f;
 
         [Header("--- VARIABLES ---")]
         [Space(5)]
@@ -32,8 +32,8 @@ namespace EFK.Puzzles
 
         private void Awake()
         {
-            numberOfRounds = 2;
-            alreadyPlayedKeys = new int[numberOfRounds];        
+            numberOfRounds = 6;
+            alreadyPlayedKeys = new int[numberOfRounds];
             numberOfKeys = blackKeys.childCount + whiteKeys.childCount;
             keys = new Transform[numberOfKeys];
         }
@@ -51,17 +51,17 @@ namespace EFK.Puzzles
             switch (newState)
             {
                 case SimonSaysStates.SimonPhase:
-                    Debug.Log("Its simons turn!");
+                    Debug.Log("--- SIMON ---");
                     StartCoroutine(PlaySimonNotes());
                     break;
                 case SimonSaysStates.PlayerPhase:
-                    Debug.Log("Its players turn!");
+                    Debug.Log("--- PLAYER ---");
                     break;
                 case SimonSaysStates.GameFinished:
-                    Debug.Log("Congrats, you finished the game");
+                    Debug.Log("--- YOU WIN ---");
                     break;
                 case SimonSaysStates.GameFailed:
-                    Debug.Log("You failed");
+                    Debug.Log("--- YOU LOSE ---");
                     break;
             }
             SimonSaysState = newState;
@@ -69,24 +69,21 @@ namespace EFK.Puzzles
 
         private IEnumerator PlaySimonNotes()
         {
-            if (currentRound < numberOfRounds && CheckEmptyKeyInCurrentRound())
+            if (CheckEmptyKeyInCurrentRound())
             {
-                Debug.Log(currentRound + "/" + numberOfRounds);
                 alreadyPlayedKeys[currentRound] = PlayRandomKey();
-
-                //Read the notes
-                for (int x = 0; x < currentRound + 1; x++)
-                {
-                    //Key shines
-                    Debug.Log("Key number " + alreadyPlayedKeys[x] + " is shining");
-
-                    yield return new WaitForSeconds(timeBetweenNotes);
-                }
-
-                SwitchGamePhase(SimonSaysStates.PlayerPhase);
             }
 
-            
+            //Read the notes
+            for (int x = 0; x < currentRound + 1; x++)
+            {
+                //Key shines
+                Debug.Log("Key number " + alreadyPlayedKeys[x] + " is shining");
+
+                yield return new WaitForSeconds(timeBetweenNotes);
+            }
+
+            SwitchGamePhase(SimonSaysStates.PlayerPhase);
         }
 
         private int PlayRandomKey()
@@ -114,8 +111,9 @@ namespace EFK.Puzzles
                 //Players turn is ended.
                 if (currentPlayedNote == currentRound)
                 {
+                    Debug.Log("Player turn ended: CPlyNote,CRound" + currentPlayedNote + currentRound);
                     //No more rounds, game is finished
-                    if (CheckGameIsCompleted())
+                    if (currentRound == numberOfRounds - 1)
                     {
                         SwitchGamePhase(SimonSaysStates.GameFinished);
                     }
@@ -133,13 +131,15 @@ namespace EFK.Puzzles
                     currentPlayedNote++;
                     Debug.Log("one more note...");
                 }
-            }   
+            }
             //Key is not correct
             else
             {
                 //Too much mistakes --> Game Over
-                if(CheckGameIsLost())
+                if (currentMistakes >= allowedMistakes)
                 {
+                    currentPlayedNote = 0;
+                    currentMistakes = 0;
                     SwitchGamePhase(SimonSaysStates.GameFailed);
                 }
                 //One mistake --> Rewatch sequence
@@ -153,21 +153,6 @@ namespace EFK.Puzzles
                     SwitchGamePhase(SimonSaysStates.SimonPhase);
                 }
             }
-        }
-
-        private bool CheckRoundIsOver()
-        {
-            return currentRound == currentPlayedNote;
-        }
-
-        private bool CheckGameIsLost()
-        {
-            return currentMistakes >= allowedMistakes;
-        }
-
-        private bool CheckGameIsCompleted()
-        {
-            return currentRound == numberOfRounds;
         }
 
         private bool CheckPlayedKey(int keyIdPressed)
