@@ -15,4 +15,4 @@ MonoBehaviour:
   curseMeterPenaltyPerExtraMovement: 10
   maxMovements: 12
   numberOfJokers: 1
-  jokerRoundSpawn: 1
+  jokerRoundSpawn: 2
