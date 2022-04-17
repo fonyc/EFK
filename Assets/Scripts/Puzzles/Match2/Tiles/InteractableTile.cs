@@ -8,6 +8,7 @@ public class InteractableTile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private int tileId;
     [SerializeField] private Sprite frontTile;
     [SerializeField] private Sprite backTile;
+    [SerializeField] private bool isJoker;
 
     [Header(" --- VARIABLES ---")]
     [Space(5)]
@@ -21,6 +22,7 @@ public class InteractableTile : MonoBehaviour, IPointerClickHandler
     public Sprite BackTile { get => backTile; set => backTile = value; }
     public bool IsRevealed { get => isRevealed; set => isRevealed = value; }
     public bool IsSolved { get => isSolved; set => isSolved = value; }
+    public bool IsJoker { get => isJoker; set => isJoker = value; }
     #endregion
 
     private void Awake()

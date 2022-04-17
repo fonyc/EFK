@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,32 @@ using UnityEngine.UI;
 
 public class MatchTwoController : MonoBehaviour
 {
+    #region VARIABLES
+    [Header(" --- GENERAL ---")]
+    [Space(5)]
+    [SerializeField] MatchTwoSettings matchTwoSettings;
     [SerializeField] List<InteractableTile> tileCouple;
     [SerializeField] int currentRevealedTiles;
+    [SerializeField] int currentSolvedCouples;
+
+    [Header(" --- SPIN ---")]
+    [Space(5)]
     [SerializeField] int spinningTiles;
     [Range(0f,1f)]
     [SerializeField] float animationTime = 0.25f;
 
+    [Header(" --- SHUFFLER ---")]
+    [Space(5)]
+    private MatchTwoShuffler shuffler;
     [SerializeField] Transform board;
+
+    [Header(" --- JOKER ---")]
+    [Space(5)]
+    [SerializeField] Sprite jokerSprite;
+    private Sprite previousSprite;
+    private InteractableTile jokerTile;
+    private bool isJokerSpawned;
+    #endregion
 
     #region PROPERTIES
     public int CurrentRevealedTiles { get => currentRevealedTiles; set => currentRevealedTiles = value; }
@@ -22,6 +42,12 @@ public class MatchTwoController : MonoBehaviour
     void Awake()
     {
         TileCouple = new List<InteractableTile>();
+        shuffler = GetComponent<MatchTwoShuffler>();
+    }
+
+    private void Start()
+    {
+        AddJokerToBoard();
     }
 
     public void OnTilePressed(InteractableTile tile)
@@ -43,18 +69,48 @@ public class MatchTwoController : MonoBehaviour
         yield return StartCoroutine(FlipTile(tile.transform, tile.FrontTile));
         CurrentRevealedTiles++;
 
+        //Second tile revealed
         if (CurrentRevealedTiles == 2)
         {
+            //Tile couple is correct
             if (CheckTiles())
             {
+                currentSolvedCouples++;
                 MarkCoupleAsCorrect();
+                
+                //if(currentSolvedCouples == matchTwoSettings.JokerRoundSpawn && !isJokerSpawned)
+                //{
+                //    isJokerSpawned = true;
+                //    AddJokerToBoard();
+                //}
+
             }
+            //Tile couple is not correct
             else
             {
                 yield return HideIncorrectTiles();
                 MarkCoupleAsNotRevealed();
+                if (tile.IsJoker)
+                {
+                    RemoveJokerTile();
+                    shuffler.ShuffleBoard();
+                }
             }
             ResetCouple();
+        }
+        //First tile revealed
+        else if(currentRevealedTiles == 1)
+        {
+            if (tile.IsJoker)
+            {
+                RemoveJokerTile();
+                yield return HideFirstTile();
+
+                tile.IsRevealed = false;
+
+                ResetCouple();
+                shuffler.ShuffleBoard();
+            }
         }
     }
 
@@ -94,12 +150,36 @@ public class MatchTwoController : MonoBehaviour
         yield return StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile));
     }
 
+    private IEnumerator HideFirstTile()
+    {
+        yield return StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile));
+    }
+
+    private void AddJokerToBoard()
+    {
+        int jokerPosition = shuffler.GetRandomPositionInList(shuffler.GetSwappablePointList(board));
+        InteractableTile tile = board.GetChild(jokerPosition).GetComponent<InteractableTile>();
+        jokerTile = tile;
+        jokerTile.IsJoker = true;
+        previousSprite = jokerTile.FrontTile;
+        jokerTile.FrontTile = jokerSprite;
+        Debug.Log("Joker is in position " + tile.name);
+    }
+
+    private void RemoveJokerTile()
+    {
+        jokerTile.IsJoker = false;
+        jokerTile.FrontTile = previousSprite;
+    }
+
     #region UTILITY METHODS
     public bool CheckTiles()
     {
         if (TileCouple.Count == 2)
         {
-            return TileCouple[0].TileId == TileCouple[1].TileId;
+            bool hasSameId = TileCouple[0].TileId == TileCouple[1].TileId;
+            bool isJoker = TileCouple[1].IsJoker;
+            return hasSameId && !isJoker;
         }
         else return false;
     }
