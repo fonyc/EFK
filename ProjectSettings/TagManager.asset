@@ -7,6 +7,7 @@ TagManager:
   - Interactable
   - DiceController
   - Match2Controller
+  - JanKenBallController
   layers:
   - Default
   - TransparentFX

@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardID: 2
   isSelected: 0
-  janKenController: {fileID: 3867735696934839158}
+  janKenController: {fileID: 0}
 --- !u!1 &907339135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2519,7 @@ GameObject:
   - component: {fileID: 3867735696934839158}
   m_Layer: 5
   m_Name: Jan-Ken-Ball
-  m_TagString: DiceController
+  m_TagString: JanKenBallController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
