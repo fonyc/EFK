@@ -30,7 +30,5 @@ namespace SFK.Interactables
             Instantiate(puzzle.PuzzleCanvas);
         }
         #endregion
-
     }
-
 }

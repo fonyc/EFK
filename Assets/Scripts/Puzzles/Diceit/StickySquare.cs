@@ -1,33 +1,27 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public class StickySquare : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+namespace EFK.Puzzles
 {
-    private RectTransform rectTransform;
-
-    [SerializeField]
-    private DiceController diceController;
-
-    [SerializeField] 
-    private int arrayPositionInList;
-
-    public int ArrayPositionInList { get => arrayPositionInList; set => arrayPositionInList = value; }
-
-    private void Awake()
+    public class StickySquare : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        rectTransform = transform as RectTransform;
-        diceController = GameObject.FindGameObjectWithTag("DiceController").GetComponent<DiceController>();
-    }
+        [SerializeField]
+        private DiceController diceController;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (!diceController.DiceBeingDragged) return;
-        diceController.DestinationStickySquare = gameObject.GetComponent<StickySquare>();
-    }
+        private void Awake()
+        {
+            diceController = GameObject.FindGameObjectWithTag("DiceController").GetComponent<DiceController>();
+        }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (!diceController.DiceBeingDragged) return;
-        diceController.DestinationStickySquare = null;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (!diceController.DiceBeingDragged) return;
+            diceController.DestinationStickySquare = gameObject.GetComponent<StickySquare>();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (!diceController.DiceBeingDragged) return;
+            diceController.DestinationStickySquare = null;
+        }
     }
 }
