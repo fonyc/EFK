@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f543d8fcc4cec44b9947bca03801aae, type: 3}
+  m_Name: Portrait_C
+  m_EditorClassIdentifier: 
+  portraitType: 2
+  differenceList:
+  - quadrantLocation: 2
+    isSolved: 0
+  - quadrantLocation: 4
+    isSolved: 0
+  - quadrantLocation: 6
+    isSolved: 0
+  - quadrantLocation: 11
+    isSolved: 0
+  sprite: {fileID: 21300000, guid: f66d576fbcc20f84886e2a5d35a80896, type: 3}
