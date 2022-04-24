@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlidePuzzleController : MonoBehaviour
 {
-
+    [SerializeField] private SildePuzzleShuffler shuffler;
     [SerializeField] private Transform parentPuzzle;
     [SerializeField] private SlidePuzzleImagesSO[] imagesList;
     private int selectedImage;
@@ -14,6 +14,8 @@ public class SlidePuzzleController : MonoBehaviour
         selectedImage = SelectRandomImage();
         LoadSpritesToCanvas(selectedImage);
         MakeVoidPieceTransparent(imagesList[selectedImage].VoidPiece);
+
+        shuffler.ShuffleImage();
     }
 
     private int SelectRandomImage()

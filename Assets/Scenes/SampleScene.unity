@@ -192,7 +192,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 800}
+  m_SizeDelta: {x: 820, y: 820}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &164607825
 GameObject:
@@ -605,8 +605,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 265, y: 265}
-  m_Spacing: {x: 1, y: 2}
+  m_CellSize: {x: 262, y: 262}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &414905183
@@ -1546,6 +1546,7 @@ GameObject:
   - component: {fileID: 1143062581}
   - component: {fileID: 1143062580}
   - component: {fileID: 1143062584}
+  - component: {fileID: 1143062585}
   m_Layer: 5
   m_Name: SlidePuzzle_Canvas
   m_TagString: SlidePuzzleController
@@ -1648,6 +1649,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentPuzzle: {fileID: 414905181}
+  imagesList:
+  - {fileID: 11400000, guid: 037505f8d5f8398499ba13b309f55579, type: 2}
+  - {fileID: 11400000, guid: b5cf0856e32bdbc438a5c6abc68110a7, type: 2}
+--- !u!114 &1143062585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143062579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d669b6af5f553041a60eb4098f6ae99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentPuzzle: {fileID: 414905181}
+  correctImages: 1
+  wrongImages: 2
+  availableList: 
 --- !u!1001 &1206274066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2424,7 +2444,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 820, y: 820}
+  m_SizeDelta: {x: 825, y: 825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1853181611
 MonoBehaviour:

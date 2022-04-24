@@ -15,11 +15,11 @@ MonoBehaviour:
   voidPiece: 0
   imageList:
   - {fileID: 21300000, guid: 16e12dfaa31f90a45bcd6765273584ea, type: 3}
-  - {fileID: 21300000, guid: 4c7f6fc516cae564a8bb4589023dd1c4, type: 3}
   - {fileID: 21300000, guid: f7b4af7772d57404f9abbd6df7604607, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 57dd8b6839e66b147af519644b8f0930, type: 3}
+  - {fileID: 21300000, guid: 4c7f6fc516cae564a8bb4589023dd1c4, type: 3}
+  - {fileID: 21300000, guid: 4f90b832825318441bbfbd767d310045, type: 3}
+  - {fileID: 21300000, guid: e9d7e6f3a3c0c4e4b8beb46f61899867, type: 3}
+  - {fileID: 21300000, guid: db2dba1d92245e049878e93574cfad45, type: 3}
+  - {fileID: 21300000, guid: 7242444f7fb65744685cc5f58523cbb6, type: 3}
+  - {fileID: 21300000, guid: 7b3e9f17e2f503040859ae329aee1708, type: 3}
