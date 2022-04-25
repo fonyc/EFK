@@ -1049,7 +1049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -260, y: -12}
+  m_AnchoredPosition: {x: -260, y: -139}
   m_SizeDelta: {x: -700, y: -450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &875212116
@@ -1140,7 +1140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 11, y: -20}
+  m_AnchoredPosition: {x: 11, y: 164}
   m_SizeDelta: {x: -700, y: -450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907339137
@@ -1292,7 +1292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 285, y: -19}
+  m_AnchoredPosition: {x: 285, y: -146}
   m_SizeDelta: {x: -700, y: -450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934983248
@@ -2046,6 +2046,7 @@ GameObject:
   - component: {fileID: 1745641942}
   - component: {fileID: 1745641944}
   - component: {fileID: 1745641943}
+  - component: {fileID: 1745641945}
   m_Layer: 5
   m_Name: GameZone
   m_TagString: Untagged
@@ -2113,6 +2114,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745641941}
   m_CullTransparentMesh: 1
+--- !u!95 &1745641945
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745641941}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a3d09da268bbd5d4d9329721890263ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1798947687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2517,6 +2537,7 @@ GameObject:
   - component: {fileID: 3867735696934839162}
   - component: {fileID: 3867735696934839157}
   - component: {fileID: 3867735696934839158}
+  - component: {fileID: 3867735696934839159}
   m_Layer: 5
   m_Name: Jan-Ken-Ball
   m_TagString: JanKenBallController
@@ -2553,6 +2574,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656b4ca9ee576db42a0a95b3053bb685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCard: 0
+  chosenCard: 0
+--- !u!95 &3867735696934839159
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867735696934839156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 38365fd4af0a443419b480303f5f634e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &3867735696934839160
 RectTransform:
   m_ObjectHideFlags: 0
