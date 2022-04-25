@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.281429, g: 0.36000127, b: 0.44787705, a: 1}
+  m_IndirectSpecularColor: {r: 0.28142783, g: 0.35999963, b: 0.44787526, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 2
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &485113148
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 7
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &654969193
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 1
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &687564181
@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 3
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &917942575
@@ -1648,6 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbdb87a08163b04582479cb359db17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shuffler: {fileID: 1143062585}
   parentPuzzle: {fileID: 414905181}
   imagesList:
   - {fileID: 11400000, guid: 037505f8d5f8398499ba13b309f55579, type: 2}
@@ -1881,7 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 6
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &1327490451
@@ -2256,7 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 5
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &1722194184
@@ -2534,7 +2535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 4
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &1914164355
@@ -2625,7 +2626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3d4eff659fab4993a748d91ff2214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidePieceId: 0
+  slidePieceId: 8
   isVoidPiece: 0
   isInteractable: 0
 --- !u!114 &2025558842
