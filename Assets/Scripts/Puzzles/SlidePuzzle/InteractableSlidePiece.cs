@@ -31,7 +31,7 @@ public class InteractableSlidePiece : MonoBehaviour, IPointerClickHandler
 
         if (!isInteractable) return;
 
-        slidePuzzleController.OnPieceClicked(slidePieceId, InteractionDirection);
+        slidePuzzleController.OnPieceClicked(this, InteractionDirection);
 
         Debug.Log("Is interactable, lets move the piece somewhere (but not over the rainbow)");
     }

@@ -1658,6 +1658,7 @@ MonoBehaviour:
   imagesList:
   - {fileID: 11400000, guid: 037505f8d5f8398499ba13b309f55579, type: 2}
   - {fileID: 11400000, guid: b5cf0856e32bdbc438a5c6abc68110a7, type: 2}
+  voidPiece: {fileID: 0}
 --- !u!114 &1143062585
 MonoBehaviour:
   m_ObjectHideFlags: 0

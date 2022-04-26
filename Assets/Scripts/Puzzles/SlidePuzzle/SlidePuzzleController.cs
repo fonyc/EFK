@@ -7,6 +7,7 @@ public class SlidePuzzleController : MonoBehaviour
     [SerializeField] private SildePuzzleShuffler shuffler;
     [SerializeField] private Transform parentPuzzle;
     [SerializeField] private SlidePuzzleImagesSO[] imagesList;
+    [SerializeField] private Transform voidPiece;
 
     private Transform[,] matrix;
     private const int matrixSize = 3;
@@ -37,9 +38,29 @@ public class SlidePuzzleController : MonoBehaviour
         RefreshInteractablePieces();
     }
 
-    public void OnPieceClicked(int pieceId, Vector3 interactionDirection)
+    public void OnPieceClicked(InteractableSlidePiece piece, Vector3 interactionDirection)
     {
-        //Actually move the piece. Maybe use Coroutines... surely use them
+        //This method takes for granted that the piece is interactable
+        int voidPieceIndex = voidPiece.transform.GetSiblingIndex();
+        int pieceIndex = piece.transform.GetSiblingIndex();
+
+        piece.RelocateTransformImage(voidPieceIndex);
+        voidPiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(pieceIndex);
+
+        UpdateMatrix();
+
+        RefreshInteractablePieces();
+    }
+
+    private void UpdateMatrix()
+    {
+        for (int r = 0; r < matrixSize; r++)
+        {
+            for (int c = 0; c < matrixSize; c++)
+            {
+                matrix[r, c] = parentPuzzle.GetChild(c + r * matrixSize);
+            }
+        }
     }
 
     private int SelectRandomImage()
@@ -89,12 +110,13 @@ public class SlidePuzzleController : MonoBehaviour
                 {
                     result.row = r;
                     result.col = c;
+                    voidPiece = matrix[r, c];
                     return result;
                 }
             }
         }
+        voidPiece = null;
         return result;
-
     }
 
     private void RefreshInteractablePieces()
