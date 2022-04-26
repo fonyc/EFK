@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28142783, g: 0.35999963, b: 0.44787526, a: 1}
+  m_IndirectSpecularColor: {r: 0.281429, g: 0.36000127, b: 0.44787705, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -670,6 +670,7 @@ MonoBehaviour:
   slidePieceId: 2
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &485113148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,6 +963,7 @@ MonoBehaviour:
   slidePieceId: 7
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &654969193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1055,7 @@ MonoBehaviour:
   slidePieceId: 1
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &687564181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,6 +1220,7 @@ MonoBehaviour:
   slidePieceId: 3
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &917942575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,6 +1432,7 @@ MonoBehaviour:
   slidePieceId: 0
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!1001 &1115419699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1885,6 +1890,7 @@ MonoBehaviour:
   slidePieceId: 6
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1327490451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,6 +2266,7 @@ MonoBehaviour:
   slidePieceId: 5
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1722194184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2538,6 +2545,7 @@ MonoBehaviour:
   slidePieceId: 4
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1914164355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2629,6 +2637,7 @@ MonoBehaviour:
   slidePieceId: 8
   isVoidPiece: 0
   isInteractable: 0
+  interactionDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &2025558842
 MonoBehaviour:
   m_ObjectHideFlags: 0

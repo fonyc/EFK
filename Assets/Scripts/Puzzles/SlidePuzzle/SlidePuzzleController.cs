@@ -7,13 +7,17 @@ public class SlidePuzzleController : MonoBehaviour
     [SerializeField] private SildePuzzleShuffler shuffler;
     [SerializeField] private Transform parentPuzzle;
     [SerializeField] private SlidePuzzleImagesSO[] imagesList;
+
     private Transform[,] matrix;
     private const int matrixSize = 3;
+
     private int selectedImage;
+
     struct PieceData
     {
         public int row;
         public int col;
+
         public PieceData(int r, int c)
         {
             row = r;
@@ -31,7 +35,11 @@ public class SlidePuzzleController : MonoBehaviour
         shuffler.ShuffleImage();
         InitMatrix();
         RefreshInteractablePieces();
+    }
 
+    public void OnPieceClicked(int pieceId, Vector3 interactionDirection)
+    {
+        //Actually move the piece. Maybe use Coroutines... surely use them
     }
 
     private int SelectRandomImage()
@@ -67,16 +75,7 @@ public class SlidePuzzleController : MonoBehaviour
         }
     }
 
-    private void ReadMatrix()
-    {
-        for (int r = 0; r < matrixSize; r++)
-        {
-            for (int c = 0; c < matrixSize; c++)
-            {
-                Debug.Log(matrix[r, c].name);
-            }
-        }
-    }
+    #region NEIGHBOURS METHODS
 
     private PieceData FindVoidPiece()
     {
@@ -104,27 +103,35 @@ public class SlidePuzzleController : MonoBehaviour
         PieceData voidPieceLocation = FindVoidPiece();
         if (voidPieceLocation.col == -1) return;
 
-        Transform voidPiece = matrix[voidPieceLocation.row, voidPieceLocation.col];
 
         //In case we are in the top row
         if (voidPieceLocation.row != 0)
         {
-            matrix[voidPieceLocation.row - 1, voidPieceLocation.col].GetComponent<InteractableSlidePiece>().IsInteractable = true;
+            InteractableSlidePiece piece = matrix[voidPieceLocation.row - 1, voidPieceLocation.col].GetComponent<InteractableSlidePiece>();
+            
+            piece.IsInteractable = true;
+            piece.InteractionDirection = Vector3.down;
         }
 
         if (voidPieceLocation.row != matrixSize - 1)
         {
-            matrix[voidPieceLocation.row + 1, voidPieceLocation.col].GetComponent<InteractableSlidePiece>().IsInteractable = true;
+            InteractableSlidePiece piece = matrix[voidPieceLocation.row + 1, voidPieceLocation.col].GetComponent<InteractableSlidePiece>();
+            piece.IsInteractable = true;
+            piece.InteractionDirection = Vector3.up;
         }
 
         if (voidPieceLocation.col != 0)
         {
-            matrix[voidPieceLocation.row, voidPieceLocation.col -1].GetComponent<InteractableSlidePiece>().IsInteractable = true;
+            InteractableSlidePiece piece = matrix[voidPieceLocation.row, voidPieceLocation.col - 1].GetComponent<InteractableSlidePiece>();
+            piece.IsInteractable = true;
+            piece.InteractionDirection = Vector3.right;
         }
 
         if (voidPieceLocation.col != matrixSize -1)
         {
-            matrix[voidPieceLocation.row, voidPieceLocation.col + 1].GetComponent<InteractableSlidePiece>().IsInteractable = true;
+            InteractableSlidePiece piece = matrix[voidPieceLocation.row, voidPieceLocation.col + 1].GetComponent<InteractableSlidePiece>();
+            piece.IsInteractable = true;
+            piece.InteractionDirection = Vector3.left;
         }
     }
 
@@ -135,5 +142,8 @@ public class SlidePuzzleController : MonoBehaviour
             piece.GetComponent<InteractableSlidePiece>().IsInteractable = false;
         }
     }
+
+    #endregion
+
 
 }
