@@ -1672,9 +1672,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentPuzzle: {fileID: 414905181}
-  correctImages: 1
-  wrongImages: 2
-  availableList: 
+  shuffleList:
+  - {fileID: 11400000, guid: 4b27de483471a8143a8caddb2c5dd8d4, type: 2}
+  - {fileID: 11400000, guid: 693dae95c3218af478d8bb0c1c4248d2, type: 2}
+  - {fileID: 11400000, guid: f827b9fff59e6a243a01badbac8fb9c4, type: 2}
 --- !u!1001 &1206274066
 PrefabInstance:
   m_ObjectHideFlags: 0

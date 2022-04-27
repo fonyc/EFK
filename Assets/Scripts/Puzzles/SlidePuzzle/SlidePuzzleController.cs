@@ -47,20 +47,31 @@ public class SlidePuzzleController : MonoBehaviour
         piece.RelocateTransformImage(voidPieceIndex);
         voidPiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(pieceIndex);
 
-        UpdateMatrix();
+        if (UpdateMatrixAndCheckVictory())
+        {
+            Debug.Log("Player wins!");
+        }
 
         RefreshInteractablePieces();
     }
 
-    private void UpdateMatrix()
+    private bool UpdateMatrixAndCheckVictory()
     {
+        int correctPieces = matrixSize * matrixSize;
+
         for (int r = 0; r < matrixSize; r++)
         {
             for (int c = 0; c < matrixSize; c++)
             {
+                if(matrix[r, c].GetComponent<InteractableSlidePiece>().SlidePieceId == matrix[r, c].transform.GetSiblingIndex())
+                {
+                    correctPieces--;
+                }
+
                 matrix[r, c] = parentPuzzle.GetChild(c + r * matrixSize);
             }
         }
+        return correctPieces == 0;
     }
 
     private int SelectRandomImage()
