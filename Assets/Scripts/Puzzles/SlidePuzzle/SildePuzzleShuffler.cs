@@ -24,6 +24,7 @@ public class SildePuzzleShuffler : MonoBehaviour
         {
             puzzlePiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(selectedShuffle.ShuffleList[index]);
 
+            //if()
             index++;
         }
     }
