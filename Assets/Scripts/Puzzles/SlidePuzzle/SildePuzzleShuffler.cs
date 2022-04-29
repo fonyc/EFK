@@ -22,9 +22,18 @@ public class SildePuzzleShuffler : MonoBehaviour
         int index = 0;
         foreach (Transform puzzlePiece in parentPuzzle)
         {
-            puzzlePiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(selectedShuffle.ShuffleList[index]);
 
-            //if()
+            if(puzzlePiece.GetComponent<InteractableSlidePiece>().SlidePieceId == puzzlePiece.GetSiblingIndex())
+            {
+                puzzlePiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(selectedShuffle.ShuffleList[index]);
+            }
+            else
+            {
+                int positionA = puzzlePiece.transform.GetSiblingIndex();
+                int positionB = parentPuzzle.GetChild(selectedShuffle.ShuffleList[index]).GetSiblingIndex();
+                puzzlePiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(selectedShuffle.ShuffleList[index]);
+            }
+
             index++;
         }
     }
