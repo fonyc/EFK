@@ -957,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6086186009200667698, guid: 4b76d767cfaa3d94cabef850093f9341, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.34899998
+      value: 0.55999994
       objectReference: {fileID: 0}
     - target: {fileID: 6086186009200667698, guid: 4b76d767cfaa3d94cabef850093f9341, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1837,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863549634787430, guid: 04fb1161a540e7d4486270d7b1d9e4e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.42
+      value: 0.324
       objectReference: {fileID: 0}
     - target: {fileID: 4863549634787430, guid: 04fb1161a540e7d4486270d7b1d9e4e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1977,7 +1977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6086186009200667698, guid: 4b76d767cfaa3d94cabef850093f9341, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.349
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6086186009200667698, guid: 4b76d767cfaa3d94cabef850093f9341, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2951,7 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26091123, g: 0.080099694, b: 0.3773585, a: 1}
+  m_Color: {r: 0.4528302, g: 0.38123322, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
