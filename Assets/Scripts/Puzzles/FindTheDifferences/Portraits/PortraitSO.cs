@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Portrait", menuName = "Portrait")]
+[CreateAssetMenu(fileName = "New Portrait", menuName = "FindTheDifferences/Portrait")]
 public class PortraitSO : ScriptableObject
 {
     [SerializeField] private PortraitTypes portraitType;
