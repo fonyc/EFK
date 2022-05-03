@@ -23,19 +23,19 @@ public class Meters_HUD : MonoBehaviour
 
     private void Start()
     {
-        Type type = typeof(AddMonsterMeter);
-        EventManager.StartListening(type, monsterMeterListener);
+        //Type type = typeof(AddMonsterMeter);
+        //EventManager.StartListening(type, monsterMeterListener);
     }
 
     private void ManageEvent(object argument)
     {
         switch (argument)
         {
-            case AddMonsterMeter varType:
-                AddMonsterMeter amount = null;
-                amount = (AddMonsterMeter)argument;
-                ModifyMonsterMeterBar(amount.value);
-                break;
+            //case AddMonsterMeter varType:
+            //    AddMonsterMeter amount = null;
+            //    amount = (AddMonsterMeter)argument;
+            //    ModifyMonsterMeterBar(amount.value);
+            //    break;
 
             case AddCurseMeter vartype:
                 Debug.Log("CM");
@@ -59,7 +59,7 @@ public class Meters_HUD : MonoBehaviour
 
     private void OnDestroy()
     {
-        Type type = typeof(AddMonsterMeter);
-        EventManager.StopListening(type, monsterMeterListener);
+        //Type type = typeof(AddMonsterMeter);
+        //EventManager.StopListening(type, monsterMeterListener);
     }
 }

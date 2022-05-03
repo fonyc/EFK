@@ -12,19 +12,9 @@ public class Arguments
 
 }
 
-public class AddMonsterMeter : Arguments
+public class LockCamera : Arguments
 {
-    public float value;
 
-    public AddMonsterMeter(float value)
-    {
-        this.value = value;
-    }
-
-    public AddMonsterMeter()
-    {
-        
-    }
 }
 
 public class AddCurseMeter : Arguments

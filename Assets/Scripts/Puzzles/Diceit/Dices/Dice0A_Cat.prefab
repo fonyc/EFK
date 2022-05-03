@@ -31,6 +31,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9ebaeff057af341bac57beeb4f4068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alphaSelection: 0.4
   dampingSpeed: 0.01
 --- !u!114 &4800480094547733534
 MonoBehaviour:
@@ -104,12 +106,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceId: 0
-  image: {fileID: 0}
   isLocked: 0
-  canBeDragged: 0
+  isSolved: 0
+  isSelected: 0
 --- !u!95 &4800480094547733522
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,6 +124,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
