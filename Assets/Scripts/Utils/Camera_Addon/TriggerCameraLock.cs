@@ -1,14 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class TriggerCameraLock : MonoBehaviour
 {
     [SerializeField] private Axis axis;
-    [SerializeField] private AxisLocker vcam;
-    [SerializeField] private bool hardCodePositionZ;
-    [SerializeField] private float hardCodePositionZ_value;
+    [SerializeField] private AxisLocker axisLocker;
+
+    [SerializeField] private float cameraOffsetZ;
+    //Z offset seems to be calculated with a +0.3f imprecision wich makes transitions very bad
+    [Tooltip("Corrects the error obtained from the trigger")]
+    [SerializeField] private float deltaError;
+    [SerializeField] CinemachineVirtualCamera vcam;
     private int lockedTimes;
+
+    private void Start()
+    {
+        CinemachineComponentBase body = vcam.GetCinemachineComponent(CinemachineCore.Stage.Body);
+        if (body is CinemachineFramingTransposer)
+        {
+            cameraOffsetZ = (body as CinemachineFramingTransposer).m_CameraDistance; 
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,20 +32,15 @@ public class TriggerCameraLock : MonoBehaviour
             lockedTimes++;
             if (lockedTimes == 1)
             {
-                if(axis == Axis.X)
+                if (axis == Axis.X)
                 {
-                    vcam.LockXAxis = true;
-                    vcam.XPosition = other.transform.position.x;
+                    axisLocker.LockXAxis = true;
+                    axisLocker.XPosition = other.transform.position.x;
                 }
-                else if(axis == Axis.Z)
+                else if (axis == Axis.Z)
                 {
-                    vcam.LockZAxis = true;
-                    if (hardCodePositionZ) vcam.ZPosition = hardCodePositionZ_value;
-                    else
-                    {
-                        //Z position not working properly when taking it from trigger. 
-                        vcam.ZPosition = other.transform.position.z;
-                    }
+                    axisLocker.LockZAxis = true;
+                    axisLocker.ZPosition = other.transform.position.z - cameraOffsetZ + deltaError;
                 }
             }
         }
@@ -47,11 +56,11 @@ public class TriggerCameraLock : MonoBehaviour
                 lockedTimes--;
                 if (axis == Axis.X)
                 {
-                    vcam.LockXAxis = false;
+                    axisLocker.LockXAxis = false;
                 }
                 else if (axis == Axis.Z)
                 {
-                    vcam.LockZAxis = false;
+                    axisLocker.LockZAxis = false;
                 }
             }
             else if (lockedTimes == 2)

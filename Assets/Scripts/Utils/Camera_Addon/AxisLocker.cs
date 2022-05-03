@@ -31,4 +31,5 @@ public class AxisLocker : CinemachineExtension
             state.RawPosition = new Vector3(xValue, state.RawPosition.y, zValue);
         }
     }
+
 }
