@@ -11,43 +11,30 @@ public class Meters_HUD : MonoBehaviour
     [SerializeField] RectTransform curseMeterBar;
 
     #region LISTENERS
-    private UnityAction<object> monsterMeterListener;
+    private UnityAction<object> curseMeterListener;
     #endregion
 
     #endregion
 
     private void Awake()
     {
-        monsterMeterListener = new UnityAction<object>(ManageEvent);
+        curseMeterListener = new UnityAction<object>(ManageEvent);
     }
 
     private void Start()
     {
-        //Type type = typeof(AddMonsterMeter);
-        //EventManager.StartListening(type, monsterMeterListener);
+        Type type = typeof(AddCurseMeter);
+        EventManager.StartListening(type, curseMeterListener);
     }
 
     private void ManageEvent(object argument)
     {
         switch (argument)
         {
-            //case AddMonsterMeter varType:
-            //    AddMonsterMeter amount = null;
-            //    amount = (AddMonsterMeter)argument;
-            //    ModifyMonsterMeterBar(amount.value);
-            //    break;
-
             case AddCurseMeter vartype:
                 Debug.Log("CM");
                 break;
         }   
-    }
-
-    private void ModifyMonsterMeterBar(float value)
-    {
-        //Given that the bar ranges from 0 to 1, transform the value to adjust to that margins
-        float scaledValue = Mathf.Clamp(value, 0f, 1f);
-        monsterMeterBar.localScale = new Vector3(monsterMeterBar.localScale.x , scaledValue, monsterMeterBar.localScale.z);
     }
 
     private void ModifyCurseMeterBar(float value)
@@ -59,7 +46,7 @@ public class Meters_HUD : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Type type = typeof(AddMonsterMeter);
-        //EventManager.StopListening(type, monsterMeterListener);
+        Type type = typeof(AddCurseMeter);
+        EventManager.StopListening(type, curseMeterListener);
     }
 }
