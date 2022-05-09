@@ -8,6 +8,7 @@ TagManager:
   - DiceController
   - Match2Controller
   - SlidePuzzleController
+  - Fader
   layers:
   - Default
   - TransparentFX
