@@ -27,3 +27,13 @@ public class AddCurseMeter : Arguments
     }
 }
 
+public class SceneTransition : Arguments
+{
+    public int sceneToLoad;
+
+    public SceneTransition(int value)
+    {
+        sceneToLoad = value;
+    }
+}
+

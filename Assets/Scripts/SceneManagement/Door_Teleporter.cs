@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using EFK.Control;
+using System;
+using UnityEngine.Events;
 
 namespace RPG.SceneManagement
 {
@@ -18,28 +20,51 @@ namespace RPG.SceneManagement
         [Range(0.0f, 4.0f)]
         [SerializeField] private float fadeInTime = 2f;
 
+        #region LISTENERS
+        private UnityAction<object> changeSceneListener;
+        #endregion
+
         enum DestinationIdentifier
         {
             A = 0,
             B = 1,
             C = 2,
             D = 3,
-            E = 4
+            E = 4,
+            F = 5
         }
 
         private void Awake()
         {
             spawnPoint = transform.GetChild(0);
             player = GameObject.FindGameObjectWithTag("Player");
+            changeSceneListener = new UnityAction<object>(ManageEvent);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void Start()
         {
-            if (other.CompareTag("Player"))
+            Type type = typeof(SceneTransition);
+            EventManager.StartListening(type, changeSceneListener);
+        }
+
+        private void ManageEvent(object argument)
+        {
+            switch (argument)
             {
-                StartCoroutine(SceneTransition());
+                case SceneTransition vartype:
+                    Debug.Log("Teleport here --> Going to scene " + vartype.sceneToLoad);
+                    StartCoroutine(SceneTransition());
+                    break;
             }
         }
+
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.CompareTag("Player"))
+        //    {
+        //        StartCoroutine(SceneTransition());
+        //    }
+        //}
 
         private IEnumerator SceneTransition()
         {
@@ -57,22 +82,22 @@ namespace RPG.SceneManagement
 
             Fader fader = FindObjectOfType<Fader>();
 
-            InputActions playerInput = player.GetComponent<InputActions>();
-            playerInput.Disable();
+            //InputActions playerInput = player.GetComponent<InputActions>();
+            //playerInput.Disable();
 
             yield return fader.FadeOut(fadeOutTime);
 
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
             player = GameObject.FindGameObjectWithTag("Player");
-            InputActions newInputActions = player.GetComponent<InputActions>();
-            playerInput.Disable();
+            //InputActions newInputActions = player.GetComponent<InputActions>();
+            //playerInput.Disable();
 
             UpdatePlayersPositionInPortal(GetExitPortal());
 
             yield return new WaitForSeconds(0.5f);
             fader.FadeIn(fadeInTime);
-            playerInput.Disable();
+            //playerInput.Disable();
             Destroy(gameObject);
         }
 

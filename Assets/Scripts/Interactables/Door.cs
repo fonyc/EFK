@@ -1,6 +1,8 @@
 using EFK.Interactables;
 using EFK.Stats;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SFK.Interactables
 {
@@ -38,6 +40,9 @@ namespace SFK.Interactables
         public void Interact(BaseStats baseStats)
         {
             Debug.Log("Changing to level: " + level);
+
+            SceneTransition eventClass = new SceneTransition(level);
+            EventManager.TriggerEvent(eventClass);
         }
         #endregion
     }

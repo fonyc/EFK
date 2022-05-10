@@ -72,7 +72,9 @@ public class TriggerCameraLock : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, transform.localScale);
+        Color color = Color.red;
+        color.a = 0.1f;
+        Gizmos.color = color;
+        Gizmos.DrawCube(transform.position, transform.localScale);
     }
 }
