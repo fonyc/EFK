@@ -11,7 +11,6 @@ namespace RPG.SceneManagement
     public class Door_Teleporter : MonoBehaviour
     {
         GameObject player;
-        [SerializeField] private int sceneToLoad;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private DestinationIdentifier portalIdentifier; //Links enter portal with exit portal
 
@@ -53,7 +52,7 @@ namespace RPG.SceneManagement
             {
                 case SceneTransition vartype:
                     Debug.Log("Teleport here --> Going to scene " + vartype.sceneToLoad);
-                    StartCoroutine(SceneTransition());
+                    StartCoroutine(SceneTransition(vartype.sceneToLoad));
                     break;
             }
         }
@@ -66,7 +65,7 @@ namespace RPG.SceneManagement
         //    }
         //}
 
-        private IEnumerator SceneTransition()
+        private IEnumerator SceneTransition(int sceneToLoad)
         {
             if (sceneToLoad < 0)
             {

@@ -19,7 +19,7 @@ TagManager:
   - IgnoreCollision
   - Sticky
   - noLight
-  - 
+  - CameraObstacle
   - 
   - 
   - 
