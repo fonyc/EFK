@@ -24,11 +24,6 @@ namespace EFK.Control
             interactor = GetComponent<Interactor>();
         }
 
-        private void Start()
-        {
-
-        }
-
         void Update()
         {
             Vector2 inputMove = inputActions.Player.Move.ReadValue<Vector2>();
