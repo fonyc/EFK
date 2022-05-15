@@ -1,27 +1,23 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
-using EFK.Control;
 using System;
-using UnityEngine.Events;
 
 namespace RPG.SceneManagement
 {
     public class Door_Teleporter : MonoBehaviour
     {
-        GameObject player;
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private DestinationIdentifier portalIdentifier; //Links enter portal with exit portal
+
+        //Links enter portal with exit portal
+        [SerializeField] private DestinationIdentifier portalIdentifier; 
 
         [Range(0.0f, 4.0f)]
         [SerializeField] private float fadeOutTime = 2f;
         [Range(0.0f, 4.0f)]
         [SerializeField] private float fadeInTime = 2f;
 
-        #region LISTENERS
-        private UnityAction<object> changeSceneListener;
-        #endregion
+        Coroutine sceneTranstition_coro;
 
         enum DestinationIdentifier
         {
@@ -36,34 +32,15 @@ namespace RPG.SceneManagement
         private void Awake()
         {
             spawnPoint = transform.GetChild(0);
-            player = GameObject.FindGameObjectWithTag("Player");
-            changeSceneListener = new UnityAction<object>(ManageEvent);
         }
 
-        private void Start()
+        public void SceneTransition_Coro(int level)
         {
-            Type type = typeof(SceneTransition);
-            EventManager.StartListening(type, changeSceneListener);
-        }
-
-        private void ManageEvent(object argument)
-        {
-            switch (argument)
+            if(sceneTranstition_coro == null)
             {
-                case SceneTransition vartype:
-                    Debug.Log("Teleport here --> Going to scene " + vartype.sceneToLoad);
-                    StartCoroutine(SceneTransition(vartype.sceneToLoad));
-                    break;
+                sceneTranstition_coro = StartCoroutine(SceneTransition(level));
             }
         }
-
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.CompareTag("Player"))
-        //    {
-        //        StartCoroutine(SceneTransition());
-        //    }
-        //}
 
         private IEnumerator SceneTransition(int sceneToLoad)
         {
@@ -88,7 +65,7 @@ namespace RPG.SceneManagement
 
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
-            player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
             //InputActions newInputActions = player.GetComponent<InputActions>();
             //playerInput.Disable();
 

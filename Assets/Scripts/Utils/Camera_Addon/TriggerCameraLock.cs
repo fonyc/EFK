@@ -63,7 +63,7 @@ public class TriggerCameraLock : MonoBehaviour
                     axisLocker.LockZAxis = false;
                 }
             }
-            else if (lockedTimes == 2)
+            else if (lockedTimes > 1)
             {
                 lockedTimes--;
             }
@@ -72,7 +72,7 @@ public class TriggerCameraLock : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Color color = Color.red;
+        Color color = Color.green;
         color.a = 0.1f;
         Gizmos.color = color;
         Gizmos.DrawCube(transform.position, transform.localScale);

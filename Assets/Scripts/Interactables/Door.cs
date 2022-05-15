@@ -1,5 +1,6 @@
 using EFK.Interactables;
 using EFK.Stats;
+using RPG.SceneManagement;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,8 +24,6 @@ namespace SFK.Interactables
             AddInteractableTag();
         }
 
-        private void ActivateCollider(bool value) => invisibleCollider.enabled = value;
-
         #region IINTERACTABLE
         public void AddInteractableTag()
         {
@@ -33,16 +32,13 @@ namespace SFK.Interactables
 
         public void ShowInteraction(BaseStats baseStats)
         {
-            //TO DO --> Call Scene management and leave scene
             Debug.Log("Door is shining and showing a canvas");
         }
 
         public void Interact(BaseStats baseStats)
         {
             Debug.Log("Changing to level: " + level);
-
-            SceneTransition eventClass = new SceneTransition(level);
-            EventManager.TriggerEvent(eventClass);
+            GetComponent<Door_Teleporter>().SceneTransition_Coro(level);
         }
         #endregion
     }

@@ -12,11 +12,6 @@ public class Arguments
 
 }
 
-public class LockCamera : Arguments
-{
-
-}
-
 public class AddCurseMeter : Arguments
 {
     public float value;
@@ -27,13 +22,11 @@ public class AddCurseMeter : Arguments
     }
 }
 
-public class SceneTransition : Arguments
+public class RepaintCurseMeter : Arguments
 {
-    public int sceneToLoad;
-
-    public SceneTransition(int value)
+    public RepaintCurseMeter()
     {
-        sceneToLoad = value;
+    
     }
 }
 
