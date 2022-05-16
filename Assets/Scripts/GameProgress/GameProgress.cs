@@ -55,5 +55,11 @@ public class GameProgress : MonoBehaviour
     {
         gameProgress.Choice = choice;
     }
+
+    private void OnDisable()
+    {
+        Type type = typeof(AddCurseMeter);
+        EventManager.StopListening(type, addCurseMeterListener);
+    }
     #endregion
 }

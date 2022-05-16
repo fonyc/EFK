@@ -55,7 +55,7 @@ namespace EFK.UI
                 curseMeterBar.localScale.z);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             Type type = typeof(AddCurseMeter);
             EventManager.StopListening(type, curseMeterRepainterListener);

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using EFK.Control;
 
 namespace RPG.SceneManagement
 {
@@ -58,22 +59,18 @@ namespace RPG.SceneManagement
 
             Fader fader = FindObjectOfType<Fader>();
 
-            //InputActions playerInput = player.GetComponent<InputActions>();
-            //playerInput.Disable();
+            PlayerController ia = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            ia.InputActions.Disable();
 
             yield return fader.FadeOut(fadeOutTime);
 
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            //InputActions newInputActions = player.GetComponent<InputActions>();
-            //playerInput.Disable();
-
             UpdatePlayersPositionInPortal(GetExitPortal());
 
             yield return new WaitForSeconds(0.5f);
             fader.FadeIn(fadeInTime);
-            //playerInput.Disable();
+            ia.InputActions.Enable();
             Destroy(gameObject);
         }
 

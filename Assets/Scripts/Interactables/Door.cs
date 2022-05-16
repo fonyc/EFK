@@ -11,13 +11,12 @@ namespace SFK.Interactables
     {
         [SerializeField] private int level;
 
-        [Header("--- Strategic Points ---")]
-        [SerializeField] private Collider invisibleCollider;
-
         [Header("--- VFX ---")]
         [Space(5)]
         [SerializeField] private GameObject closed_VFX;
         [SerializeField] private GameObject open_VFX;
+
+        private bool isOpened;
 
         private void Start()
         {
@@ -32,11 +31,13 @@ namespace SFK.Interactables
 
         public void ShowInteraction(BaseStats baseStats)
         {
+            //if (!isOpened) return;
             Debug.Log("Door is shining and showing a canvas");
         }
 
         public void Interact(BaseStats baseStats)
         {
+            //if (!isOpened) return;
             Debug.Log("Changing to level: " + level);
             GetComponent<Door_Teleporter>().SceneTransition_Coro(level);
         }

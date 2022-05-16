@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventTypes : MonoBehaviour
-{ 
-    
+{
+
 }
 
 public class Arguments
@@ -30,5 +30,10 @@ public class RepaintCurseMeter : Arguments
     {
         this.value = value;
     }
+}
+
+public class SolvePuzzle : Arguments
+{
+    public SolvePuzzle() { }
 }
 

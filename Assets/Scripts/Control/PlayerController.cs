@@ -16,9 +16,11 @@ namespace EFK.Control
 
         [SerializeField] private float playerSpeed = 2.0f;
 
+        public InputActions InputActions { get => inputActions; set => inputActions = value; }
+
         private void Awake()
         {
-            inputActions = new InputActions();
+            InputActions = new InputActions();
             anim = GetComponent<PlayerAnimations>();
             controller = gameObject.GetComponent<CharacterController>();
             interactor = GetComponent<Interactor>();
@@ -26,7 +28,7 @@ namespace EFK.Control
 
         void Update()
         {
-            Vector2 inputMove = inputActions.Player.Move.ReadValue<Vector2>();
+            Vector2 inputMove = InputActions.Player.Move.ReadValue<Vector2>();
 
             //Given that inputActions has a threshold, normalize vector to always move at the same speed
             inputMove.Normalize();
@@ -49,7 +51,7 @@ namespace EFK.Control
 
         private void Interact()
         {
-            if (inputActions.Player.Interact.triggered)
+            if (InputActions.Player.Interact.triggered)
             {
                 if (interactor.TARGET == null) return;
                 
@@ -60,12 +62,12 @@ namespace EFK.Control
         #region ENABLE/DISABLE
         private void OnEnable()
         {
-            inputActions.Player.Enable();
+            InputActions.Player.Enable();
         }
 
         private void OnDisable()
         {
-            inputActions.Player.Disable();
+            InputActions.Player.Disable();
         }
         #endregion
 

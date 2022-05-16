@@ -1,3 +1,4 @@
+using EFK.Control;
 using RPG.SceneManagement;
 using System.Collections;
 using UnityEngine;
@@ -34,45 +35,55 @@ public class FindDifferencesController : MonoBehaviour
 
     public void OnZonePressed(int quadrantId)
     {
+        if (CheckGameIsOver() || CheckGameVictory()) return;
+
         Debug.Log("Zone " + quadrantId + " was pressed");
         if (portraitList[currentPortrait].CheckQuadrant(quadrantId) != -1)
         {
             Debug.Log("Difference is correct!");
             currentDifferencesDiscovered++;
+            if (CheckGameVictory())
+            {
+                Debug.Log("Player wins!");
+                TriggerPuzzleEnds();
+                StartCoroutine(FadeOutAndEndGame());
+            }
         }
         else
         {
+            Debug.Log("Difference is not correct...");
             currentMistakes++;
             EventManager.TriggerEvent(addCurseMeterEvent);
-            Debug.Log("Difference is not correct...");
+            if (CheckGameIsOver())
+            {
+                Debug.Log("Game Over: Too much mistakes...");
+                TriggerPuzzleEnds();
+                StartCoroutine(FadeOutAndEndGame());
+            }
         }
 
-        if (CheckGameVictory())
-        {
-            Debug.Log("Player wins!");
-            FadeOutAndEndGame();
-        }
-        else if (CheckGameIsOver())
-        {
-            Debug.Log("Game Over: Too much mistakes...");
-            FadeOutAndEndGame();
-        }
-        else
-        {
-            ChangePortrait();
-        }
+        ChangePortrait();
+    }
+
+    private void TriggerPuzzleEnds()
+    {
+        SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
+        EventManager.TriggerEvent(solvePuzzleTrigger);
     }
 
     private IEnumerator FadeOutAndEndGame()
     {
         Fader fader = FindObjectOfType<Fader>();
 
+        PlayerController ia = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        ia.InputActions.Disable();
+
         yield return fader.FadeOut(fadeOutTime);
 
         yield return new WaitForSeconds(0.5f);
 
         fader.FadeIn(fadeInTime);
-
+        ia.InputActions.Enable();
         gameObject.SetActive(false);
     }
 
