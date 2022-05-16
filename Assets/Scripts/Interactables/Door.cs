@@ -16,11 +16,41 @@ namespace SFK.Interactables
         [SerializeField] private GameObject closed_VFX;
         [SerializeField] private GameObject open_VFX;
 
-        private bool isOpened;
+        [SerializeField] private bool isOpened;
+
+        #region Listeners
+
+        private UnityAction<object> OnPuzzleEnds;
+
+        #endregion
+
+        private void Awake()
+        {
+            OnPuzzleEnds = new UnityAction<object>(ManageEvent);
+        }
 
         private void Start()
         {
             AddInteractableTag();
+
+            //Event subscribe
+            Type type = typeof(SolvePuzzle);
+            EventManager.StartListening(type, OnPuzzleEnds);
+        }
+
+        private void ManageEvent(object argument)
+        {
+            switch (argument)
+            {
+                case SolvePuzzle varType:
+                    OpenDoor();
+                    break;
+            }
+        }
+
+        private void OpenDoor()
+        {
+            isOpened = true;
         }
 
         #region IINTERACTABLE

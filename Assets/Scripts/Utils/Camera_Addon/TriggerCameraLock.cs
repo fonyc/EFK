@@ -63,7 +63,7 @@ public class TriggerCameraLock : MonoBehaviour
                     axisLocker.LockZAxis = false;
                 }
             }
-            else if (lockedTimes > 1)
+            else if (lockedTimes >= 2)
             {
                 lockedTimes--;
             }
