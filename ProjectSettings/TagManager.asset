@@ -9,6 +9,7 @@ TagManager:
   - Match2Controller
   - SlidePuzzleController
   - Fader
+  - GameProgressData
   layers:
   - Default
   - TransparentFX

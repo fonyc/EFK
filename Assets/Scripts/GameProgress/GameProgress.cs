@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class GameProgress : MonoBehaviour
 {
-    [SerializeField] GameProgress_SO gameProgress;
+    [SerializeField] GameProgress_Data gameProgress;
 
     #region LISTENERS
     private UnityAction<object> addCurseMeterListener;
@@ -20,6 +20,10 @@ public class GameProgress : MonoBehaviour
         //EVENT SUBSCRIPTION
         Type type = typeof(AddCurseMeter);
         EventManager.StartListening(type, addCurseMeterListener);
+
+        //Get gameProgressObject
+        gameProgress = GameObject.FindGameObjectWithTag("GameProgressData")
+            .GetComponent<GameProgress_Data>();
     }
 
     private void ManageEvent(object argument)

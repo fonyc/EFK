@@ -6,13 +6,10 @@ namespace EFK.UI
 {
     public class Meters_HUD : MonoBehaviour
     {
-        #region VARIABLES
         [SerializeField] RectTransform curseMeterBar;
 
         #region LISTENERS
         private UnityAction<object> curseMeterRepainterListener;
-        #endregion
-
         #endregion
 
         private void Awake()
@@ -24,6 +21,8 @@ namespace EFK.UI
         {
             Type type = typeof(RepaintCurseMeter);
             EventManager.StartListening(type, curseMeterRepainterListener);
+
+            UpdateCurseMeterBetweenScenes();
         }
 
         private void ManageEvent(object argument)
@@ -35,6 +34,15 @@ namespace EFK.UI
                     ModifyCurseMeterBar(vartype.value);
                     break;
             }
+        }
+
+        private void UpdateCurseMeterBetweenScenes()
+        {
+            float curseMeterValue = GameObject.FindGameObjectWithTag("GameProgressData")
+                .GetComponent<GameProgress_Data>()
+                .CurseMeter;
+
+            ModifyCurseMeterBar(curseMeterValue);
         }
 
         private void ModifyCurseMeterBar(float value)
