@@ -1721,12 +1721,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57e05c743fe58b4badd5b85bd5c1772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeOutTime: 2
+  fadeInTime: 2
   portraitList:
   - {fileID: 11400000, guid: 686de14a941e72544856998e8a62988d, type: 2}
   - {fileID: 11400000, guid: 488f206f84c6c2d4bb596d6346cd26d7, type: 2}
   - {fileID: 11400000, guid: d76229e166c8a144280f33d6891b60bd, type: 2}
   gameSettings: {fileID: 11400000, guid: a2cbfc5ef1312b841bd585867e5ca11b, type: 2}
-  currentPortrait: 0
   differencesCanvas: {fileID: 3569747517871696188}
 --- !u!1 &3569747517822060742
 GameObject:

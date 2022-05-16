@@ -49,7 +49,10 @@ namespace EFK.UI
         {
             //Given that the bar ranges from 0 to 1, transform the value to adjust to that margins
             float scaledValue = value / 100;
-            curseMeterBar.localScale = new Vector3(curseMeterBar.localScale.x, scaledValue, curseMeterBar.localScale.z);
+            curseMeterBar.localScale = new Vector3(
+                curseMeterBar.localScale.x,
+                scaledValue,
+                curseMeterBar.localScale.z);
         }
 
         private void OnDestroy()

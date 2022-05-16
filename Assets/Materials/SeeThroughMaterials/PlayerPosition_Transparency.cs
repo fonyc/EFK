@@ -14,7 +14,6 @@ public class PlayerPosition_Transparency : MonoBehaviour
     {
         if((transform.position.z > playerPosition.transform.localPosition.z))
         {
-            Debug.Log(gameObject.name + "/" + transform.position.z + "/" + playerPosition.transform.localPosition.z);
             wallMaterial.SetFloat(sizeId, 0);
         }
         else

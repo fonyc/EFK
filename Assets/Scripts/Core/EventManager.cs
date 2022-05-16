@@ -72,7 +72,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("There is no listener to remove");
+            Debug.LogWarning("There is no listener of type " + listener.GetType() + " to remove");
         }
     }
 
@@ -89,7 +89,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("There is no listener to invoke");
+            Debug.LogWarning("There are no listeners for event " + arguments + " of type " + arguments.GetType());
         }
     }
 }
