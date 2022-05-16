@@ -24,9 +24,11 @@ public class AddCurseMeter : Arguments
 
 public class RepaintCurseMeter : Arguments
 {
-    public RepaintCurseMeter()
+    public float value;
+
+    public RepaintCurseMeter(float value)
     {
-    
+        this.value = value;
     }
 }
 

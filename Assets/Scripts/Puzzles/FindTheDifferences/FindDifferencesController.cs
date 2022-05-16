@@ -14,6 +14,15 @@ public class FindDifferencesController : MonoBehaviour
     private int currentDifferencesDiscovered;
     private int currentMistakes;
 
+    //EVENT TRIGGERS
+    AddCurseMeter addCurseMeterEvent;
+
+    private void Awake()
+    {
+        addCurseMeterEvent = new AddCurseMeter(gameSettings.CurseMeterPerMistake);
+        Debug.Log("En este puzzle, el castigo por el error es de " + gameSettings.CurseMeterPerMistake);
+    }
+
     public void OnZonePressed(int quadrantId)
     {
         Debug.Log("Zone " + quadrantId + " was pressed");
@@ -21,11 +30,11 @@ public class FindDifferencesController : MonoBehaviour
         {
             Debug.Log("Difference is correct!");
             currentDifferencesDiscovered++;
-            //Mark as solved the difference
         }
         else
         {
             currentMistakes++;
+            EventManager.TriggerEvent(addCurseMeterEvent);
             Debug.Log("Difference is not correct...");
         }
 

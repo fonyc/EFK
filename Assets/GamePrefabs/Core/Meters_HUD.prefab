@@ -381,5 +381,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc24a41af6c3f964697d90a18dd11278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterMeterBar: {fileID: 2560513106918493272}
-  curseMeterBar: {fileID: 0}
+  curseMeterBar: {fileID: 2560513106918493272}

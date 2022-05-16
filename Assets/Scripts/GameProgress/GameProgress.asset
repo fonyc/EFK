@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 638a9d2c2f2adf545b316037c18aa0cd, type: 3}
-  m_Name: EasySettings
+  m_Script: {fileID: 11500000, guid: 72ad64e7355bf8549874c519f4a13165, type: 3}
+  m_Name: GameProgress
   m_EditorClassIdentifier: 
-  differencesToDiscover: 9
-  maxMistakes: 3
-  curseMeterPerMistake: 5
+  curseMeter: 0
+  collectibleList: 00000000000000000000
+  choice: 0
