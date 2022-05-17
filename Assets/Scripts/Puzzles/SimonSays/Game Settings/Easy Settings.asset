@@ -17,3 +17,4 @@ MonoBehaviour:
   maxPhantomInterventions: 3
   phantomProbabilities: 230000000f0000000a000000
   timeBetweenNotes: 0.8
+  curseMeterPerMistake: 5
