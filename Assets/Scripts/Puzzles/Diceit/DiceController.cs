@@ -1,3 +1,6 @@
+using EFK.Control;
+using RPG.SceneManagement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,22 +9,24 @@ namespace EFK.Puzzles
     public class DiceController : MonoBehaviour
     {
         #region VARIABLES
-        [SerializeField]
+        [Header("--- FADER SETTINGS --- ")]
+        [Space(5)]
+        [Range(0, 5)]
+        [SerializeField] private float fadeOutTime;
+        [Range(0, 5)]
+        [SerializeField] private float fadeInTime;
+
+        //Inner game variables
         private GameObject selectedDice = null;
-
-        [SerializeField]
         private GameObject lastTouchedDice = null;
-
-        [SerializeField]
         private StickySquare originStickySquare = null;
-
-        [SerializeField]
         private StickySquare destinationStickySquare = null;
-
-        [SerializeField]
         private bool diceBeingDragged = false;
 
-        [SerializeField]
+        [Header("--- GAME SETTINGS ---")]
+        [Space(5)]
+        [SerializeField] DiceitSettings_SO gameSettings;
+        private int currentMistakes;
         private int solutions;
 
         [SerializeField]
@@ -66,10 +71,43 @@ namespace EFK.Puzzles
                 if (SolveSolution(lastTouchedDice))
                 {
                     Debug.Log("Solucion correcta");
+                    Solutions--;
+                    if (CheckVictory())
+                    {
+                        //Trigger puzzle end
+                        SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
+                        EventManager.TriggerEvent(solvePuzzleTrigger);
+                    }
                 }
+                else
+                {
+                    Debug.Log("Mistakes were made");
+                    currentMistakes++;
+                    //Trigger curse meter
+                    AddCurseMeter addCurseMeterTrigger = new AddCurseMeter(gameSettings.CurseMeterPerMistake);
+                    EventManager.TriggerEvent(addCurseMeterTrigger);
+
+                    if (CheckDefeat())
+                    {
+                        //Trigger puzzle end
+                        SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
+                        EventManager.TriggerEvent(solvePuzzleTrigger);
+                    }
+                }
+
                 //Shuffle after swapping correct or not
                 if (solutions != 1) shuffler.PartialShuffle();
             }
+        }
+
+        private bool CheckDefeat()
+        {
+            return currentMistakes >= gameSettings.MaxMistakes;
+        }
+
+        private bool CheckVictory()
+        {
+            return solutions == 1;
         }
 
         public void Parenting(Transform _parent, GameObject dice)
@@ -106,7 +144,6 @@ namespace EFK.Puzzles
                 dice.GetComponent<DiceData>().IsSolved = true;
                 dice.GetComponent<DiceData>().IsLocked = true;
                 oposingDice.IsSolved = true;
-                Solutions--;
                 return true;
             }
             return false;

@@ -116,12 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725f1bb23a1f70a40993a2fbb27f4c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedDice: {fileID: 0}
-  lastTouchedDice: {fileID: 0}
-  originStickySquare: {fileID: 0}
-  destinationStickySquare: {fileID: 0}
-  diceBeingDragged: 0
-  solutions: 8
+  fadeOutTime: 0
+  fadeInTime: 0
+  gameSettings: {fileID: 11400000, guid: 069c061a4e0d83548ac62cd5197e7ec2, type: 2}
   upperParent: {fileID: 8164232338075767922}
 --- !u!114 &4963489134687806231
 MonoBehaviour:

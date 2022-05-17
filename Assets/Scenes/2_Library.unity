@@ -15033,6 +15033,7 @@ GameObject:
   - component: {fileID: 1935576993}
   - component: {fileID: 1935576992}
   - component: {fileID: 1935576991}
+  - component: {fileID: 1935576996}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -15052,8 +15053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be077f0ce1845954e8f545fa3f4f80fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTime: 2
-  fadeInTime: 2
   puzzle: {fileID: 11400000, guid: d1abafd7a8c21224797ea27341e0f266, type: 2}
   isSolved: 0
 --- !u!65 &1935576992
@@ -15134,6 +15133,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1935576996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935576990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8d9e2b4ebcbfc478a81afdcdfa38b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTime: 2
+  fadeInTime: 2
 --- !u!4 &1936986611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4870942802981493173, guid: 1317d78021e5ec5479d16aa22c3dbff3, type: 3}

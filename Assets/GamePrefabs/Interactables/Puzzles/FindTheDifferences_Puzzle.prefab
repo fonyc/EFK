@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 4083412764833961730}
   - component: {fileID: 3505218552713953465}
   - component: {fileID: 5692354553876039808}
+  - component: {fileID: 461562378544513993}
   m_Layer: 0
   m_Name: FindTheDifferences_Puzzle
   m_TagString: Interactable
@@ -443,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzle: {fileID: 11400000, guid: becf23ac8a316984a831a0cedb8605d0, type: 2}
+  isSolved: 0
 --- !u!54 &3505218552713953465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -472,3 +474,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 1}
   m_Center: {x: -0.61, y: 0, z: 0}
+--- !u!114 &461562378544513993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145500810499610424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8d9e2b4ebcbfc478a81afdcdfa38b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTime: 2
+  fadeInTime: 2

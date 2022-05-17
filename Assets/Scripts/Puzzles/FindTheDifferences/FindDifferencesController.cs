@@ -6,13 +6,6 @@ using UnityEngine.UI;
 
 public class FindDifferencesController : MonoBehaviour
 {
-    [Header("--- FADER SETTINGS --- ")]
-    [Space(5)]
-    [Range(0, 5)]
-    [SerializeField] private float fadeOutTime;
-    [Range(0, 5)]
-    [SerializeField] private float fadeInTime;
-
     [Header("--- PUZZLE SETTINGS --- ")]
     [Space(5)]
     [SerializeField] PortraitSO[] portraitList;
@@ -30,7 +23,6 @@ public class FindDifferencesController : MonoBehaviour
     private void Awake()
     {
         addCurseMeterEvent = new AddCurseMeter(gameSettings.CurseMeterPerMistake);
-        Debug.Log("En este puzzle, el castigo por el error es de " + gameSettings.CurseMeterPerMistake);
     }
 
     public void OnZonePressed(int quadrantId)
@@ -46,7 +38,6 @@ public class FindDifferencesController : MonoBehaviour
             {
                 Debug.Log("Player wins!");
                 TriggerPuzzleEnds();
-                StartCoroutine(FadeOutAndEndGame());
             }
         }
         else
@@ -58,7 +49,6 @@ public class FindDifferencesController : MonoBehaviour
             {
                 Debug.Log("Game Over: Too much mistakes...");
                 TriggerPuzzleEnds();
-                StartCoroutine(FadeOutAndEndGame());
             }
         }
 
@@ -69,22 +59,6 @@ public class FindDifferencesController : MonoBehaviour
     {
         SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
         EventManager.TriggerEvent(solvePuzzleTrigger);
-    }
-
-    private IEnumerator FadeOutAndEndGame()
-    {
-        Fader fader = FindObjectOfType<Fader>();
-
-        PlayerController ia = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        ia.InputActions.Disable();
-
-        yield return fader.FadeOut(fadeOutTime);
-
-        yield return new WaitForSeconds(0.5f);
-
-        fader.FadeIn(fadeInTime);
-        ia.InputActions.Enable();
-        gameObject.SetActive(false);
     }
 
     private bool CheckGameIsOver()
