@@ -13,7 +13,7 @@ public class JanKenController : MonoBehaviour
     [SerializeField] private ScoreboardMarker scoreboardMarker;
     public Animator cardAnimator;
     private int randomnumber;
-    private int games;
+    public int games;
 
     void Start()
     {

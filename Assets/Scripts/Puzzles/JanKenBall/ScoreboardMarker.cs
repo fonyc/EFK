@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class ScoreboardMarker : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
     public Sprite winSprite;
     public Sprite loseSprite;
     [SerializeField] private Transform[] scoreList;
     [SerializeField] private Sprite win;
     [SerializeField] private Sprite lose;
+    public JanKenController janKenController;
 
 
 
     private void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         int f = scoreList.Length;
         for (int i =0;  i == f+1; i++)
         {
@@ -44,10 +43,14 @@ public class ScoreboardMarker : MonoBehaviour
     }
     private void ChangeSpritetoWin()
     {
-        spriteRenderer.sprite = winSprite;
+        //int currentGame = janKenController.games;
+        //Sprite currentScore = scoreList[currentGame].GetComponent<Sprite>();
+        //currentScore = win;
     }
     private void ChangeSpritetoLose()
     {
-        spriteRenderer.sprite = loseSprite;
+        //int currentGame = janKenController.games;
+        //Sprite currentScore = scoreList[currentGame].GetComponent<Sprite>();
+        //currentScore = lose;
     }
 }
