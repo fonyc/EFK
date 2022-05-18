@@ -4,58 +4,50 @@ using UnityEngine;
 
 public class ScoreboardMarker : MonoBehaviour
 {
-    public GameObject score0, score1, score2;
+    public SpriteRenderer spriteRenderer;
+    public Sprite winSprite;
+    public Sprite loseSprite;
+    [SerializeField] private Transform[] scoreList;
+    [SerializeField] private Sprite win;
+    [SerializeField] private Sprite lose;
 
+
+
+    private void Start()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        int f = scoreList.Length;
+        for (int i =0;  i == f+1; i++)
+        {
+            scoreList[i] = transform.GetChild(i);
+        }
+    }
 
     public void Result(int game, bool victory)
     {
         switch (game)
         {
             case (0):
-                if(victory == true)
-                {
-                score0 = GameObject.Find("/Jan-Ken-Ball/Board/Scoreboard/Score_1_Win");
-                score0.SetActive(true);
-                }
-
-                else
-                {
-                score0 = GameObject.Find("/Jan-Ken-Ball/Board/Scoreboard/Score_1_Lose");
-                score0.SetActive(true);
-                }
+                if(victory) {ChangeSpritetoWin();}
+                else{ChangeSpritetoLose();}
                 break;
-
             case (1):
-                if (victory == true)
-                {
-                    score1 = GameObject.Find("/Jan-Ken-Ball/Board/Scoreboard/Score_2_Win");
-                    score1.SetActive(true);
-                }
-
-                else
-                {
-                    score1 = GameObject.Find("/Jan-Ken-Ball/Board/Scoreboard/Score_2_Lose");
-                    score1.SetActive(true);
-                }
+                if (victory){ChangeSpritetoWin();}
+                else{ChangeSpritetoLose();}
                 break;
-
             case (2):
-                if (victory == true)
-                {
-                    score2 = GameObject.Find("/Jan-Ken-Ball/Board/Scoreboard/Score_3_Win");
-                    score2.SetActive(true);
-                }
-
+                if (victory){ChangeSpritetoWin();}
                 else
-                {
-                    score2 = GameObject.Find("/Jan-Ken-Ball/Board/Scoreboard/Score_3_Lose");
-                    score2.SetActive(true);
-                }
+                {ChangeSpritetoLose();}
                 break;
         }
-            
     }
-
-
-
+    private void ChangeSpritetoWin()
+    {
+        spriteRenderer.sprite = winSprite;
+    }
+    private void ChangeSpritetoLose()
+    {
+        spriteRenderer.sprite = loseSprite;
+    }
 }
