@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193bed589d0827946acc25c370089b3e, type: 3}
   m_Name: SlidePuzzle_easy
   m_EditorClassIdentifier: 
-  extraTimerValue: 0
-  extraTimers: 0
-  baseTime: 0
-  curseMeterPerExtraTime: 0
+  extraTimerValue: 10
+  extraTimers: 3
+  baseTime: 30
+  curseMeterPerExtraTime: 5

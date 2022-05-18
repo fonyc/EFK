@@ -113,6 +113,7 @@ public class MatchTwoController : MonoBehaviour
                 {
                     SolvePuzzle solvedPuzzleTrigger = new SolvePuzzle();
                     EventManager.TriggerEvent(solvedPuzzleTrigger);
+                    timer.IsStopped = true;
                 }
 
             }

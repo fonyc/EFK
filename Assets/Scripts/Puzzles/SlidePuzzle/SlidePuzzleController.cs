@@ -71,6 +71,7 @@ public class SlidePuzzleController : MonoBehaviour
             Debug.Log("Player wins!");
             SolvePuzzle solvedPuzzleTrigger = new SolvePuzzle();
             EventManager.TriggerEvent(solvedPuzzleTrigger);
+            timer.IsStopped = true;
         }
 
         RefreshInteractablePieces();

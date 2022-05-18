@@ -10,9 +10,13 @@ public class Timer : MonoBehaviour
     private const string timerFormat = "{0:00}:{1:00}";
     float curseMeterDamage;
 
+    private bool isStopped;
+
+    public bool IsStopped { get => isStopped; set => isStopped = value; }
+
     void Update()
     {
-
+        if (IsStopped) return;
         if (timeValue != 0)
         {
             timeValue = timeValue > 0 ? timeValue - Time.deltaTime : 0;
