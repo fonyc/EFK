@@ -7,12 +7,6 @@ public class GameManager : MonoBehaviour
     [Header("--- GAME STATE ---")]
     [SerializeField] private GameStates _gameState = GameStates.MainMenu;
 
-    private void Update()
-    {
-        
-    }
-
-
     public void SetGameState(GameStates gameState)
     {
         switch (gameState)
@@ -29,10 +23,6 @@ public class GameManager : MonoBehaviour
             {
                 break;
             }
-            case (GameStates.Ecounter):
-            {
-                break;
-            }
             case (GameStates.GameOver):
             {
                 break;
@@ -41,4 +31,12 @@ public class GameManager : MonoBehaviour
 
         _gameState = gameState;
     }
+}
+
+public enum GameStates
+{
+    MainMenu = 0,
+    Explore = 1,
+    Puzzle = 2,
+    GameOver = 3
 }

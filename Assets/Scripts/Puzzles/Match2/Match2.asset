@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Match2
   m_EditorClassIdentifier: 
   puzzleId: 2
-  puzzleCanvas: {fileID: 0}
+  puzzleCanvas: {fileID: 6165066941946117112, guid: e1a19ad3950343346a17a21b99ff0b6b, type: 3}

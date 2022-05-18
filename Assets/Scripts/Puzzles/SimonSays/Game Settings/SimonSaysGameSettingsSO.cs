@@ -21,9 +21,13 @@ public class SimonSaysGameSettingsSO : ScriptableObject
     [SerializeField]
     private float timeBetweenNotes;
 
+    [Space(5)]
+    [SerializeField] private float curseMeterPerMistake;
+
     public int NumberOfRounds { get => numberOfRounds; set => numberOfRounds = value; }
     public int AllowedMistakes { get => allowedMistakes; set => allowedMistakes = value; }
     public int MaxPhantomInterventions { get => maxPhantomInterventions; set => maxPhantomInterventions = value; }
     public float TimeBetweenNotes { get => timeBetweenNotes; set => timeBetweenNotes = value; }
     public int[] PhantomProbabilities { get => phantomProbabilities; set => phantomProbabilities = value; }
+    public float CurseMeterPerMistake { get => curseMeterPerMistake; set => curseMeterPerMistake = value; }
 }

@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace EFK.Puzzles
 {
@@ -72,9 +74,13 @@ namespace EFK.Puzzles
                     break;
                 case SimonSaysStates.GameFinished:
                     Debug.Log("--- YOU WIN ---");
+                    SolvePuzzle winTrigger = new SolvePuzzle();
+                    EventManager.TriggerEvent(winTrigger);
                     break;
                 case SimonSaysStates.GameFailed:
                     Debug.Log("--- YOU LOSE ---");
+                    SolvePuzzle gameOverTrigger = new SolvePuzzle();
+                    EventManager.TriggerEvent(gameOverTrigger);
                     break;
             }
             SimonSaysState = newState;
@@ -96,16 +102,29 @@ namespace EFK.Puzzles
                     if (PhantomPlaysNote())
                     {
                         //Phantom appears
-                        Debug.Log("PHANTOM KEY " + PlayRandomKey() + " shines creeply!");
-                        yield return new WaitForSeconds(GameSettings.TimeBetweenNotes);
+                        int note = PlayRandomKey();
+                        yield return StartCoroutine(LightKey(note, true));
                     }
                 }
-                
-                Debug.Log("Key number " + alreadyPlayedKeys[x] + " shines!");
-                yield return new WaitForSeconds(GameSettings.TimeBetweenNotes);
+
+                yield return StartCoroutine(LightKey(alreadyPlayedKeys[x], false));
+
             }
 
             SwitchGamePhase(SimonSaysStates.PlayerPhase);
+        }
+
+        private IEnumerator LightKey(int key, bool isPhantom)
+        {
+            Image imageKey = keys[key].GetComponent<Image>();
+            Color new_prevColor = imageKey.color;
+            imageKey.color = isPhantom? Color.red : Color.green;
+
+            yield return new WaitForSeconds(GameSettings.TimeBetweenNotes);
+
+            imageKey.color = new_prevColor;
+
+            yield return new WaitForSeconds(GameSettings.TimeBetweenNotes/2);
         }
 
         public void OnKeyPressed(int keyNumber)
@@ -156,6 +175,10 @@ namespace EFK.Puzzles
                 {
                     CurrentPlayedNote = 0;
                     CurrentMistakes++;
+
+                    //Trigger curse meter event
+                    AddCurseMeter curseMeterTrigger = new AddCurseMeter(gameSettings.CurseMeterPerMistake);
+                    EventManager.TriggerEvent(curseMeterTrigger);
 
                     Debug.Log("Mistake! Current Mistakes: " + CurrentMistakes);
 
@@ -234,4 +257,11 @@ namespace EFK.Puzzles
         }
         #endregion
     }
+}
+public enum SimonSaysStates
+{
+    SimonPhase = 0,
+    PlayerPhase = 1,
+    GameFinished = 2,
+    GameFailed = 3
 }

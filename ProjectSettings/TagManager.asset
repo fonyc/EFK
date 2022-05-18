@@ -8,6 +8,8 @@ TagManager:
   - DiceController
   - Match2Controller
   - SlidePuzzleController
+  - Fader
+  - GameProgressData
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - UI
   - IgnoreCollision
   - Sticky
-  - 
-  - 
+  - noLight
+  - CameraObstacle
   - 
   - 
   - 

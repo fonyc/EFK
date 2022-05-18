@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Diceit
   m_EditorClassIdentifier: 
   puzzleId: 1
-  puzzleCanvas: {fileID: 0}
+  puzzleCanvas: {fileID: 4963489134687806228, guid: 0322ef4556d077d48b3f8e9c650cabe5, type: 3}

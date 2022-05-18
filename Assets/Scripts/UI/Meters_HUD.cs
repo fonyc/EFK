@@ -1,65 +1,66 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Meters_HUD : MonoBehaviour
+namespace EFK.UI
 {
-    #region VARIABLES
-    [SerializeField] RectTransform monsterMeterBar;
-    [SerializeField] RectTransform curseMeterBar;
-
-    #region LISTENERS
-    private UnityAction<object> monsterMeterListener;
-    #endregion
-
-    #endregion
-
-    private void Awake()
+    public class Meters_HUD : MonoBehaviour
     {
-        monsterMeterListener = new UnityAction<object>(ManageEvent);
-    }
+        [SerializeField] RectTransform curseMeterBar;
 
-    private void Start()
-    {
-        Type type = typeof(AddMonsterMeter);
-        EventManager.StartListening(type, monsterMeterListener);
-    }
+        #region LISTENERS
+        private UnityAction<object> curseMeterRepainterListener;
+        #endregion
 
-    private void ManageEvent(object argument)
-    {
-        switch (argument)
+        private void Awake()
         {
-            case AddMonsterMeter varType:
-                AddMonsterMeter amount = null;
-                amount = (AddMonsterMeter)argument;
-                ModifyMonsterMeterBar(amount.value);
-                break;
+            curseMeterRepainterListener = new UnityAction<object>(ManageEvent);
+        }
 
-            case AddCurseMeter vartype:
-                Debug.Log("CM");
-                break;
-        }   
+        private void Start()
+        {
+            Type type = typeof(RepaintCurseMeter);
+            EventManager.StartListening(type, curseMeterRepainterListener);
+
+            UpdateCurseMeterBetweenScenes();
+        }
+
+        private void ManageEvent(object argument)
+        {
+            switch (argument)
+            {
+                case RepaintCurseMeter vartype:
+                    Debug.Log("Actualizando del HUD para mostrar " + vartype.value);
+                    ModifyCurseMeterBar(vartype.value);
+                    break;
+            }
+        }
+
+        private void UpdateCurseMeterBetweenScenes()
+        {
+            float curseMeterValue = GameObject.FindGameObjectWithTag("GameProgressData")
+                .GetComponent<GameProgress_Data>()
+                .CurseMeter;
+
+            ModifyCurseMeterBar(curseMeterValue);
+        }
+
+        private void ModifyCurseMeterBar(float value)
+        {
+            //Given that the bar ranges from 0 to 1, transform the value to adjust to that margins
+            float scaledValue = value / 100;
+            curseMeterBar.localScale = new Vector3(
+                curseMeterBar.localScale.x,
+                scaledValue,
+                curseMeterBar.localScale.z);
+        }
+
+        private void OnDisable()
+        {
+            Type type = typeof(AddCurseMeter);
+            EventManager.StopListening(type, curseMeterRepainterListener);
+        }
     }
 
-    private void ModifyMonsterMeterBar(float value)
-    {
-        //Given that the bar ranges from 0 to 1, transform the value to adjust to that margins
-        float scaledValue = Mathf.Clamp(value, 0f, 1f);
-        monsterMeterBar.localScale = new Vector3(monsterMeterBar.localScale.x , scaledValue, monsterMeterBar.localScale.z);
-    }
-
-    private void ModifyCurseMeterBar(float value)
-    {
-        //Given that the bar ranges from 0 to 1, transform the value to adjust to that margins
-        float scaledValue = Mathf.Clamp(value, 0f, 1f);
-        curseMeterBar.localScale = new Vector3(scaledValue, monsterMeterBar.localScale.y, monsterMeterBar.localScale.z);
-    }
-
-    private void OnDestroy()
-    {
-        Type type = typeof(AddMonsterMeter);
-        EventManager.StopListening(type, monsterMeterListener);
-    }
 }
+

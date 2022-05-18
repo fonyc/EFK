@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a658674946e6a46b9865c3f4ce333d, type: 3}
   m_Name: EasySettings
   m_EditorClassIdentifier: 
-  curseMeterPenaltyPerExtraMovement: 10
-  maxMovements: 12
+  extraTimerValue: 10
+  extraTimers: 3
+  baseTime: 30
+  curseMeterPerExtraTime: 5
   numberOfJokers: 1
   jokerRoundSpawn: 2
