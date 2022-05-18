@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 2565540696126800952}
   - component: {fileID: 2565540696126800964}
   m_Layer: 5
-  m_Name: SimonSays_PuzzleCanvas
+  m_Name: 3_SimonSays_PuzzleCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New MatchTwo Settings", menuName = "PuzzleSettings/MatchTwo")]
-public class MatchTwoSettings : ScriptableObject
+[CreateAssetMenu(fileName = "New SlidePuzzle Settings", menuName = "PuzzleSettings/SlidePuzzle")]
+public class SlidePuzzleSettings : ScriptableObject
 {
     [Header("--- GAME SETTINGS ---")]
     [Space(5)]
@@ -16,14 +16,6 @@ public class MatchTwoSettings : ScriptableObject
     [Space(5)]
     [SerializeField] private float curseMeterPerExtraTime;
 
-    [Space(5)]
-    [SerializeField] private int numberOfJokers;
-
-    [Space(5)]
-    [SerializeField] private int jokerRoundSpawn;
-
-    public int JokerRoundSpawn { get => jokerRoundSpawn; set => jokerRoundSpawn = value; }
-    public int NumberOfJokers { get => numberOfJokers; set => numberOfJokers = value; }
     public int ExtraTimers { get => extraTimers; set => extraTimers = value; }
     public float ExtraTimerValue { get => extraTimerValue; set => extraTimerValue = value; }
     public float BaseTime { get => baseTime; set => baseTime = value; }

@@ -1620,7 +1620,7 @@ GameObject:
   - component: {fileID: 3569747517811624480}
   - component: {fileID: 3569747517811624668}
   m_Layer: 5
-  m_Name: FindTheDifferences_Canvas
+  m_Name: 1_FindTheDifferences_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

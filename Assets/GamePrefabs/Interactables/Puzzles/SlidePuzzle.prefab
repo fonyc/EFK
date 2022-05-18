@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 6740095474513402025}
   - component: {fileID: -1462362402358001371}
   - component: {fileID: 2501260697766506016}
+  - component: {fileID: 9144212799373584944}
   m_Layer: 0
   m_Name: SlidePuzzle
   m_TagString: Interactable
@@ -174,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzle: {fileID: 11400000, guid: 1541b36ea8f053c45ba80eaf8b722a3a, type: 2}
+  isSolved: 0
 --- !u!54 &-1462362402358001371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -203,6 +205,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 1.8, z: 0.97}
   m_Center: {x: 6, y: 2, z: 4.85}
+--- !u!114 &9144212799373584944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590069588745401712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8d9e2b4ebcbfc478a81afdcdfa38b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTime: 2
+  fadeInTime: 2
 --- !u!1001 &3590069588511497989
 PrefabInstance:
   m_ObjectHideFlags: 0

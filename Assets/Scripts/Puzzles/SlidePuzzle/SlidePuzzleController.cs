@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class SlidePuzzleController : MonoBehaviour
 {
+    [Header("--- GAME SETTINGS ---")]
+    [SerializeField] private SlidePuzzleSettings slidePuzzleSettings;
     [SerializeField] private SildePuzzleShuffler shuffler;
     [SerializeField] private Transform parentPuzzle;
     [SerializeField] private SlidePuzzleImagesSO[] imagesList;
     [SerializeField] private Transform voidPiece;
+
+    //Timer settings
+    private Timer timer;
+    private TimerVariables timerVariables;
 
     private Transform[,] matrix;
     private const int matrixSize = 3;
@@ -26,6 +32,17 @@ public class SlidePuzzleController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        timer = GetComponent<Timer>();
+
+        timerVariables = new TimerVariables(
+            slidePuzzleSettings.ExtraTimers,
+            slidePuzzleSettings.ExtraTimerValue,
+            slidePuzzleSettings.BaseTime,
+            slidePuzzleSettings.CurseMeterPerExtraTime);
+    }
+
     void Start()
     {
         selectedImage = SelectRandomImage();
@@ -36,6 +53,8 @@ public class SlidePuzzleController : MonoBehaviour
         shuffler.ShuffleImage();
         InitMatrix();
         RefreshInteractablePieces();
+
+        timer.InitTimerVariables(timerVariables);
     }
 
     public void OnPieceClicked(InteractableSlidePiece piece, Vector3 interactionDirection)
@@ -50,6 +69,8 @@ public class SlidePuzzleController : MonoBehaviour
         if (UpdateMatrixAndCheckVictory())
         {
             Debug.Log("Player wins!");
+            SolvePuzzle solvedPuzzleTrigger = new SolvePuzzle();
+            EventManager.TriggerEvent(solvedPuzzleTrigger);
         }
 
         RefreshInteractablePieces();

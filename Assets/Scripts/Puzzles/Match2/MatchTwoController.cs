@@ -13,11 +13,13 @@ public class MatchTwoController : MonoBehaviour
     [SerializeField] List<InteractableTile> tileCouple;
     [SerializeField] int currentRevealedTiles;
     [SerializeField] int currentSolvedCouples;
+    [SerializeField] private Timer timer;
+    private TimerVariables timerVariables;
 
     [Header(" --- SPIN ---")]
     [Space(5)]
     [SerializeField] bool spinningTiles;
-    [Range(0f,1f)]
+    [Range(0f, 1f)]
     [SerializeField] float animationTime = 0.25f;
 
     [Header(" --- SHUFFLER ---")]
@@ -37,16 +39,30 @@ public class MatchTwoController : MonoBehaviour
     public int CurrentRevealedTiles { get => currentRevealedTiles; set => currentRevealedTiles = value; }
     public List<InteractableTile> TileCouple { get => tileCouple; set => tileCouple = value; }
     public Transform Board { get => board; set => board = value; }
+    public MatchTwoSettings MatchTwoSettings { get => matchTwoSettings; set => matchTwoSettings = value; }
     #endregion
 
     void Awake()
     {
         TileCouple = new List<InteractableTile>();
         shuffler = GetComponent<MatchTwoShuffler>();
+        timer = GetComponent<Timer>();
+
+        timerVariables = new TimerVariables(
+            matchTwoSettings.ExtraTimers,
+            matchTwoSettings.ExtraTimerValue,
+            matchTwoSettings.BaseTime,
+            matchTwoSettings.CurseMeterPerExtraTime);
+    }
+
+    private void Start()
+    {
+        timer.InitTimerVariables(timerVariables);
     }
 
     public void OnTilePressed(InteractableTile tile)
     {
+        if (CheckVictory()) return;
         if (spinningTiles) return;
         if (CurrentRevealedTiles == 2) return;
         if (tile.IsRevealed || tile.IsSolved) return;
@@ -87,10 +103,16 @@ public class MatchTwoController : MonoBehaviour
                 currentSolvedCouples++;
                 MarkCoupleAsCorrect();
 
-                if (currentSolvedCouples == matchTwoSettings.JokerRoundSpawn && !isJokerSpawned)
+                if (currentSolvedCouples == MatchTwoSettings.JokerRoundSpawn && !isJokerSpawned)
                 {
                     isJokerSpawned = true;
                     AddJokerToBoard();
+                }
+
+                if (CheckVictory())
+                {
+                    SolvePuzzle solvedPuzzleTrigger = new SolvePuzzle();
+                    EventManager.TriggerEvent(solvedPuzzleTrigger);
                 }
 
             }
@@ -140,7 +162,7 @@ public class MatchTwoController : MonoBehaviour
         }
         tile.transform.rotation = targetRotation;
     }
-    
+
     private IEnumerator HideIncorrectTiles()
     {
         //First coroutine happens witout waiting. Second one need to be waited to end at the same time so the reset happens visually and internally At the Same time
@@ -182,9 +204,14 @@ public class MatchTwoController : MonoBehaviour
         else return false;
     }
 
+    private bool CheckVictory()
+    {
+        return currentSolvedCouples == board.childCount / 2;
+    }
+
     public void MarkCoupleAsNotRevealed()
     {
-        foreach(InteractableTile tile in TileCouple)
+        foreach (InteractableTile tile in TileCouple)
         {
             tile.IsRevealed = false;
         }
