@@ -9,10 +9,9 @@ public class PlayerPosition_Transparency : MonoBehaviour
 
     [SerializeField] private static int sizeId = Shader.PropertyToID("_CircleSize");
 
-
     void Update()
     {
-        if((transform.position.z > playerPosition.transform.localPosition.z))
+        if((transform.position.z > playerPosition.transform.position.z))
         {
             wallMaterial.SetFloat(sizeId, 0);
         }
