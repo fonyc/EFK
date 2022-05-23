@@ -40,34 +40,14 @@ public class JanKenController : MonoBehaviour
         switch (newState)
         {
             case JanKenStates.StartPhase:
+                //Esta fase es para que el jugador se coloque, simplemente esperamos pulsar botón.
                 break;
 
             case JanKenStates.CountPhase:
-                //Comenzamos la animación del conde y elegimos una para la computadora, destruimos las cartas sobrantes y activamos la elegida del conde.
-                //Luego aparecen las cartas del jugador reveladas y esperamos a que pulse botón para ir a la siguiente fase.
+                //En esta fase juega y elige el conde. Tras elegir su carta, salen las nuestras y esperamos botón de nuevo.
                 cardAnimator.SetBool("Flip", true);
                 RestartAnimationValues();
-                countRandom = Random.Range(0, 4);
-                cardAnimator.SetInteger("CountShuffleRnd", countRandom);
-                //el conde elige carta aquí
-                int randomcard = Random.Range(0, 3);
-
-                switch (randomcard)
-                {
-                    case 0:
-                        countCard = CardType.Rock;
-                        cardAnimator.SetInteger("CountPick", randomcard);
-                        break;
-                    case 1:
-                        countCard = CardType.Paper;
-                        cardAnimator.SetInteger("CountPick", randomcard);
-                        break;
-                    case 2:
-                        countCard = CardType.Scissors;
-                        cardAnimator.SetInteger("CountPick", randomcard);
-                        break;
-                }
-
+                CountPick();
                 break;
             case JanKenStates.PlayerPhase:
                 //Comenzamos la animación del player y esperamos a que elija carta con el double tap. Después, si llevamos 3 partidas acabamos, si no, reiniciamos loop.
@@ -190,5 +170,30 @@ public class JanKenController : MonoBehaviour
         cardAnimator.SetBool("SS", false);
         cardAnimator.SetBool("PlayerChose", false);
         chosenCard = CardType.None;
+    }
+    private void CountPick()
+    {
+        countRandom = Random.Range(0, 4);
+        cardAnimator.SetInteger("CountShuffleRnd", countRandom);
+        int randomcard = Random.Range(0, 3);
+        switch (randomcard)
+        {
+            case 0:
+                countCard = CardType.Rock;
+                cardAnimator.SetInteger("CountPick", randomcard);
+                break;
+            case 1:
+                countCard = CardType.Paper;
+                cardAnimator.SetInteger("CountPick", randomcard);
+                break;
+            case 2:
+                countCard = CardType.Scissors;
+                cardAnimator.SetInteger("CountPick", randomcard);
+                break;
+        }
+    }
+    private void RevealWinner()
+    {
+
     }
 }
