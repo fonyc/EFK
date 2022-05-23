@@ -12,13 +12,13 @@ public class JanKenController : MonoBehaviour
     [SerializeField] public JanKenStates currentState;
     [SerializeField] private ScoreboardMarker scoreboardMarker;
     public Animator cardAnimator;
-    private int countrnnumber, playerrnnumber;
+    private int countRandom, playerRandom;
     public int games;
 
     void Start()
     {
         currentState = JanKenStates.StartPhase;
-        games = -1;
+        games = 0;
         chosenCard = CardType.None;
     }
     public void PickaCard(CardType card)
@@ -32,10 +32,10 @@ public class JanKenController : MonoBehaviour
         {
             Debug.Log("He elegido la carta " + card);
             chosenCard = card;
-            cardAnimator.SetTrigger("PlayerChose");
+            cardAnimator.SetBool("PlayerChose", true);
         }
     }
-    public void SwitchGamePhase(JanKenStates newState)
+    public void GamePhase(JanKenStates newState)
     {
         switch (newState)
         {
@@ -47,8 +47,8 @@ public class JanKenController : MonoBehaviour
                 //Luego aparecen las cartas del jugador reveladas y esperamos a que pulse botón para ir a la siguiente fase.
                 cardAnimator.SetBool("Flip", true);
                 RestartAnimationValues();
-                countrnnumber = Random.Range(0, 4);
-                cardAnimator.SetInteger("CountShuffleRnd", countrnnumber);
+                countRandom = Random.Range(0, 4);
+                cardAnimator.SetInteger("CountShuffleRnd", countRandom);
                 //el conde elige carta aquí
                 int randomcard = Random.Range(0, 3);
 
@@ -72,8 +72,8 @@ public class JanKenController : MonoBehaviour
             case JanKenStates.PlayerPhase:
                 //Comenzamos la animación del player y esperamos a que elija carta con el double tap. Después, si llevamos 3 partidas acabamos, si no, reiniciamos loop.
                 cardAnimator.SetBool("Flip", false);
-                playerrnnumber = Random.Range(0, 4);
-                cardAnimator.SetInteger("PlayerShuffleRnd", playerrnnumber);
+                playerRandom = Random.Range(0, 4);
+                cardAnimator.SetInteger("PlayerShuffleRnd", playerRandom);
                 if (chosenCard == CardType.None) return;
                 switch (countCard)
                 {
@@ -138,16 +138,16 @@ public class JanKenController : MonoBehaviour
     public void AdvanceGame()
     {
         int phase = (int)currentState;
-        phase = phase == 2 ? 0 : phase + 1;
+        phase = phase == 3 ? 0 : phase + 1;
         JanKenStates state = (JanKenStates)phase;
-        SwitchGamePhase(state);
+        GamePhase(state);
     }
     public void Win()
     {
         Debug.Log("Ganaste");
         games = games + 1;
         scoreboardMarker.Result(games, true);
-        if (games < 2)
+        if (games < 3)
         {
             cardAnimator.SetBool("Restart", true);
         }
@@ -166,7 +166,7 @@ public class JanKenController : MonoBehaviour
         //Trigger Curse Meter Event
         AddCurseMeter addCurseMeter = new AddCurseMeter(difficultySettings.CurseMeterPenaltyPerLoss);
         EventManager.TriggerEvent(addCurseMeter);
-        if (games != 2)
+        if (games != 3)
         {
             cardAnimator.SetBool("Restart", true);
         }
@@ -188,6 +188,7 @@ public class JanKenController : MonoBehaviour
         cardAnimator.SetBool("SP", false);
         cardAnimator.SetBool("SR", false);
         cardAnimator.SetBool("SS", false);
+        cardAnimator.SetBool("PlayerChose", false);
         chosenCard = CardType.None;
     }
 }
