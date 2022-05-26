@@ -14,6 +14,7 @@ public class CardListener : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (janKenController.currentState != JanKenStates.PlayerPhase) return;
         janKenController.PickaCard(cardID);
     }
 }

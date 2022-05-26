@@ -18,7 +18,7 @@ public class JanKenController : MonoBehaviour
     void Start()
     {
         currentState = JanKenStates.StartPhase;
-        games = 0;
+        games = 1;
         chosenCard = CardType.None;
     }
     public void PickaCard(CardType card)
@@ -33,6 +33,7 @@ public class JanKenController : MonoBehaviour
             Debug.Log("He elegido la carta " + card);
             chosenCard = card;
             cardAnimator.SetBool("PlayerChose", true);
+            AdvanceGame();
         }
     }
     public void GamePhase(JanKenStates newState)
@@ -42,7 +43,6 @@ public class JanKenController : MonoBehaviour
             case JanKenStates.StartPhase:
                 //Esta fase es para que el jugador se coloque, simplemente esperamos pulsar botón.
                 break;
-
             case JanKenStates.CountPhase:
                 //En esta fase juega y elige el conde. Tras elegir su carta, salen las nuestras y esperamos botón de nuevo.
                 cardAnimator.SetBool("Flip", true);
@@ -50,67 +50,15 @@ public class JanKenController : MonoBehaviour
                 CountPick();
                 break;
             case JanKenStates.PlayerPhase:
-                //Comenzamos la animación del player y esperamos a que elija carta con el double tap. Después, si llevamos 3 partidas acabamos, si no, reiniciamos loop.
+                //Comenzamos la animación del player y esperamos a que elija carta con el double tap.
                 cardAnimator.SetBool("Flip", false);
                 playerRandom = Random.Range(0, 4);
                 cardAnimator.SetInteger("PlayerShuffleRnd", playerRandom);
+                Debug.Log("La carta del conde es " + countCard + " y la nuestra es " + chosenCard);
+                break;
+            case JanKenStates.RevealingPhase:
                 if (chosenCard == CardType.None) return;
-                switch (countCard)
-                {
-                    case CardType.Rock:
-                        switch (chosenCard)
-                        {
-                            case CardType.Paper:
-                                cardAnimator.SetBool("RP", true);
-                                Win();
-                                break;
-                            case CardType.Rock:
-                                cardAnimator.SetBool("RR", true);
-                                Lose();
-                                break;
-                            case CardType.Scissors:
-                                cardAnimator.SetBool("RS", true);
-                                Lose();
-                                break;
-                        }
-                        break;
-
-                    case CardType.Paper:
-                        switch (chosenCard)
-                        {
-                            case CardType.Paper:
-                                cardAnimator.SetBool("PP", true);
-                                Lose();
-                                break;
-                            case CardType.Rock:
-                                cardAnimator.SetBool("PR", true);
-                                Lose();
-                                break;
-                            case CardType.Scissors:
-                                cardAnimator.SetBool("PS", true);
-                                Win();
-                                break;
-                        }
-                        break;
-
-                    case CardType.Scissors:
-                        switch (chosenCard)
-                        {
-                            case CardType.Paper:
-                                cardAnimator.SetBool("SP", true);
-                                Lose();
-                                break;
-                            case CardType.Rock:
-                                cardAnimator.SetBool("SR", true);
-                                Win();
-                                break;
-                            case CardType.Scissors:
-                                cardAnimator.SetBool("SS", true);
-                                Lose();
-                                break;
-                        }
-                        break;
-                }
+                RevealWinner();
                 break;
         }
         currentState = newState;
@@ -127,7 +75,7 @@ public class JanKenController : MonoBehaviour
         Debug.Log("Ganaste");
         games = games + 1;
         scoreboardMarker.Result(games, true);
-        if (games < 3)
+        if (games < 4)
         {
             cardAnimator.SetBool("Restart", true);
         }
@@ -146,7 +94,7 @@ public class JanKenController : MonoBehaviour
         //Trigger Curse Meter Event
         AddCurseMeter addCurseMeter = new AddCurseMeter(difficultySettings.CurseMeterPenaltyPerLoss);
         EventManager.TriggerEvent(addCurseMeter);
-        if (games != 3)
+        if (games != 4)
         {
             cardAnimator.SetBool("Restart", true);
         }
@@ -194,6 +142,61 @@ public class JanKenController : MonoBehaviour
     }
     private void RevealWinner()
     {
+        switch (countCard)
+        {
+            case CardType.Rock:
+                switch (chosenCard)
+                {
+                    case CardType.Paper:
+                        cardAnimator.SetBool("RP", true);
+                        Win();
+                        break;
+                    case CardType.Rock:
+                        cardAnimator.SetBool("RR", true);
+                        Lose();
+                        break;
+                    case CardType.Scissors:
+                        cardAnimator.SetBool("RS", true);
+                        Lose();
+                        break;
+                }
+                break;
 
+            case CardType.Paper:
+                switch (chosenCard)
+                {
+                    case CardType.Paper:
+                        cardAnimator.SetBool("PP", true);
+                        Lose();
+                        break;
+                    case CardType.Rock:
+                        cardAnimator.SetBool("PR", true);
+                        Lose();
+                        break;
+                    case CardType.Scissors:
+                        cardAnimator.SetBool("PS", true);
+                        Win();
+                        break;
+                }
+                break;
+
+            case CardType.Scissors:
+                switch (chosenCard)
+                {
+                    case CardType.Paper:
+                        cardAnimator.SetBool("SP", true);
+                        Lose();
+                        break;
+                    case CardType.Rock:
+                        cardAnimator.SetBool("SR", true);
+                        Win();
+                        break;
+                    case CardType.Scissors:
+                        cardAnimator.SetBool("SS", true);
+                        Lose();
+                        break;
+                }
+                break;
+        }
     }
 }
