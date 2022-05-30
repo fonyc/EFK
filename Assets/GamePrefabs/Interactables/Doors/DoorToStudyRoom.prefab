@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  invisibleCollider: {fileID: 0}
   closed_VFX: {fileID: 0}
   open_VFX: {fileID: 0}
+  isOpened: 0
 --- !u!114 &2958577069169750879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,9 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220eccad912d7d84d98c1b12aac6c847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 2
-  spawnPoint: {fileID: 0}
-  portalIdentifier: 0
   fadeOutTime: 2
   fadeInTime: 2
 --- !u!65 &2229264701931691756
@@ -80,8 +77,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.16, y: 2, z: 0.5}
-  m_Center: {x: -1.03, y: 1, z: 0.24}
+  m_Size: {x: 2.16, y: 2, z: 0.2}
+  m_Center: {x: -1, y: 1, z: 0}
 --- !u!1 &4490872885332037192
 GameObject:
   m_ObjectHideFlags: 0
