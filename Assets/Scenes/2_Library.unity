@@ -7732,7 +7732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c5dfcd3eae9774db7bf9b5f34f0e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallMaterial: {fileID: 2100000, guid: dd90b6e5f3db7aa4ea405b5be16fb628, type: 2}
   playerPosition: {fileID: 454948696782377653}
 --- !u!1001 &779533877
 PrefabInstance:
@@ -20729,7 +20728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c5dfcd3eae9774db7bf9b5f34f0e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallMaterial: {fileID: 2100000, guid: dd90b6e5f3db7aa4ea405b5be16fb628, type: 2}
   playerPosition: {fileID: 454948696782377653}
 --- !u!1001 &2087381171
 PrefabInstance:

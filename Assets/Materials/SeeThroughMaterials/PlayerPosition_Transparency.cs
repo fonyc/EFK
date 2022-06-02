@@ -1,23 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPosition_Transparency : MonoBehaviour
 {
-    [SerializeField] Material wallMaterial;
     [SerializeField] Transform playerPosition;
 
     [SerializeField] private static int sizeId = Shader.PropertyToID("_CircleSize");
 
+    
+
     void Update()
     {
+        if(playerPosition == null)
+        {
+            Debug.LogWarning("No player position in shader transparency");
+            return;
+        }
+
         if((transform.position.z > playerPosition.transform.position.z))
         {
-            wallMaterial.SetFloat(sizeId, 0);
+            ChangeCircleSize(0f);
+            
         }
         else
         {
-            wallMaterial.SetFloat(sizeId, 0.5f);
+            ChangeCircleSize(0.5f);
+            Debug.Log(gameObject.name);
         }
+    }
+
+    private void ChangeCircleSize(float qty)
+    {
+        GetComponent<Renderer>().material.SetFloat("_CircleSize", qty);
     }
 }
