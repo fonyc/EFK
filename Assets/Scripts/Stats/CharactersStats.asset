@@ -13,39 +13,63 @@ MonoBehaviour:
   m_Name: CharactersStats
   m_EditorClassIdentifier: 
   characters:
-  - character: 0
-    characterName: Alan Smith
+  - characterType: 1
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
-  - character: 1
-    characterName: Ashley Gammons
+    - stat: 0
+      value: 0
+    - stat: 1
+      value: 100
+    - stat: 2
+      value: 0
+    - stat: 3
+      value: 0
+    - stat: 4
+      value: 0
+    - stat: 5
+      value: 0
+    levelList: 
+  - characterType: 2
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
-  - character: 2
-    characterName: Milos Krasnova
+    - stat: 0
+      value: 0
+    - stat: 1
+      value: 100
+    - stat: 2
+      value: 0
+    - stat: 3
+      value: 0
+    - stat: 4
+      value: 0
+    - stat: 5
+      value: 0
+    levelList: 
+  - characterType: 3
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
-  - character: 3
-    characterName: Mary-Jane Graham
+    - stat: 0
+      value: 0
+    - stat: 1
+      value: 100
+    - stat: 2
+      value: 0
+    - stat: 3
+      value: 0
+    - stat: 4
+      value: 0
+    - stat: 5
+      value: 0
+    levelList: 0100000001000000010000000100000001000000010000000100000001000000
+  - characterType: 4
     stats:
-      speed: 0
-      meterStats:
-        curseMeterRate: 0
-        monsterMeterRate: 0
-        curseMeterCaught: 0
-      levelList: []
+    - stat: 0
+      value: 6
+    - stat: 1
+      value: 6
+    - stat: 2
+      value: 6
+    - stat: 3
+      value: 6
+    - stat: 4
+      value: 100
+    - stat: 5
+      value: 5
+    levelList: 0100000002000000030000000400000005000000060000000700000008000000
