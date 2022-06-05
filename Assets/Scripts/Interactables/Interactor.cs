@@ -1,6 +1,7 @@
 using UnityEngine;
 using EFK.Interactables;
 using EFK.Stats;
+using UnityEngine.Events;
 
 public class Interactor : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class Interactor : MonoBehaviour
         {
             target = null;
             hasTarget = false;
+
+            ShowInteraction showInteraction = new ShowInteraction(null);
+            EventManager.TriggerEvent(showInteraction);
         }
     }
 

@@ -55,6 +55,9 @@ public class SlidePuzzleController : MonoBehaviour
         RefreshInteractablePieces();
 
         timer.InitTimerVariables(timerVariables);
+
+        ShowInteraction showInteraction = new ShowInteraction(null);
+        EventManager.TriggerEvent(showInteraction);
     }
 
     public void OnPieceClicked(InteractableSlidePiece piece, Vector3 interactionDirection)

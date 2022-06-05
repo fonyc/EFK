@@ -52,6 +52,9 @@ namespace EFK.Puzzles
         private void Start()
         {
             Input.multiTouchEnabled = false;
+
+            ShowInteraction showInteraction = new ShowInteraction(null);
+            EventManager.TriggerEvent(showInteraction);
         }
 
         public void SwapDices()

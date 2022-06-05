@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace EFK.UI
 {
@@ -19,8 +20,8 @@ namespace EFK.UI
 
         private void Start()
         {
-            Type type = typeof(RepaintCurseMeter);
-            EventManager.StartListening(type, curseMeterRepainterListener);
+            Type addCurseMeterType = typeof(AddCurseMeter);
+            EventManager.StartListening(addCurseMeterType, curseMeterRepainterListener);
 
             UpdateCurseMeterBetweenScenes();
         }
@@ -57,8 +58,8 @@ namespace EFK.UI
 
         private void OnDisable()
         {
-            Type type = typeof(AddCurseMeter);
-            EventManager.StopListening(type, curseMeterRepainterListener);
+            Type addCurseMeterType = typeof(AddCurseMeter);
+            EventManager.StopListening(addCurseMeterType, curseMeterRepainterListener);
         }
     }
 

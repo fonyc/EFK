@@ -57,6 +57,9 @@ public class MatchTwoController : MonoBehaviour
 
     private void Start()
     {
+        ShowInteraction showInteraction = new ShowInteraction(null);
+        EventManager.TriggerEvent(showInteraction);
+
         timer.InitTimerVariables(timerVariables);
     }
 

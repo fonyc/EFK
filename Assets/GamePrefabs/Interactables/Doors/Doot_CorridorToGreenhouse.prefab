@@ -653,9 +653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 6
-  invisibleCollider: {fileID: 0}
-  closed_VFX: {fileID: 0}
-  open_VFX: {fileID: 0}
+  doorIcon: {fileID: 21300000, guid: a0960752dd050407ebbbcb9502f3e200, type: 3}
+  isOpened: 0
 --- !u!65 &3276375094144256570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -681,8 +680,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220eccad912d7d84d98c1b12aac6c847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 0
-  spawnPoint: {fileID: 0}
-  portalIdentifier: 0
   fadeOutTime: 2
   fadeInTime: 2

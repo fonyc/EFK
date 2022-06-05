@@ -8,8 +8,14 @@ namespace SFK.Interactables
     public class Puzzle : MonoBehaviour, IInteractable
     {
         [Header("--- PUZZLE SETTINGS ---")]
+        [Space(5)]
         [SerializeField] private PuzzleSO puzzle;
         [SerializeField] private bool isSolved;
+
+
+        [Header("--- PUZZLE VISUAL INTERACTIONS ---")]
+        [Space(5)]
+        [SerializeField] Sprite puzzleIcon;
 
         public bool IsSolved { get => isSolved; set => isSolved = value; }
         public PuzzleSO PuzzleSO { get => puzzle; set => puzzle = value; }
@@ -33,6 +39,9 @@ namespace SFK.Interactables
         public void ShowInteraction(BaseStats baseStats)
         {
             if (IsSolved) return;
+
+            ShowInteraction showInteraction = new ShowInteraction(puzzleIcon);
+            EventManager.TriggerEvent(showInteraction);
             Debug.Log("The puzzle shines and has a canvas to interact");
         }
 

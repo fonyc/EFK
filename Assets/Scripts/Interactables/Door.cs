@@ -11,11 +11,10 @@ namespace SFK.Interactables
     {
         [SerializeField] private int level;
 
-        [Header("--- VFX ---")]
+        [Header("--- INTERACTION VFX ---")]
         [Space(5)]
-        [SerializeField] private GameObject closed_VFX;
-        [SerializeField] private GameObject open_VFX;
-
+        [SerializeField] private Sprite doorIcon;
+        
         [SerializeField] private bool isOpened;
 
         #region Listeners
@@ -62,6 +61,8 @@ namespace SFK.Interactables
         public void ShowInteraction(BaseStats baseStats)
         {
             //if (!isOpened) return;
+            ShowInteraction showInteraction = new ShowInteraction(doorIcon);
+            EventManager.TriggerEvent(showInteraction);
             Debug.Log("Door is shining and showing a canvas");
         }
 

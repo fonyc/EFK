@@ -15,6 +15,7 @@ public class PuzzleTransition : MonoBehaviour
     [Range(0.0f, 4.0f)]
     [SerializeField] private float fadeInTime = 2f;
     private GameObject gameCanvas;
+
     #region Listeners
 
     private UnityAction<object> OnPuzzleEnds;
@@ -31,7 +32,7 @@ public class PuzzleTransition : MonoBehaviour
         Type type = typeof(SolvePuzzle);
         EventManager.StartListening(type, OnPuzzleEnds);
     }
-
+    
     private void ManageEvent(object argument)
     {
         switch (argument)

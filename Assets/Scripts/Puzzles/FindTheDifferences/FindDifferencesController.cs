@@ -65,6 +65,9 @@ public class FindDifferencesController : MonoBehaviour
 
     private void TriggerPuzzleEnds()
     {
+        ShowInteraction showInteraction = new ShowInteraction(null);
+        EventManager.TriggerEvent(showInteraction);
+
         SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
         EventManager.TriggerEvent(solvePuzzleTrigger);
     }
