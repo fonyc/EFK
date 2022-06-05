@@ -20,8 +20,8 @@ namespace EFK.UI
 
         private void Start()
         {
-            Type addCurseMeterType = typeof(AddCurseMeter);
-            EventManager.StartListening(addCurseMeterType, curseMeterRepainterListener);
+            Type type = typeof(RepaintCurseMeter);
+            EventManager.StartListening(type, curseMeterRepainterListener);
 
             UpdateCurseMeterBetweenScenes();
         }
@@ -58,8 +58,8 @@ namespace EFK.UI
 
         private void OnDisable()
         {
-            Type addCurseMeterType = typeof(AddCurseMeter);
-            EventManager.StopListening(addCurseMeterType, curseMeterRepainterListener);
+            Type type = typeof(AddCurseMeter);
+            EventManager.StopListening(type, curseMeterRepainterListener);
         }
     }
 
