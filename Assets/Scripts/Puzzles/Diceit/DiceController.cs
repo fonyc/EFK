@@ -1,8 +1,4 @@
-using EFK.Control;
-using RPG.SceneManagement;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace EFK.Puzzles
 {
@@ -29,8 +25,10 @@ namespace EFK.Puzzles
         private int currentMistakes;
         private int solutions;
 
-        [SerializeField]
-        Transform upperParent;
+        [Header("--- GAME VFX ---")]
+        [Space(5)]
+        [SerializeField] Transform upperParent;
+        [SerializeField] Transform bottomParent;
 
         Shuffler shuffler;
 
@@ -74,6 +72,8 @@ namespace EFK.Puzzles
                     Solutions--;
                     if (CheckVictory())
                     {
+                        //Auto-Solve the last dice
+                        ActivateGreenTick(GetUnsolvedBottomDice(),GetUnsolvedUpperDice());
                         //Trigger puzzle end
                         SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
                         EventManager.TriggerEvent(solvePuzzleTrigger);
@@ -144,9 +144,38 @@ namespace EFK.Puzzles
                 dice.GetComponent<DiceData>().IsSolved = true;
                 dice.GetComponent<DiceData>().IsLocked = true;
                 oposingDice.IsSolved = true;
+                ActivateGreenTick(dice, oposingDice.gameObject);
                 return true;
             }
             return false;
+        }
+
+        private void ActivateGreenTick(GameObject upperDice, GameObject bottomDice)
+        {
+            upperDice.transform.GetChild(1).gameObject.SetActive(true);
+            bottomDice.transform.GetChild(1).gameObject.SetActive(true);
+        }
+
+        private GameObject GetUnsolvedUpperDice()
+        {
+            int index = 0;
+            while (index < upperParent.childCount)
+            {
+                if (!upperParent.GetChild(index).GetChild(0).GetComponent<DiceData>().IsSolved) return upperParent.GetChild(index).GetChild(0).gameObject;
+                index++;
+            }
+            return null;
+        }
+
+        private GameObject GetUnsolvedBottomDice()
+        {
+            int index = 0;
+            while (index < bottomParent.childCount)
+            {
+                if (!bottomParent.GetChild(index).GetChild(0).GetComponent<DiceData>().IsSolved) return bottomParent.GetChild(index).GetChild(0).gameObject;
+                index++;
+            }
+            return null;
         }
     }
 }
