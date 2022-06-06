@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 5
-  doorIcon: {fileID: 21300000, guid: a0960752dd050407ebbbcb9502f3e200, type: 3}
+  doorIcon: {fileID: 21300000, guid: 640de840c8bd9d445abee1063f2511d4, type: 3}
   isOpened: 0
 --- !u!114 &8042372513544746684
 MonoBehaviour:

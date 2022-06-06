@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzle: {fileID: 11400000, guid: d1abafd7a8c21224797ea27341e0f266, type: 2}
   isSolved: 0
-  puzzleIcon: {fileID: 21300000, guid: ac8739f467e0245a19612e0967d2bee1, type: 3}
+  puzzleIcon: {fileID: 21300000, guid: 8e7e028e6ac348c4aa565ca3fe9b21c5, type: 3}
 --- !u!114 &7576424300950458629
 MonoBehaviour:
   m_ObjectHideFlags: 0
