@@ -86,6 +86,11 @@ namespace EFK.Puzzles
                 {
                     Debug.Log("Mistakes were made");
                     currentMistakes++;
+
+                    //Add error to UI
+                    PaintError addErrorTrigger = new PaintError();
+                    EventManager.TriggerEvent(addErrorTrigger);
+
                     //Trigger curse meter
                     AddCurseMeter addCurseMeterTrigger = new AddCurseMeter(gameSettings.CurseMeterPerMistake);
                     EventManager.TriggerEvent(addCurseMeterTrigger);

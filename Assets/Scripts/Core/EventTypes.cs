@@ -47,3 +47,8 @@ public class ShowInteraction : Arguments
     }
 }
 
+public class PaintError : Arguments
+{
+    public PaintError() {}
+}
+
