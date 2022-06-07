@@ -9,6 +9,10 @@ namespace EFK.Interactables
     {
         [SerializeField] private int collectibleNumber;
 
+        [Header("--- PUZZLE VISUAL INTERACTIONS ---")]
+        [Space(5)]
+        [SerializeField] Sprite cameraIcon;
+
         void Start()
         {
             AddInteractableTag();
@@ -23,15 +27,14 @@ namespace EFK.Interactables
 
         public void ShowInteraction(BaseStats baseStats)
         {
-            if (baseStats.CHARACTERTYPE != CharacterType.MaryJaneGraham) return;
+            ShowInteraction showInteraction = new ShowInteraction(cameraIcon);
+            EventManager.TriggerEvent(showInteraction);
 
             Debug.Log("The collection piece is shining");
         }
 
         public void Interact(BaseStats baseStats)
         {
-            if (baseStats.CHARACTERTYPE != CharacterType.MaryJaneGraham) return;
-
             Debug.Log("Piece of collection founded");
         }
 

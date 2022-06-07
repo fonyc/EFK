@@ -67,6 +67,8 @@ namespace EFK.Puzzles
             {
                 case SimonSaysStates.SimonPhase:
                     Debug.Log("--- SIMON ---");
+                    ShowInteraction showInteraction = new ShowInteraction(null);
+                    EventManager.TriggerEvent(showInteraction);
                     StartCoroutine(PlaySimonNotes());
                     break;
                 case SimonSaysStates.PlayerPhase:

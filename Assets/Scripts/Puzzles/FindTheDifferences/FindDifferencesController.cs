@@ -17,6 +17,14 @@ public class FindDifferencesController : MonoBehaviour
     private int currentDifferencesDiscovered;
     private int currentMistakes;
 
+    [Header("--- PORTRAIT CHANGE EFFECT --- ")]
+    [Space(5)]
+    [SerializeField] float portraitChangeDuration;
+    [SerializeField] [Range(0,2f)] float distortionAmount;
+    [SerializeField] private PortraitDistortion distortionEffect;
+    private bool portraitChanging;
+    private Coroutine changePortrait_coro;
+
     //EVENT TRIGGERS
     AddCurseMeter addCurseMeterEvent;
 
@@ -27,7 +35,7 @@ public class FindDifferencesController : MonoBehaviour
 
     public void OnZonePressed(int quadrantId)
     {
-        if (CheckGameIsOver() || CheckGameVictory()) return;
+        if (CheckGameIsOver() || CheckGameVictory() || portraitChanging) return;
 
         Debug.Log("Zone " + quadrantId + " was pressed");
         if (portraitList[currentPortrait].CheckQuadrant(quadrantId) != -1)
@@ -57,6 +65,9 @@ public class FindDifferencesController : MonoBehaviour
 
     private void TriggerPuzzleEnds()
     {
+        ShowInteraction showInteraction = new ShowInteraction(null);
+        EventManager.TriggerEvent(showInteraction);
+
         SolvePuzzle solvePuzzleTrigger = new SolvePuzzle();
         EventManager.TriggerEvent(solvePuzzleTrigger);
     }
@@ -73,8 +84,38 @@ public class FindDifferencesController : MonoBehaviour
 
     private void ChangePortrait()
     {
-        Debug.Log("Changing portrait...");
+        if(changePortrait_coro == null)
+        {
+            StartCoroutine(ChangePortrait_Coro());
+        }
+    }
+
+    private IEnumerator ChangePortrait_Coro()
+    {
+        portraitChanging = true;
+        float time = 0;
+
+        //Distort portrait
+        while(time < portraitChangeDuration/2)
+        {
+            time += Time.deltaTime;
+            distortionEffect.ChangeDistortion(distortionAmount * time);
+            yield return null;
+        }
+
+        //change portrait sprite
         currentPortrait = currentPortrait >= 2 ? 0 : currentPortrait + 1;
         differencesCanvas.GetComponent<Image>().sprite = portraitList[currentPortrait].Sprite;
+
+        //undo distortion
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            distortionEffect.ChangeDistortion(distortionAmount * time);
+            yield return null;
+        }
+        distortionEffect.ChangeDistortion(0);
+
+        portraitChanging = false;
     }
 }

@@ -37,3 +37,18 @@ public class SolvePuzzle : Arguments
     public SolvePuzzle() { }
 }
 
+public class ShowInteraction : Arguments
+{
+    public Sprite sprite;
+
+    public ShowInteraction(Sprite sprite) 
+    {
+        this.sprite = sprite;
+    }
+}
+
+public class PaintError : Arguments
+{
+    public PaintError() {}
+}
+

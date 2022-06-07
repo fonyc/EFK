@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1738365576061020581}
   - component: {fileID: 1738365576061020580}
   m_Layer: 5
-  m_Name: Back_Board
+  m_Name: Board_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 730, y: 730}
+  m_SizeDelta: {x: 750, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1738365576061020581
 CanvasRenderer:
@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fca27aa6975a9de4b8cf8d58157a77e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
   spinningTiles: 0
   animationTime: 0.25
   board: {fileID: 3383752896857165773}
-  jokerSprite: {fileID: 21300000, guid: 281474ba7e8c93443b58df53adea32c9, type: 3}
+  jokerSprite: {fileID: 21300000, guid: bd56b3a49991a0a47af91d84ec033c14, type: 3}
 --- !u!114 &6165066941946117115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 6165066942894669995}
   - component: {fileID: 6165066942894669994}
   m_Layer: 5
-  m_Name: Panel_BG
+  m_Name: Scenario_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,15 +289,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.764151, g: 0.7573514, b: 0.43614277, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4870e4ff50b16744fa7366119558909d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -512,6 +512,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3383752896857165773}
     m_Modifications:
+    - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d2662dbbce567d43a57b2668a7bc766, type: 3}
     - target: {fileID: 8546562881638308702, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Name
       value: Tile_1B
@@ -616,16 +632,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Color.b
-      value: 0.5660378
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Color.g
-      value: 0.5660378
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Color.r
-      value: 0.5660378
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: d0ccfb6792ef6fb40898114a20b86be9, type: 3}
     - target: {fileID: 8546562881638308702, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Name
       value: Tile_6A
@@ -734,12 +754,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Color.r
-      value: 0.78859377
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: d25ab2f9f36cb444cbd3692d8bba877e, type: 3}
     - target: {fileID: 8546562881638308702, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Name
       value: Tile_7B
@@ -844,16 +868,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Color.g
-      value: 0.5560052
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: fef154b9851d1df4ea9fac8dfc946adb, type: 3}
     - target: {fileID: 8546562881638308702, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Name
       value: Tile_5A
@@ -956,6 +984,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3383752896857165773}
     m_Modifications:
+    - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d2662dbbce567d43a57b2668a7bc766, type: 3}
     - target: {fileID: 8546562881638308702, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Name
       value: Tile_1A
@@ -1060,7 +1104,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Color.g
@@ -1068,8 +1112,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Color.r
-      value: 0.10506439
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 92485400fb373664587570dbabce66ad, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 128df22d1be8d1145b76773be6451ac2, type: 3}
     - target: {fileID: 8546562881638308702, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Name
       value: Tile_3A
@@ -1172,6 +1220,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3383752896857165773}
     m_Modifications:
+    - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 6264093c933a9234ca3bee69f7962b44, type: 3}
     - target: {fileID: 8546562881638308702, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Name
       value: Tile_0B
@@ -1280,12 +1344,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Color.g
-      value: 0.073209524
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: a33830f728d5bd842ac6f0019a5fa5f9, type: 3}
     - target: {fileID: 8546562881638308702, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Name
       value: Tile_4B
@@ -1394,12 +1462,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Color.g
-      value: 0.07727194
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: a33830f728d5bd842ac6f0019a5fa5f9, type: 3}
     - target: {fileID: 8546562881638308702, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Name
       value: Tile_4A
@@ -1504,16 +1576,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Color.g
-      value: 0.570091
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: fef154b9851d1df4ea9fac8dfc946adb, type: 3}
     - target: {fileID: 8546562881638308702, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Name
       value: Tile_5B
@@ -1622,12 +1698,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Color.r
-      value: 0.7386131
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: d25ab2f9f36cb444cbd3692d8bba877e, type: 3}
     - target: {fileID: 8546562881638308702, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Name
       value: Tile_7A
@@ -1732,16 +1812,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 9bf2e5a8e2f333b4f8c87da80b5d1d16, type: 3}
     - target: {fileID: 8546562881638308702, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Name
       value: Tile_2A
@@ -1846,7 +1930,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Color.g
@@ -1854,8 +1938,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Color.r
-      value: 0.25207198
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 92485400fb373664587570dbabce66ad, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 128df22d1be8d1145b76773be6451ac2, type: 3}
     - target: {fileID: 8546562881638308702, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Name
       value: Tile_3B
@@ -1960,16 +2048,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 9bf2e5a8e2f333b4f8c87da80b5d1d16, type: 3}
     - target: {fileID: 8546562881638308702, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Name
       value: Tile_2B
@@ -2074,16 +2166,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Color.b
-      value: 0.4811321
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Color.g
-      value: 0.4811321
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Color.r
-      value: 0.4811321
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: d0ccfb6792ef6fb40898114a20b86be9, type: 3}
     - target: {fileID: 8546562881638308702, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Name
       value: Tile_6B
@@ -2186,6 +2282,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3383752896857165773}
     m_Modifications:
+    - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295744093988547108, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
+      propertyPath: frontTile
+      value: 
+      objectReference: {fileID: 21300000, guid: 6264093c933a9234ca3bee69f7962b44, type: 3}
     - target: {fileID: 8546562881638308702, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Name
       value: Tile_0A

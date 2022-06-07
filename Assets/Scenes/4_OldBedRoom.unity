@@ -11316,6 +11316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzle: {fileID: 11400000, guid: 65b552b3003ab36428e0cac939b238d3, type: 2}
   isSolved: 0
+  puzzleIcon: {fileID: 21300000, guid: 8e7e028e6ac348c4aa565ca3fe9b21c5, type: 3}
 --- !u!1001 &1380532979
 PrefabInstance:
   m_ObjectHideFlags: 0
