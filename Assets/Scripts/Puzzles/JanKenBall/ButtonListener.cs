@@ -7,13 +7,10 @@ public class ButtonListener : MonoBehaviour, IPointerClickHandler
 {
 
     [SerializeField] private JanKenController janKenController;
-    [SerializeField] private JanKenStates currentState;
-
 
     private void Awake()
     {
         janKenController = GameObject.FindGameObjectWithTag("JanKenBallController").GetComponent<JanKenController>();
-        currentState = JanKenStates.StartPhase;
     }
 
     public void OnPointerClick(PointerEventData eventData)
