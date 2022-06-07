@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Screenshot
 {
-    [MenuItem("Screenshot/Take")]
+    [MenuItem("Tools/Screenshot/Take")]
     public static void TakeScreenShot()
     {
         ScreenCapture.CaptureScreenshot("Screenshot.png", 1);
