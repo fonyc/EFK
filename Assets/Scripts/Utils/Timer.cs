@@ -1,6 +1,11 @@
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Timer mus be attached and initialized  from the Puzzle.
+/// </summary>
+/// 
+
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
@@ -26,6 +31,10 @@ public class Timer : MonoBehaviour
         {
             timeValue = extraTimeValue;
             extraTimes--;
+
+            //Paint errors 
+            PaintError errorTrigger = new PaintError();
+            EventManager.TriggerEvent(errorTrigger);
 
             //Trigger Add Curse Meter
             AddCurseMeter addCurseMeterTrigger = new AddCurseMeter(curseMeterDamage);
