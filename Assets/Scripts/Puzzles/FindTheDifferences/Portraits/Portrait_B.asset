@@ -13,13 +13,5 @@ MonoBehaviour:
   m_Name: Portrait_B
   m_EditorClassIdentifier: 
   portraitType: 1
-  differenceList:
-  - quadrantLocation: 1
-    isSolved: 0
-  - quadrantLocation: 3
-    isSolved: 0
-  - quadrantLocation: 8
-    isSolved: 0
-  - quadrantLocation: 10
-    isSolved: 0
+  differenceList: 0100000003000000080000000a000000
   sprite: {fileID: 21300000, guid: d5dbbc7ef3cd42541992cd5df9f48d59, type: 3}

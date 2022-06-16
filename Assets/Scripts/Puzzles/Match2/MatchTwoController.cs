@@ -11,14 +11,12 @@ public class MatchTwoController : MonoBehaviour
     [Space(5)]
     [SerializeField] MatchTwoSettings matchTwoSettings;
     [SerializeField] List<InteractableTile> tileCouple;
-    [SerializeField] int currentRevealedTiles;
     [SerializeField] int currentSolvedCouples;
     [SerializeField] private Timer timer;
     private TimerVariables timerVariables;
 
     [Header(" --- SPIN ---")]
     [Space(5)]
-    [SerializeField] bool spinningTiles;
     [Range(0f, 1f)]
     [SerializeField] float animationTime = 0.25f;
 
@@ -36,7 +34,6 @@ public class MatchTwoController : MonoBehaviour
     #endregion
 
     #region PROPERTIES
-    public int CurrentRevealedTiles { get => currentRevealedTiles; set => currentRevealedTiles = value; }
     public List<InteractableTile> TileCouple { get => tileCouple; set => tileCouple = value; }
     public Transform Board { get => board; set => board = value; }
     public MatchTwoSettings MatchTwoSettings { get => matchTwoSettings; set => matchTwoSettings = value; }
@@ -48,11 +45,7 @@ public class MatchTwoController : MonoBehaviour
         shuffler = GetComponent<MatchTwoShuffler>();
         timer = GetComponent<Timer>();
 
-        timerVariables = new TimerVariables(
-            matchTwoSettings.ExtraTimers,
-            matchTwoSettings.ExtraTimerValue,
-            matchTwoSettings.BaseTime,
-            matchTwoSettings.CurseMeterPerExtraTime);
+        CreateTimerSettings();
     }
 
     private void Start()
@@ -66,78 +59,20 @@ public class MatchTwoController : MonoBehaviour
     public void OnTilePressed(InteractableTile tile)
     {
         if (CheckVictory()) return;
-        if (spinningTiles) return;
-        if (CurrentRevealedTiles == 2) return;
+        if (tile.IsBusy) return;
+        if (TileCouple.Count == 2) return;
         if (tile.IsRevealed || tile.IsSolved) return;
 
         //Reveal tile and add it to the current revealed tiles
         tile.IsRevealed = true;
         TileCouple.Add(tile);
 
-        StartCoroutine(RevealAndCheckTile(tile));
+        StartCoroutine(FlipTile(tile.transform, tile.FrontTile, tileCouple.Count));
     }
 
-    private IEnumerator RevealAndCheckTile(InteractableTile tile)
+    private IEnumerator FlipTile(Transform tile, Sprite targetSprite, int tileNumber)
     {
-        spinningTiles = true;
-        yield return StartCoroutine(FlipTile(tile.transform, tile.FrontTile));
-        CurrentRevealedTiles++;
-
-        //First tile revealed
-        if (currentRevealedTiles == 1)
-        {
-            if (tile.IsJoker)
-            {
-                RemoveJokerTile();
-                yield return HideFirstTile();
-
-                tile.IsRevealed = false;
-
-                ResetCouple();
-                shuffler.ShuffleBoard();
-            }
-        }
-        //Second tile revealed
-        if (CurrentRevealedTiles == 2)
-        {
-            //Tile couple is correct
-            if (CheckTiles())
-            {
-                currentSolvedCouples++;
-                MarkCoupleAsCorrect();
-
-                if (currentSolvedCouples == MatchTwoSettings.JokerRoundSpawn && !isJokerSpawned)
-                {
-                    isJokerSpawned = true;
-                    AddJokerToBoard();
-                }
-
-                if (CheckVictory())
-                {
-                    SolvePuzzle solvedPuzzleTrigger = new SolvePuzzle();
-                    EventManager.TriggerEvent(solvedPuzzleTrigger);
-                    timer.IsStopped = true;
-                }
-
-            }
-            //Tile couple is not correct
-            else
-            {
-                yield return HideIncorrectTiles();
-                MarkCoupleAsNotRevealed();
-                if (tile.IsJoker)
-                {
-                    RemoveJokerTile();
-                    shuffler.ShuffleBoard();
-                }
-            }
-            ResetCouple();
-        }
-        spinningTiles = false;
-    }
-
-    private IEnumerator FlipTile(Transform tile, Sprite targetSprite)
-    {
+        tile.GetComponent<InteractableTile>().IsBusy = true;
         float elapsedTime = 0;
         Quaternion currentRotation = tile.transform.rotation;
         Quaternion targetRotation = currentRotation * Quaternion.Euler(0, 90, 0);
@@ -165,19 +100,55 @@ public class MatchTwoController : MonoBehaviour
             yield return null;
         }
         tile.transform.rotation = targetRotation;
+        if (TileCouple.Count == 2 && tileNumber == 2) CheckTileCouple();
+        tile.GetComponent<InteractableTile>().IsBusy = false;
     }
 
-    private IEnumerator HideIncorrectTiles()
+    private void CheckTileCouple()
     {
-        //First coroutine happens witout waiting. Second one need to be waited to end at the same time so the reset happens visually and internally At the Same time
-        StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile));
-        yield return StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile));
+        if (CheckTiles())
+        {
+            //Correct couple stuff
+            currentSolvedCouples++;
+            MarkCoupleAsCorrect();
+
+            //Add Joker To Board in the correct round
+            if (currentSolvedCouples == MatchTwoSettings.JokerRoundSpawn && !isJokerSpawned)
+            {
+                isJokerSpawned = true;
+                AddJokerToBoard();
+            }
+
+            if (CheckVictory())
+            {
+                SolvePuzzle solvedPuzzleTrigger = new SolvePuzzle();
+                EventManager.TriggerEvent(solvedPuzzleTrigger);
+                timer.IsStopped = true;
+            }
+
+        }
+        //Tile couple is not correct
+        else
+        {
+            HideIncorrectTiles();
+            MarkCoupleAsNotRevealed();
+
+            if (TileCouple[0].IsJoker || TileCouple[1].IsJoker)
+            {
+                RemoveJokerTile();
+                shuffler.ShuffleBoard();
+            }
+        }
+        tileCouple.Clear();
     }
 
-    private IEnumerator HideFirstTile()
+    private void HideIncorrectTiles()
     {
-        yield return StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile));
+        StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile, 0));
+        StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile, 0));
     }
+
+    #region JOKER METHODS
 
     private void AddJokerToBoard()
     {
@@ -196,16 +167,27 @@ public class MatchTwoController : MonoBehaviour
         jokerTile.FrontTile = previousSprite;
     }
 
-    #region UTILITY METHODS
+    #endregion
+
+    #region TIMER METHODS
+    private void CreateTimerSettings()
+    {
+        timerVariables = new TimerVariables(
+            matchTwoSettings.ExtraTimers,
+            matchTwoSettings.ExtraTimerValue,
+            matchTwoSettings.BaseTime,
+            matchTwoSettings.CurseMeterPerExtraTime);
+    }
+
+    #endregion
+
+
+    #region UTILITY TILE METHODS
     public bool CheckTiles()
     {
-        if (TileCouple.Count == 2)
-        {
-            bool hasSameId = TileCouple[0].TileId == TileCouple[1].TileId;
-            bool isJoker = TileCouple[1].IsJoker;
-            return hasSameId && !isJoker;
-        }
-        else return false;
+        bool hasSameId = TileCouple[0].TileId == TileCouple[1].TileId;
+        bool isJoker = TileCouple[0].IsJoker || TileCouple[1].IsJoker;
+        return hasSameId && !isJoker;
     }
 
     private bool CheckVictory()
@@ -219,12 +201,6 @@ public class MatchTwoController : MonoBehaviour
         {
             tile.IsRevealed = false;
         }
-    }
-
-    public void ResetCouple()
-    {
-        tileCouple.Clear();
-        currentRevealedTiles = 0;
     }
 
     public void MarkCoupleAsCorrect()

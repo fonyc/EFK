@@ -17,6 +17,5 @@ public class PortraitDistortion : MonoBehaviour
     public void ChangeDistortion(float qty)
     {
         img.materialForRendering.SetFloat("_DistortAmount", qty);
-        Debug.Log(img.materialForRendering.GetFloat("_DistortAmount"));
     }
 }

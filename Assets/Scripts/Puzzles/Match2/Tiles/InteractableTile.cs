@@ -15,6 +15,7 @@ public class InteractableTile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private MatchTwoController matchTwoController;
     [SerializeField] private bool isRevealed;
     [SerializeField] private bool isSolved;
+    [SerializeField] private bool isBusy;
 
     #region PROPERTIES
     public int TileId { get => tileId; set => tileId = value; }
@@ -23,6 +24,7 @@ public class InteractableTile : MonoBehaviour, IPointerClickHandler
     public bool IsRevealed { get => isRevealed; set => isRevealed = value; }
     public bool IsSolved { get => isSolved; set => isSolved = value; }
     public bool IsJoker { get => isJoker; set => isJoker = value; }
+    public bool IsBusy { get => isBusy; set => isBusy = value; }
     #endregion
 
     private void Awake()
