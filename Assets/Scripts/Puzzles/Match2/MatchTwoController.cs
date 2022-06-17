@@ -18,7 +18,8 @@ public class MatchTwoController : MonoBehaviour
     [Header(" --- SPIN ---")]
     [Space(5)]
     [Range(0f, 1f)]
-    [SerializeField] float animationTime = 0.25f;
+    [SerializeField] float showAnimationTime = 0.25f;
+    [SerializeField] float hideAnimationTime = 0.1f;
 
     [Header(" --- SHUFFLER ---")]
     [Space(5)]
@@ -77,9 +78,9 @@ public class MatchTwoController : MonoBehaviour
         Quaternion currentRotation = tile.transform.rotation;
         Quaternion targetRotation = currentRotation * Quaternion.Euler(0, 90, 0);
 
-        while (elapsedTime < animationTime)
+        while (elapsedTime < showAnimationTime)
         {
-            tile.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, (elapsedTime / animationTime));
+            tile.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, (elapsedTime / showAnimationTime));
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -92,9 +93,9 @@ public class MatchTwoController : MonoBehaviour
         targetRotation = currentRotation * Quaternion.Euler(0, -90, 0);
         elapsedTime = 0;
 
-        while (elapsedTime < animationTime)
+        while (elapsedTime < hideAnimationTime)
         {
-            tile.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, (elapsedTime / animationTime));
+            tile.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, (elapsedTime / hideAnimationTime));
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -180,7 +181,6 @@ public class MatchTwoController : MonoBehaviour
     }
 
     #endregion
-
 
     #region UTILITY TILE METHODS
     public bool CheckTiles()
