@@ -14,12 +14,15 @@ public class MatchTwoController : MonoBehaviour
     [SerializeField] int currentSolvedCouples;
     [SerializeField] private Timer timer;
     private TimerVariables timerVariables;
+    private int currentBusyTiles;
 
     [Header(" --- SPIN ---")]
     [Space(5)]
     [Range(0f, 1f)]
     [SerializeField] float showAnimationTime = 0.25f;
     [SerializeField] float hideAnimationTime = 0.1f;
+    [SerializeField][Range(0, 1f)] float waveStrength = 0.7f;
+    private bool boardIsAnimated;
 
     [Header(" --- SHUFFLER ---")]
     [Space(5)]
@@ -32,6 +35,7 @@ public class MatchTwoController : MonoBehaviour
     private Sprite previousSprite;
     private InteractableTile jokerTile;
     private bool isJokerSpawned;
+    private bool isJokerSelected;
     #endregion
 
     #region PROPERTIES
@@ -59,19 +63,30 @@ public class MatchTwoController : MonoBehaviour
 
     public void OnTilePressed(InteractableTile tile)
     {
+        if (boardIsAnimated) return;
         if (CheckVictory()) return;
-        if (tile.IsBusy) return;
-        if (TileCouple.Count == 2) return;
-        if (tile.IsRevealed || tile.IsSolved) return;
+        if (tile.IsBusy || tile.IsRevealed || tile.IsSolved) return;
 
         //Reveal tile and add it to the current revealed tiles
         tile.IsRevealed = true;
-        TileCouple.Add(tile);
+        currentBusyTiles++;
+        if (tile.IsJoker) isJokerSelected = true;
 
-        StartCoroutine(FlipTile(tile.transform, tile.FrontTile, tileCouple.Count));
+        //check if the joker is the last tile
+        if (tile.IsJoker && currentBusyTiles % 2 == 0)
+        {
+            boardIsAnimated = true;
+        }
+
+        StartCoroutine(FlipTile(tile.transform, tile.FrontTile, true));
     }
 
-    private IEnumerator FlipTile(Transform tile, Sprite targetSprite, int tileNumber)
+    private void Update()
+    {
+        if (TileCouple.Count == 2) CheckTileCouple();
+    }
+
+    private IEnumerator FlipTile(Transform tile, Sprite targetSprite, bool isShowing)
     {
         tile.GetComponent<InteractableTile>().IsBusy = true;
         float elapsedTime = 0;
@@ -101,8 +116,14 @@ public class MatchTwoController : MonoBehaviour
             yield return null;
         }
         tile.transform.rotation = targetRotation;
-        if (TileCouple.Count == 2 && tileNumber == 2) CheckTileCouple();
+
         tile.GetComponent<InteractableTile>().IsBusy = false;
+
+        //Add the tile to tile couple if the tile is being shown
+        if (isShowing) TileCouple.Add(tile.GetComponent<InteractableTile>());
+        else tile.GetComponent<InteractableTile>().IsRevealed = false;
+
+
     }
 
     private void CheckTileCouple()
@@ -131,22 +152,33 @@ public class MatchTwoController : MonoBehaviour
         //Tile couple is not correct
         else
         {
-            HideIncorrectTiles();
-            MarkCoupleAsNotRevealed();
+            if (TileCouple[0].IsJoker || TileCouple[1].IsJoker) StartCoroutine(HideIncorrectTiles_Delay());
+            else HideIncorrectTiles();
 
-            if (TileCouple[0].IsJoker || TileCouple[1].IsJoker)
-            {
-                RemoveJokerTile();
-                shuffler.ShuffleBoard();
-            }
+            MarkCoupleAsNotRevealed();
         }
+
+        //Clear Couple tiles
         tileCouple.Clear();
+        currentBusyTiles = currentBusyTiles - 2;
     }
 
     private void HideIncorrectTiles()
     {
-        StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile, 0));
-        StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile, 0));
+        StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile, false));
+        StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile, false));
+    }
+
+    private IEnumerator HideIncorrectTiles_Delay()
+    {
+        StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile, false));
+        StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile, false));
+
+        boardIsAnimated = true;
+        yield return new WaitForSeconds(2f);
+        boardIsAnimated = false;
+        RemoveJokerTile();
+        shuffler.ShuffleBoard();
     }
 
     #region JOKER METHODS
@@ -166,6 +198,7 @@ public class MatchTwoController : MonoBehaviour
     {
         jokerTile.IsJoker = false;
         jokerTile.FrontTile = previousSprite;
+        isJokerSelected = false;
     }
 
     #endregion
@@ -187,6 +220,7 @@ public class MatchTwoController : MonoBehaviour
     {
         bool hasSameId = TileCouple[0].TileId == TileCouple[1].TileId;
         bool isJoker = TileCouple[0].IsJoker || TileCouple[1].IsJoker;
+
         return hasSameId && !isJoker;
     }
 
