@@ -48,7 +48,6 @@ public class SlidePuzzleController : MonoBehaviour
         selectedImage = SelectRandomImage();
         LoadSpritesToCanvas(selectedImage);
         MakeVoidPieceTransparent(imagesList[selectedImage].VoidPiece);
-        
 
         shuffler.ShuffleImage();
         InitMatrix();
@@ -60,7 +59,7 @@ public class SlidePuzzleController : MonoBehaviour
         EventManager.TriggerEvent(showInteraction);
     }
 
-    public void OnPieceClicked(InteractableSlidePiece piece, Vector3 interactionDirection)
+    public void OnPieceClicked(InteractableSlidePiece piece)
     {
         //This method takes for granted that the piece is interactable
         int voidPieceIndex = voidPiece.transform.GetSiblingIndex();
@@ -202,6 +201,5 @@ public class SlidePuzzleController : MonoBehaviour
     }
 
     #endregion
-
 
 }

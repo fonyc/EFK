@@ -27,13 +27,9 @@ public class InteractableSlidePiece : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Piece with Id " + slidePieceId + " pressed.");
-
         if (!isInteractable) return;
 
-        slidePuzzleController.OnPieceClicked(this, InteractionDirection);
-
-        Debug.Log("Is interactable, lets move the piece somewhere (but not over the rainbow)");
+        slidePuzzleController.OnPieceClicked(this);
     }
 
     public void MakePieceTransparent()
