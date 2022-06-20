@@ -22,6 +22,7 @@ public class MatchTwoController : MonoBehaviour
     [SerializeField] float showAnimationTime = 0.25f;
     [SerializeField] float hideAnimationTime = 0.1f;
     [SerializeField][Range(0, 1f)] float waveStrength = 0.7f;
+    [SerializeField] float waveAnimationTime = 0.5f;
     private bool boardIsAnimated;
 
     [Header(" --- SHUFFLER ---")]
@@ -35,7 +36,6 @@ public class MatchTwoController : MonoBehaviour
     private Sprite previousSprite;
     private InteractableTile jokerTile;
     private bool isJokerSpawned;
-    private bool isJokerSelected;
     #endregion
 
     #region PROPERTIES
@@ -55,6 +55,7 @@ public class MatchTwoController : MonoBehaviour
 
     private void Start()
     {
+        //Remove possible residual icon in the action button
         ShowInteraction showInteraction = new ShowInteraction(null);
         EventManager.TriggerEvent(showInteraction);
 
@@ -70,14 +71,10 @@ public class MatchTwoController : MonoBehaviour
         //Reveal tile and add it to the current revealed tiles
         tile.IsRevealed = true;
         currentBusyTiles++;
-        if (tile.IsJoker) isJokerSelected = true;
 
         //check if the joker is the last tile
-        if (tile.IsJoker && currentBusyTiles % 2 == 0)
-        {
-            boardIsAnimated = true;
-        }
-
+        if (IsJokerTheLastTile(tile)) boardIsAnimated = true;
+        
         StartCoroutine(FlipTile(tile.transform, tile.FrontTile, true));
     }
 
@@ -122,8 +119,6 @@ public class MatchTwoController : MonoBehaviour
         //Add the tile to tile couple if the tile is being shown
         if (isShowing) TileCouple.Add(tile.GetComponent<InteractableTile>());
         else tile.GetComponent<InteractableTile>().IsRevealed = false;
-
-
     }
 
     private void CheckTileCouple()
@@ -152,7 +147,7 @@ public class MatchTwoController : MonoBehaviour
         //Tile couple is not correct
         else
         {
-            if (TileCouple[0].IsJoker || TileCouple[1].IsJoker) StartCoroutine(HideIncorrectTiles_Delay());
+            if (TileCouple[0].IsJoker || TileCouple[1].IsJoker) StartCoroutine(HideJoker_Coro());
             else HideIncorrectTiles();
 
             MarkCoupleAsNotRevealed();
@@ -169,19 +164,61 @@ public class MatchTwoController : MonoBehaviour
         StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile, false));
     }
 
-    private IEnumerator HideIncorrectTiles_Delay()
+    private IEnumerator HideJoker_Coro()
     {
         StartCoroutine(FlipTile(TileCouple[0].transform, TileCouple[0].BackTile, false));
         StartCoroutine(FlipTile(TileCouple[1].transform, TileCouple[1].BackTile, false));
 
         boardIsAnimated = true;
-        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(TileAnimation_Coro());
         boardIsAnimated = false;
         RemoveJokerTile();
         shuffler.ShuffleBoard();
     }
 
+    private IEnumerator TileAnimation_Coro()
+    {
+        List<Transform> unsolvedlist = new List<Transform>();
+        unsolvedlist = GetUnsolvedTiles();
+        
+        if(unsolvedlist!= null)
+        {
+            ActivateAnimationInTile(unsolvedlist, waveStrength);
+        }
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log(unsolvedlist.Count);
+        if (unsolvedlist != null)
+        {
+            ActivateAnimationInTile(unsolvedlist, 0f);
+        }
+    }
+
+    private void ActivateAnimationInTile(List<Transform> unsolvedList, float value)
+    {
+        foreach (Transform tile in unsolvedList)
+        {
+            tile.GetComponent<TileAnimation>().ChangeWaveStrength(value);
+        }
+    }
+
+    private List<Transform> GetUnsolvedTiles()
+    {
+        List<Transform> list = new List<Transform>();
+        foreach(Transform tile in board)
+        {
+            if (tile.GetComponent<InteractableTile>().IsSolved) continue;
+            list.Add(tile);
+        }
+        return list;
+    }
+
     #region JOKER METHODS
+    
+    private bool IsJokerTheLastTile(InteractableTile tile)
+    {
+        return tile.IsJoker && currentBusyTiles % 2 == 0;
+    }
 
     private void AddJokerToBoard()
     {
@@ -198,7 +235,6 @@ public class MatchTwoController : MonoBehaviour
     {
         jokerTile.IsJoker = false;
         jokerTile.FrontTile = previousSprite;
-        isJokerSelected = false;
     }
 
     #endregion

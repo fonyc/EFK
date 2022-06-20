@@ -202,6 +202,8 @@ MonoBehaviour:
   timer: {fileID: 0}
   showAnimationTime: 0.25
   hideAnimationTime: 0.15
+  waveStrength: 0.7
+  waveAnimationTime: 0.5
   board: {fileID: 3383752896857165773}
   jokerSprite: {fileID: 21300000, guid: bd56b3a49991a0a47af91d84ec033c14, type: 3}
 --- !u!114 &6165066941946117115
@@ -692,7 +694,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e97b9092f81088244921e0e203725da0, type: 3}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Color.g
@@ -700,12 +702,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.07168019
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 4709529955271635557, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: waveSpeed
       value: 2
@@ -872,7 +874,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: backTile
       value: 
@@ -993,7 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -1023,7 +1025,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 5939756071698654836, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: waveSpeed
       value: 2
@@ -1190,7 +1192,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: backTile
       value: 
@@ -1311,7 +1313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -1328,7 +1330,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e97b9092f81088244921e0e203725da0, type: 3}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Color.g
@@ -1336,12 +1338,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.07168019
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 4709529955271635557, guid: fe6c29828c629114e9c52d5cb9f5fe10, type: 3}
       propertyPath: waveSpeed
       value: 2
@@ -1470,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -1508,7 +1510,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: backTile
       value: 
@@ -1629,7 +1631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -1654,11 +1656,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e97b9092f81088244921e0e203725da0, type: 3}
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Color.r
@@ -1667,7 +1669,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: backTile
       value: 
@@ -1826,7 +1828,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: backTile
       value: 
@@ -1947,7 +1949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -1985,7 +1987,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 51bbcfd7de030394697a40aa9508a148, type: 3}
       propertyPath: backTile
       value: 
@@ -2106,7 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -2144,7 +2146,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 71c2441ed8ff558448f791ec32c2a8e4, type: 3}
       propertyPath: backTile
       value: 
@@ -2265,7 +2267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -2295,7 +2297,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 5939756071698654836, guid: 22ca924259eead64fb60924e0523e47e, type: 3}
       propertyPath: waveSpeed
       value: 2
@@ -2424,7 +2426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -2462,7 +2464,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: backTile
       value: 
@@ -2621,7 +2623,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 92485400fb373664587570dbabce66ad, type: 3}
       propertyPath: backTile
       value: 
@@ -2742,7 +2744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -2780,7 +2782,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: cb72ae7d862506942a36bf45995d7612, type: 3}
       propertyPath: backTile
       value: 
@@ -2901,7 +2903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -2939,7 +2941,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: 885a1a60b36f86d4390782be3a229296, type: 3}
       propertyPath: backTile
       value: 
@@ -3060,7 +3062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -3085,11 +3087,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e97b9092f81088244921e0e203725da0, type: 3}
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Color.r
@@ -3098,7 +3100,7 @@ PrefabInstance:
     - target: {fileID: 4589516994988702039, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: c7f8142394f213a419314f39cb1014df, type: 2}
+      objectReference: {fileID: 2100000, guid: a3bb330f62a778d4aa5514e5b90aea0c, type: 2}
     - target: {fileID: 8295744093988547108, guid: e511289abe14bae4b9886ca54ea28604, type: 3}
       propertyPath: backTile
       value: 

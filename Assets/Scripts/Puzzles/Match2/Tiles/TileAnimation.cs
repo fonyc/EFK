@@ -4,69 +4,64 @@ using UnityEngine.UI;
 
 public class TileAnimation : MonoBehaviour
 {
-    Image uiImage;
-    [SerializeField] private float waveStrength;
-    [SerializeField] private float waveSpeed;
-    [SerializeField] private float timeToFullWave;
-    [SerializeField] private float timeToNormal;
-    [SerializeField] private float waitTime;
+    Image tileImage;
 
     void Awake()
     {
-        uiImage = GetComponent<Image>();
-        uiImage.material = new Material(uiImage.material);
+        tileImage = GetComponent<Image>();
+        tileImage.material = new Material(tileImage.material);
     }
 
     public void ChangeWaveProperties(float newStrength, float newSpeed)
     {
-        uiImage.materialForRendering.SetFloat("_RoundWaveStrength", waveStrength);
-        uiImage.materialForRendering.SetFloat("_RoundWaveSpeed", waveSpeed);
+        tileImage.materialForRendering.SetFloat("_RoundWaveStrength", newStrength);
+        tileImage.materialForRendering.SetFloat("_RoundWaveSpeed", newSpeed);
     }
 
     public void AddWaveStrength(float qty)
     {
-        float oldStrength = uiImage.materialForRendering.GetFloat("_RoundWaveStrength");
-        uiImage.materialForRendering.SetFloat("_RoundWaveStrength", qty + oldStrength);
+        float oldStrength = tileImage.materialForRendering.GetFloat("_RoundWaveStrength");
+        tileImage.materialForRendering.SetFloat("_RoundWaveStrength", qty + oldStrength);
     }
 
     public void ChangeWaveStrength(float newStrength)
     {
-        uiImage.materialForRendering.SetFloat("_RoundWaveStrength", waveStrength);
+        tileImage.materialForRendering.SetFloat("_RoundWaveStrength", newStrength);
     }
 
     public void ChangeWaveSpeed(float newSpeed)
     {
-        uiImage.materialForRendering.SetFloat("_RoundWaveSpeed", newSpeed);
+        tileImage.materialForRendering.SetFloat("_RoundWaveSpeed", newSpeed);
     }
 
-    private IEnumerator ShuffleAnimation(float targetWaveStrength)
-    {
-        GetComponent<InteractableTile>().IsBusy = true;
-        float elapsedTime = 0;
-        float currentStrengtWave = uiImage.materialForRendering.GetFloat("_RoundWaveStrength");
+    //private IEnumerator ShuffleAnimation(float targetWaveStrength)
+    //{
+    //    GetComponent<InteractableTile>().IsBusy = true;
+    //    float elapsedTime = 0;
+    //    float currentStrengtWave = tileImage.materialForRendering.GetFloat("_RoundWaveStrength");
 
-        while (elapsedTime < timeToFullWave)
-        {
-            float value = Mathf.Lerp(currentStrengtWave, targetWaveStrength, (elapsedTime / timeToFullWave));
-            uiImage.materialForRendering.SetFloat("_RoundWaveStrength", value);
-            elapsedTime += Time.deltaTime;
+    //    while (elapsedTime < timeToFullWave)
+    //    {
+    //        float value = Mathf.Lerp(currentStrengtWave, targetWaveStrength, (elapsedTime / timeToFullWave));
+    //        tileImage.materialForRendering.SetFloat("_RoundWaveStrength", value);
+    //        elapsedTime += Time.deltaTime;
 
-            yield return null;
-        }
+    //        yield return null;
+    //    }
 
-        yield return waitTime;
+    //    yield return waitTime;
 
-        while (elapsedTime < timeToNormal)
-        {
-            float value = Mathf.Lerp(currentStrengtWave, targetWaveStrength, (elapsedTime / timeToFullWave));
-            uiImage.materialForRendering.SetFloat("_RoundWaveStrength", value);
-            elapsedTime += Time.deltaTime;
+    //    while (elapsedTime < timeToNormal)
+    //    {
+    //        float value = Mathf.Lerp(currentStrengtWave, targetWaveStrength, (elapsedTime / timeToFullWave));
+    //        tileImage.materialForRendering.SetFloat("_RoundWaveStrength", value);
+    //        elapsedTime += Time.deltaTime;
 
-            yield return null;
-        }
+    //        yield return null;
+    //    }
 
-        GetComponent<InteractableTile>().IsBusy = false;
-    }
+    //    GetComponent<InteractableTile>().IsBusy = false;
+    //}
 
 }
 
