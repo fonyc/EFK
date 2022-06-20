@@ -11,15 +11,16 @@ public class MatchTwoShuffler : MonoBehaviour
         ShuffleBoard();
     }
 
-
     public void ShuffleBoard()
     {
         List<int> availablePositionList = GetSwappablePointList(board);
-
+        if (!IsGreaterThanOne(availablePositionList)) return;
         foreach (Transform tile in board)
         {
+            //Dont add in the shuffle already solved tiles
             if (tile.GetComponent<InteractableTile>().IsSolved) continue;
 
+            if (availablePositionList.Count == 0) return;
             int originIndex = tile.GetSiblingIndex();
             int destinationIndex = GetRandomPositionInList(availablePositionList);
 
@@ -50,9 +51,15 @@ public class MatchTwoShuffler : MonoBehaviour
 
         foreach(Transform tile in board)
         {
-            if (tile.GetComponent<InteractableTile>().IsSolved) continue;
+            InteractableTile tileScript = tile.GetComponent<InteractableTile>();
+            if (tileScript.IsSolved || tileScript.IsRevealed || tileScript.IsBusy) continue;
             availablePositionList.Add(tile.GetSiblingIndex());
         }
         return availablePositionList;
+    }
+
+    private bool IsGreaterThanOne(List<int> list)
+    {
+        return list.Count > 0;
     }
 }
