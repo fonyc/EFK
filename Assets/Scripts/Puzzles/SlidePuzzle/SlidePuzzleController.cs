@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SlidePuzzleController : MonoBehaviour
@@ -10,6 +11,9 @@ public class SlidePuzzleController : MonoBehaviour
     [SerializeField] private Transform parentPuzzle;
     [SerializeField] private SlidePuzzleImagesSO[] imagesList;
     [SerializeField] private Transform voidPiece;
+    [SerializeField] private float pieceAnimationTime = 0.2f;
+    private float imageDistance;
+    private bool boardIsBusy = false;
 
     //Timer settings
     private Timer timer;
@@ -48,7 +52,6 @@ public class SlidePuzzleController : MonoBehaviour
         selectedImage = SelectRandomImage();
         LoadSpritesToCanvas(selectedImage);
         MakeVoidPieceTransparent(imagesList[selectedImage].VoidPiece);
-        
 
         shuffler.ShuffleImage();
         InitMatrix();
@@ -60,14 +63,23 @@ public class SlidePuzzleController : MonoBehaviour
         EventManager.TriggerEvent(showInteraction);
     }
 
-    public void OnPieceClicked(InteractableSlidePiece piece, Vector3 interactionDirection)
+    public async void OnPieceClicked(InteractableSlidePiece piece)
     {
+        if(boardIsBusy) return;
+
+        //REMOVE THIS FROM HERE --> IMAGE DISTANCE CANT BE IN START CAUSE CABVAS DIDNT INIT THE IMAGES MUST BE LATER
+        imageDistance = parentPuzzle.GetChild(1).transform.position.x - parentPuzzle.GetChild(0).transform.position.x;
+        Debug.Log("Distance is: " + imageDistance);
+
         //This method takes for granted that the piece is interactable
         int voidPieceIndex = voidPiece.transform.GetSiblingIndex();
         int pieceIndex = piece.transform.GetSiblingIndex();
 
-        piece.RelocateTransformImage(voidPieceIndex);
-        voidPiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(pieceIndex);
+        await AnimateImage(piece);
+
+        //Change indexes inside the parent
+        piece.transform.SetSiblingIndex(voidPieceIndex);
+        voidPiece.transform.SetSiblingIndex(pieceIndex);
 
         if (UpdateMatrixAndCheckVictory())
         {
@@ -80,6 +92,25 @@ public class SlidePuzzleController : MonoBehaviour
         RefreshInteractablePieces();
     }
 
+    public async Task AnimateImage(InteractableSlidePiece piece)
+    {
+        boardIsBusy = true;
+        Vector3 targetPosition = piece.transform.position + piece.InteractionDirection * imageDistance;
+        float duration = pieceAnimationTime;
+
+        float time = 0;
+        Vector3 startPosition = piece.transform.position;
+
+        while (time < duration)
+        {
+            piece.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            await Task.Yield();
+        }
+        piece.transform.position = targetPosition;
+        boardIsBusy = false;
+    }
+
     private bool UpdateMatrixAndCheckVictory()
     {
         int correctPieces = matrixSize * matrixSize;
@@ -88,7 +119,7 @@ public class SlidePuzzleController : MonoBehaviour
         {
             for (int c = 0; c < matrixSize; c++)
             {
-                if(matrix[r, c].GetComponent<InteractableSlidePiece>().SlidePieceId == matrix[r, c].transform.GetSiblingIndex())
+                if (matrix[r, c].GetComponent<InteractableSlidePiece>().SlidePieceId == matrix[r, c].transform.GetSiblingIndex())
                 {
                     correctPieces--;
                 }
@@ -136,7 +167,7 @@ public class SlidePuzzleController : MonoBehaviour
 
     private PieceData FindVoidPiece()
     {
-        PieceData result = new PieceData(-1,-1);
+        PieceData result = new PieceData(-1, -1);
 
         for (int r = 0; r < matrixSize; r++)
         {
@@ -166,7 +197,7 @@ public class SlidePuzzleController : MonoBehaviour
         if (voidPieceLocation.row != 0)
         {
             InteractableSlidePiece piece = matrix[voidPieceLocation.row - 1, voidPieceLocation.col].GetComponent<InteractableSlidePiece>();
-            
+
             piece.IsInteractable = true;
             piece.InteractionDirection = Vector3.down;
         }
@@ -185,7 +216,7 @@ public class SlidePuzzleController : MonoBehaviour
             piece.InteractionDirection = Vector3.right;
         }
 
-        if (voidPieceLocation.col != matrixSize -1)
+        if (voidPieceLocation.col != matrixSize - 1)
         {
             InteractableSlidePiece piece = matrix[voidPieceLocation.row, voidPieceLocation.col + 1].GetComponent<InteractableSlidePiece>();
             piece.IsInteractable = true;
@@ -195,13 +226,12 @@ public class SlidePuzzleController : MonoBehaviour
 
     private void TurnToNonInteractable()
     {
-        foreach(Transform piece in parentPuzzle)
+        foreach (Transform piece in parentPuzzle)
         {
             piece.GetComponent<InteractableSlidePiece>().IsInteractable = false;
         }
     }
 
     #endregion
-
 
 }
