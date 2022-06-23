@@ -25,13 +25,13 @@ public class SildePuzzleShuffler : MonoBehaviour
 
             if(puzzlePiece.GetComponent<InteractableSlidePiece>().SlidePieceId == puzzlePiece.GetSiblingIndex())
             {
-                puzzlePiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(selectedShuffle.ShuffleList[index]);
+                puzzlePiece.SetSiblingIndex(selectedShuffle.ShuffleList[index]);
             }
             else
             {
                 int positionA = puzzlePiece.transform.GetSiblingIndex();
                 int positionB = parentPuzzle.GetChild(selectedShuffle.ShuffleList[index]).GetSiblingIndex();
-                puzzlePiece.GetComponent<InteractableSlidePiece>().RelocateTransformImage(selectedShuffle.ShuffleList[index]);
+                puzzlePiece.SetSiblingIndex(selectedShuffle.ShuffleList[index]);
             }
 
             index++;

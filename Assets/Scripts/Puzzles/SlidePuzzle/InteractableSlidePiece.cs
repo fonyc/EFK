@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -28,7 +29,6 @@ public class InteractableSlidePiece : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!isInteractable) return;
-
         slidePuzzleController.OnPieceClicked(this);
     }
 
@@ -41,14 +41,6 @@ public class InteractableSlidePiece : MonoBehaviour, IPointerClickHandler
             GetComponent<Image>().color.g,
             GetComponent<Image>().color.b,
             0);
-    }
-
-    public void RelocateTransformImage(int index)
-    {
-        transform.SetSiblingIndex(index);
-        GetComponent<RectTransform>().anchorMin = Vector2.one * 0.5f;
-        GetComponent<RectTransform>().anchorMax = Vector2.one * 0.5f;
-        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 
     public void LoadImage(Sprite _sprite)
