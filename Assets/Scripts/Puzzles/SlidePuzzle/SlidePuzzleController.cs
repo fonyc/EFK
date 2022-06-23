@@ -95,7 +95,7 @@ public class SlidePuzzleController : MonoBehaviour
     public async Task AnimateImage(InteractableSlidePiece piece)
     {
         boardIsBusy = true;
-        Vector3 targetPosition = piece.transform.position + piece.InteractionDirection * 94.82f;
+        Vector3 targetPosition = piece.transform.position + piece.InteractionDirection * imageDistance;
         float duration = pieceAnimationTime;
 
         float time = 0;

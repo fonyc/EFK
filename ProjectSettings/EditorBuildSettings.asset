@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/3_MusicRoom.unity
     guid: 555c719849169354facb8074e0636d94
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/4_OldBedRoom.unity
     guid: a3da29814b3fb5b4d952d44b13e40031
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/5_Corridor.unity
     guid: 9026bf92e4eb8a3489aed6fc714860e9
   - enabled: 0
