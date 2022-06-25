@@ -27,6 +27,7 @@ namespace EFK.Puzzles
         [SerializeField] private int currentPlayedNote = 0;
         [Space(5)]
         [SerializeField] private int[] alreadyPlayedKeys;
+        [SerializeField] private float timeBetweenRounds = 1f;
 
 
         [Header("--- VARIABLES ---")]
@@ -90,16 +91,17 @@ namespace EFK.Puzzles
 
         private IEnumerator PlaySimonNotes()
         {
+            yield return new WaitForSeconds(timeBetweenRounds);
             if (CheckEmptyKeyInCurrentRound())
             {
-                alreadyPlayedKeys[CurrentRound] = PlayRandomKey();
+                alreadyPlayedKeys[currentRound] = PlayRandomKey();
             }
 
             //Read the notes
-            for (int x = 0; x < CurrentRound + 1; x++)
+            for (int x = 0; x < currentRound + 1; x++)
             {
                 //If its the last note of the chord, check if phantom appears
-                if(x  == CurrentRound)
+                if(x  == currentRound)
                 {
                     if (PhantomPlaysNote())
                     {
@@ -118,13 +120,10 @@ namespace EFK.Puzzles
 
         private IEnumerator LightKey(int key, bool isPhantom)
         {
-            Image imageKey = keys[key].GetComponent<Image>();
-            Color new_prevColor = imageKey.color;
-            imageKey.color = isPhantom? Color.red : Color.green;
-
+            PianoKey pianoKeyScript = keys[key].GetComponent<PianoKey>();
+            pianoKeyScript.TurnOnKey();
             yield return new WaitForSeconds(GameSettings.TimeBetweenNotes);
-
-            imageKey.color = new_prevColor;
+            pianoKeyScript.TurnOffKey();
 
             yield return new WaitForSeconds(GameSettings.TimeBetweenNotes/2);
         }
@@ -134,7 +133,7 @@ namespace EFK.Puzzles
             if (simonSaysState != SimonSaysStates.PlayerPhase) return;
 
             //VFX key
-            Debug.Log("Key with name " + keys[keyNumber].name + " was pressed");
+            StartCoroutine(LightKey(keyNumber, false));
 
             //Key is correct
             if (CheckPlayedKey(keyNumber))
@@ -182,6 +181,10 @@ namespace EFK.Puzzles
                     AddCurseMeter curseMeterTrigger = new AddCurseMeter(gameSettings.CurseMeterPerMistake);
                     EventManager.TriggerEvent(curseMeterTrigger);
 
+                    //Add error to UI
+                    PaintError addErrorTrigger = new PaintError();
+                    EventManager.TriggerEvent(addErrorTrigger);
+
                     Debug.Log("Mistake! Current Mistakes: " + CurrentMistakes);
 
                     SwitchGamePhase(SimonSaysStates.SimonPhase);
@@ -209,9 +212,12 @@ namespace EFK.Puzzles
         /// <returns></returns>
         private int GetPhantomProbability()
         {
+            int[] phantomProb = new int[gameSettings.PhantomProbabilities.Length];
+            phantomProb = gameSettings.PhantomProbabilities;
+
             return currentPhantomApparitions >= GameSettings.MaxPhantomInterventions ?
-                gameSettings.PhantomProbabilities[gameSettings.PhantomProbabilities.Length - 1] :
-                gameSettings.PhantomProbabilities[currentPhantomApparitions];
+                phantomProb[phantomProb.Length - 1] :
+                phantomProb[currentPhantomApparitions];
         }
 
         #region UTILITY METHODS
